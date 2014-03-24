@@ -358,7 +358,7 @@ html body { height: 100%; width: 100%; background: white; }
 /* line 25, ../../app/Stylesheets/_Page.sass */
 .m-perf-bars { width: 100%; height: 260px; position: relative; z-index: 10; }
 /* line 38, ../../app/Stylesheets/_Page.sass */
-.m-perf-bars .bar-container { position: absolute; top: 0px; height: 104px; margin-top: 52px; background: #eeeeee; width: 100%; }
+.m-perf-bars .bar-container { position: absolute; top: 0px; height: 104px; margin-top: 52px; background: #eeeeee; width: 90%; }
 /* line 79, ../../app/Stylesheets/_Page.sass */
 .m-perf-bars .section { background: orange; display: block; position: absolute; height: 104px; bottom: 0px; z-index: 100; }
 /* line 90, ../../app/Stylesheets/_Page.sass */
@@ -2348,25 +2348,23 @@ ul { margin: 0; padding: 0; }
 .m-tag.qa { background-color: #dddddd; color: #777777; text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.5); }
 
 /* line 57, ../../app/Stylesheets/Partials/_Tags.sass */
-.m-end-tag { text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.7); text-align: center; font-family: "open-sans", "Open Sans"; font-weight: normal; text-transform: uppercase; display: inline; line-height: inherit; padding: 2px 5px; font-size: 11px; vertical-align: top; }
+.m-end-tag { text-align: center; font-family: "open-sans", "Open Sans"; font-weight: normal; text-transform: uppercase; display: inline; line-height: inherit; padding: 2px 5px; font-size: 11px; }
 /* line 78, ../../app/Stylesheets/Partials/_Tags.sass */
-.m-end-tag.new-feature { background-color: #e27a3f; color: white; text-shadow: none; }
+.m-end-tag.new-feature { background-color: #e27a3f; color: white; }
+/* line 82, ../../app/Stylesheets/Partials/_Tags.sass */
+.m-end-tag.bug-report { background-color: #faebe3; color: #8a5033; text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.9); }
 /* line 87, ../../app/Stylesheets/Partials/_Tags.sass */
-.m-end-tag.bug-report { background-color: #db3c6e; color: white; text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.2); }
-/* line 96, ../../app/Stylesheets/Partials/_Tags.sass */
 .m-end-tag.qa { background-color: #dddddd; color: #777777; text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.5); }
-/* line 105, ../../app/Stylesheets/Partials/_Tags.sass */
-.m-end-tag.bug-report, .m-end-tag.new-feature { background-color: #eeeeee; color: #777777; text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.5); }
 
-/* line 110, ../../app/Stylesheets/Partials/_Tags.sass */
+/* line 101, ../../app/Stylesheets/Partials/_Tags.sass */
 .m-bug-status { display: inline-block; color: white; font-family: "open-sans", "Open Sans"; font-weight: normal; text-transform: uppercase; background: #eeeeee; margin-right: 4px; display: inline; line-height: inherit; vertical-align: baseline; padding: 2px 6px; text-align: center; }
-/* line 126, ../../app/Stylesheets/Partials/_Tags.sass */
+/* line 117, ../../app/Stylesheets/Partials/_Tags.sass */
 .m-bug-status.type-0, .m-bug-status.type-3, .m-bug-status.type-4 { background: #dddddd; text-shadow: 0px 1px 0px #f7f7f7; color: #666666; }
-/* line 131, ../../app/Stylesheets/Partials/_Tags.sass */
+/* line 122, ../../app/Stylesheets/Partials/_Tags.sass */
 .m-bug-status.type-1 { background: #db3c6e; }
-/* line 134, ../../app/Stylesheets/Partials/_Tags.sass */
+/* line 125, ../../app/Stylesheets/Partials/_Tags.sass */
 .m-bug-status.type-2 { background: #f7d929; border: 1px solid #e9c909; color: #333333; text-shadow: none; }
-/* line 140, ../../app/Stylesheets/Partials/_Tags.sass */
+/* line 131, ../../app/Stylesheets/Partials/_Tags.sass */
 .m-bug-status.type-5 { background: #a7c467; }
 
 /* line 1, ../../app/Stylesheets/Partials/_Alerts.sass */

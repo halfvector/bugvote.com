@@ -27,19 +27,18 @@ class LogWriterZeroMQ implements ILogWriter
 			$final = json_encode($final);
 
 			// if there is no PULLing daemon on the other side of this pipeline
-			// the send() call would block, so we tell it to fail silently.
+			// the send() call blocks. we can tell it to fail silently.
 			// zeromq will queue up messages in the background
 			//$socket->send($final, ZMQ::MODE_DONTWAIT);
+
 			$socket->send($final);
 		}
 		catch(\Exception $e)
-		{	// worth logging
+		{
 			$msg = "Error writing to ZeroMQ socket: " . $e->getMessage();
-
 			$metadata = Reflector::GetFrameMetadata(0);
 			$line = "[Error] " . $metadata->file . ":" . $metadata->line . " " . $metadata->method . " " . $msg;
 
-			var_dump($line);
 			error_log($line);
 		}
 	}

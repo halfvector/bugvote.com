@@ -6,13 +6,12 @@ use Bugvote\Core\Logging\IPerformanceLog;
 use Exception;
 use PDO;
 use PDOException;
-use Timer;
 
 // from http://www.yiiframework.com/wiki/38/how-to-use-nested-db-transactions-mysql-5-postgresql/
 class NestedPDO extends PDO
 {
 	// Database drivers that support SAVEPOINTs.
-	protected static $savepointTransactions = array("pgsql", "mysql");
+	protected static $savepointTransactions = ["pgsql", "mysql"];
 
 	// The current transaction level.
 	protected $transLevel = 0;
@@ -106,9 +105,6 @@ class DAL
 			$settings->username, $settings->password, [PDO::ATTR_PERSISTENT => false, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
 		);
 
-		//$this->pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-		//$this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
 		$p->stop();
 	}
 
@@ -119,7 +115,8 @@ class DAL
 			return $pdo->beginTransaction();
 		}
 		catch(PDOException $err) {
-			$this->log && $this->log->write("SqlError: {$err->getFile()}:{$err->getLine()} " . $err->getMessage());
+			$this->log->write("SqlError: {$err->getFile()}:{$err->getLine()} " . $err->getMessage());
+			return false;
 		}
 	}
 
@@ -130,7 +127,8 @@ class DAL
 			return $pdo->commit();
 		}
 		catch(PDOException $err) {
-			$this->log && $this->log->write("SqlError: {$err->getFile()}:{$err->getLine()} " . $err->getMessage());
+			$this->log->write("SqlError: {$err->getFile()}:{$err->getLine()} " . $err->getMessage());
+			return false;
 		}
 	}
 
@@ -141,7 +139,8 @@ class DAL
 			return $pdo->rollback();
 		}
 		catch(PDOException $err) {
-			$this->log && $this->log->write("SqlError: {$err->getFile()}:{$err->getLine()} " . $err->getMessage());
+			$this->log->write("SqlError: {$err->getFile()}:{$err->getLine()} " . $err->getMessage());
+			return false;
 		}
 	}
 
@@ -182,7 +181,8 @@ class DAL
 				$autoId = $this->$function($queryFormat, $parameters);
 				$retry = false;
 			}
-			catch(PDOException $err) {
+			catch(PDOException $err)
+			{
 				// the dumb error looks like this
 				// SQLSTATE[HY000]: General error: 2006 MySQL server has gone away
 
@@ -190,35 +190,32 @@ class DAL
 
 				if($err->getCode() == "HY000" && !strcmp($err->getMessage(), "MySQL server has gone away"))
 				{   // caught a special possibly-recoverable error, involving mysql connection dropping
-					$this->log && $this->log->writeObject("Caught SQL Error:",
-						[
-							"Query" => $queryFormat,
-							"Parameters" => $parameters,
-							"Error" => $err->getMessage(),
-							"Location" => "{$err->getFile()}:{$err->getLine()}",
-							"Stacktrace" => $err->getTraceAsString()
-						]
-					);
-					$this->log && $this->log->write("MySQL Connection Timed out. Reconnecting and retrying query ($attempts/3)..");
+					$this->log->writeObject("Caught SQL Error:", [
+						"Query" => $queryFormat,
+						"Parameters" => $parameters,
+						"Error" => $err->getMessage(),
+						"Location" => "{$err->getFile()}:{$err->getLine()}",
+						"Stacktrace" => $err->getTraceAsString()
+					]);
+					$this->log->write("MySQL Connection Timed out. Reconnecting and retrying query ($attempts/3)..");
 					usleep(3000); // sleep a few milliseconds and try again
 					$this->connect();
 				} else
 				{   // caught another type of error
+
 					if(!strcmp($err->getMessage(), "Integrity constraint violation"))
 					{
 						//var_dump($queryFormat);
 						//var_dump($parameters);
 					}
 
-					$this->log && $this->log->writeObject("Caught SQL Error:",
-						[
-							"Query" => $queryFormat,
-							"Parameters" => $parameters,
-							"Error" => $err->getMessage(),
-							"Location" => "{$err->getFile()}:{$err->getLine()}",
-							"Stacktrace" => $err->getTraceAsString()
-						]
-					);
+					$this->log->writeObject("Caught SQL Error:", [
+						"Query" => $queryFormat,
+						"Parameters" => $parameters,
+						"Error" => $err->getMessage(),
+						"Location" => "{$err->getFile()}:{$err->getLine()}",
+						"Stacktrace" => $err->getTraceAsString()
+					]);
 
 					$p->stop();
 
@@ -234,8 +231,7 @@ class DAL
 		$p->stop();
 
 		/*
-		if(false)
-		{
+
 			$after = mysqli_get_client_stats();
 
 			$bytes = $after['bytes_received'] - $before['bytes_received'];
@@ -248,7 +244,7 @@ class DAL
 				. print_r($parameters, true) . "\n" . print_r($autoId, true);
 
 			$this->log && $this->log->write($msg);
-		}
+
 		*/
 
 		return $autoId;
@@ -324,10 +320,10 @@ class DAL
 	/////////////////////////////////////////////////
 	// the usual CRUD methods
 
-	public function insertSingleObj($queryFormat, $parameters = array(), $label = "(unlabeled)") {
+	public function insertSingleObj($queryFormat, $parameters = [], $label = "(unlabeled)") {
 		return $this->safeOperationWrapper("insert.1 $label", 'insertSingleObjImpl', $queryFormat, $parameters);
 	}
-	protected function insertSingleObjImpl($queryFormat, $parameters = array())
+	protected function insertSingleObjImpl($queryFormat, $parameters = [])
 	{
 		$pdo = $this->getPDO();
 		$query = $pdo->prepare($queryFormat);
@@ -335,7 +331,7 @@ class DAL
 		return $pdo->lastInsertId();
 	}
 
-	public function updateSingleObj($queryFormat, $parameters = array(), $label = "(unlabeled)") {
+	public function updateSingleObj($queryFormat, $parameters = [], $label = "(unlabeled)") {
 		return $this->safeOperationWrapper("update.1 $label", 'updateSingleObjImpl', $queryFormat, $parameters);
 	}
 	protected function updateSingleObjImpl($queryFormat, $parameters)
@@ -346,7 +342,7 @@ class DAL
 		return $pdo->lastInsertId();
 	}
 
-	public function deleteSingleObj($queryFormat, $parameters = array(), $label = "(unlabeled)") {
+	public function deleteSingleObj($queryFormat, $parameters = [], $label = "(unlabeled)") {
 		return $this->safeOperationWrapper("delete.1 $label", 'deleteSingleObjImpl', $queryFormat, $parameters);
 	}
 	// return false on error
@@ -365,11 +361,11 @@ class DAL
 		return gmdate('Y-m-d H:i:s');
 	}
 
-	public function fetchSingleRow($queryFormat, $parameters = array(), $label = "(unlabeled)") {
+	public function fetchSingleRow($queryFormat, $parameters = [], $label = "(unlabeled)") {
 		return $this->safeOperationWrapper("select.1 $label", 'fetchSingleRowImpl', $queryFormat, $parameters);
 	}
 	// return false on error
-	protected function fetchSingleRowImpl($queryFormat, $parameters = array())
+	protected function fetchSingleRowImpl($queryFormat, $parameters = [])
 	{
 		$query = $this->getPDO()->prepare($queryFormat);
 		$query->execute($parameters);

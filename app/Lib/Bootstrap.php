@@ -1,6 +1,5 @@
 <?php namespace Bugvote\Lib;
 
-use AltoRouter;
 use Bugvote\Commons\ImageManager;
 use Bugvote\Commons\UrlResolver;
 use Bugvote\Core\AssetManager;
@@ -25,12 +24,13 @@ use Bugvote\Core\RouteProcessor;
 use Bugvote\Core\UrlBuilder;
 use Bugvote\Services\Context;
 use Bugvote\Services\DataSigning;
+use Bugvote\Services\UserSession;
 
 // external libs
-use Bugvote\Services\UserSession;
 use Clockwork\Clockwork;
 use Clockwork\DataSource\PhpDataSource;
 use Clockwork\Storage\FileStorage;
+use AltoRouter;
 use Redis;
 
 
@@ -44,7 +44,6 @@ class Bootstrap
 
 	/** @var AppPerformanceLog */   public $perf;
 	/** @var ILogger */             public $logger;
-
 
 	// the core framework bootstrap, nothing app-specifics here
 	public static function create($appPath)
@@ -231,12 +230,13 @@ class Bootstrap
 		}
 
 		$p->next("Route dispatch");
+
 		$match = $this->router->match();
 		if($match)
-		{   // run our controller
+		{   // run the matching controller
 			$this->runController($match["target"], $match["params"]);
 		} else
-		{   // show 404
+		{   // no controller found. show 404.
 			$renderer = new MustacheRenderer($this->paths, $this->logger, $this->perf);
 			$renderer->render('Errors/404', []);
 		}
