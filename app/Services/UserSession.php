@@ -137,14 +137,22 @@ class UserSession
 				// if we have a cookie-signature but not a session-signature, try to restore the session
 				$this->cleanupSession();
 
-				$this->ctx->log->write("restoring session from cookies");
+				$this->ctx->log->write("restoring session from cookies: $cookieSignature/$cookieAuthId");
 				$storedSession = $this->ctx->dal->fetchSingleObj(
 					"select * from userSessions where authId = :authId and signature = :signature limit 1",
 					[":authId" => $cookieAuthId, ":signature" => $cookieSignature]
 				);
 
-				$this->auth->userId = $storedSession->userId;
-				$this->auth->signature = $cookieSignature;
+				if(!$storedSession) {
+					// we have a browser-cookie backed session that is no longer matched by database
+					// this could have resulted from a db-outage/rollback or other error
+					// best thing to do is log the user out and force them to login again
+					$this->destroySessionAndCookies();
+				} else {
+					// otherwise the session was found, so we can rebuild it in the local cache
+					$this->auth->userId = $storedSession->userId;
+					$this->auth->signature = $cookieSignature;
+				}
 			}
 			else if($this->auth->signature != $cookieSignature)
 			{   // signature mismatch -- destroy session immediately and dump the cookies (sanity restoration)

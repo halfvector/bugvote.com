@@ -44,13 +44,14 @@ class UserStatusVM
 		{
 			$this->urlUserProfile = $ctx->url->createUserUrl($this->userId);
 
-			$this->userName = $ctx->dal->fetchSingleValue("select fullName from users where userId = :userId", ["userId" => $this->userId]);
+			$this->userName = $ctx->dal->fetchSingleValue("select fullName from users where userId = :userId", ["userId" => $this->userId], 'basic user info');
 
 			if($this->userId)
 			{
 				$userProfileAsset = $ctx->dal->fetchSingleObj(
 					"select assetId, originalFilename from users u left join assets on (profileMediumAssetId = assetId) where userId = :userId",
-					['userId' => $this->userId]
+					['userId' => $this->userId],
+					'user profile image'
 				);
 
 				if($userProfileAsset)

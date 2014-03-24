@@ -33,8 +33,8 @@ class GarageIdeaController extends BaseController
 		);
 
 		$idea->authorImg = $ctx->assetManager->GetWebPathForAsset($idea->profileMediumAssetId) . $idea->originalFilename;
-		$idea->revisionAge = $ctx->api->SmartLongAge($idea->revisionAgeSec);
-		$idea->originalAge = $ctx->api->SmartShortAge($idea->originalAgeSec);
+		//$idea->revisionAge = $ctx->api->SmartLongAge($idea->revisionAgeSec);
+		//$idea->originalAge = $ctx->api->SmartShortAge($idea->originalAgeSec);
 		$idea->isRevised = $idea->revisionReason ? 1 : 0;
 
 		//$markdownParser = new MarkdownExtraParser();
@@ -42,29 +42,23 @@ class GarageIdeaController extends BaseController
 
 		$idea->description = MarkdownExtra::defaultTransform($idea->description);
 
-		$ctx->perf->mark("Markdown transform");
+		//$ctx->perf->mark("Markdown transform");
 
-		$getNumOfVotes = $ctx->queryBuilder->create(
+		$getNumOfVotes = $ctx->dal->fetchSingleValue(
 			"select coalesce(sum(vote),0) as votes from suggestionVotes where suggestionId = :suggestionId",
 			['suggestionId' => $ideaId],
 			"suggestion vote count"
-		)
-			->dependsOn("suggestionVotes.suggestionId=$ideaId")
-			->bypassCache()
-		;
+		);
 
-		$idea->numOfVotes = $getNumOfVotes->getSingleValue();
+		$idea->numOfVotes = $getNumOfVotes;
 
 		$idea->numOfRevisions = rand(0,10);
 
-		$userVote = $ctx->queryBuilder->create(
+		$userVote = $ctx->dal->fetchSingleValue(
 			"select vote from suggestionVotes where suggestionId = :suggestionId and userId = :userId",
 			['suggestionId' => $ideaId, "userId" => $userId],
 			"user's vote (up or down)"
-		)
-			->dependsOn("suggestionVotes.suggestionId=$ideaId")
-			->bypassCache()
-			->getSingleValue(); // returns either the vote value or FALSE when there is none. both work.
+		);
 
 		$idea->isUpvoted = $userVote > 0;
 		$idea->isDownvoted = $userVote < 0;
@@ -83,22 +77,24 @@ class GarageIdeaController extends BaseController
 	function show(Context $ctx)
 	{
 		$vm = new IdeaRootVM($ctx);
+		$vm->message = "Sorry, Idea Garage is still under construction";
+		$this->renderTemplate($vm, 'Site', 'UnderConstruction');
+		return;
+
+		$vm = new IdeaRootVM($ctx);
 
 		$vm->idea = $this->getIdeaDetails($ctx, $vm->ideaId, $vm->userId);
 		$vm->setPrimaryMenuItem("garage");
 
 		// grab basic app details for the layout (title, etc)
-		$vm->app = $ctx->queryBuilder->create(
+		$vm->app = $ctx->dal->fetchMultipleObjs(
 			"select *
 			from projects
 			left join assets on (assetId = thumbnailAssetId)
 			where projectId = :id",
 			[':id' => $vm->idea->appId],
 			"project from projectId"
-		)
-			->bypassCache()
-			->getSingleObject()
-		;
+		);
 
 		if($vm->app->thumbnailAssetId)
 			$vm->app->imgUrl = $ctx->assetManager->getWebFullPath($vm->app->assetId, $vm->app->originalFilename);

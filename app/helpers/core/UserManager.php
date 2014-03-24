@@ -144,10 +144,10 @@ class UserManager
 			}
 		}
 
-		$userId = $ctx->url->createUserUrl($userId);
+		$userUrl = $ctx->url->createUserUrl($userId);
 
 		// now redirect user to whatever page they wanted
-		header("Location: /u/$userId", true, 303);
+		header("Location: $userUrl", true, 303);
 		exit;
 	}
 

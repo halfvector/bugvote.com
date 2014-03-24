@@ -305,5 +305,6 @@ abstract class BaseController
 		$json = json_encode($object);
 		header("Content-Type: application/json");
 		echo $json;
+		return true;
 	}
 }

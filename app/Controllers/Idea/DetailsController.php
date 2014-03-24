@@ -51,7 +51,7 @@ class DetailsController extends BaseController
 	// ajax call
 	function vote(Context $ctx)
 	{
-		$ideaId = $ctx->url->decompressId($ctx->parameters->strings->ideaId);
+		$ideaId = $ctx->url->decompressId($ctx->parameters->ideaId);
 		$userId = $ctx->user->getUserId();
 
 		$urlViewIdea = $ctx->url->createSuggestionUrl($ctx, $ideaId);
@@ -90,7 +90,7 @@ class DetailsController extends BaseController
 			'votedAt' => $ctx->dal->getCurrentDateTimeIso8601()
 		]);
 
-		$ctx->auditor->log("user $userId voted $voteValue on bug $data->idea");
+		$ctx->log->write("user $userId voted $voteValue on bug $data->idea");
 
 		$result = [
 			'success' => true

@@ -1429,7 +1429,7 @@ html body { height: 100%; width: 100%; background: white; }
 /* line 98, ../../app/Stylesheets/Idea/Components/_CommentUpvoteStyle.sass */
 .m-comment-with-upvote .votes span { display: none; }
 /* line 101, ../../app/Stylesheets/Idea/Components/_CommentUpvoteStyle.sass */
-.m-comment-with-upvote .avatar { text-align: left; height: 52px; padding-right: 20px; }
+.m-comment-with-upvote .avatar { text-align: left; height: 52px; width: 70px; }
 /* line 106, ../../app/Stylesheets/Idea/Components/_CommentUpvoteStyle.sass */
 .m-comment-with-upvote .avatar .poster-link { display: inline-block; line-height: 1; vertical-align: middle; }
 /* line 111, ../../app/Stylesheets/Idea/Components/_CommentUpvoteStyle.sass */
@@ -1698,62 +1698,62 @@ html body { height: 100%; width: 100%; background: white; }
 .dropdown-btn .arrow-up i { font-size: inherit; }
 
 /* line 521, ../../app/Stylesheets/Idea/_Details.sass */
-.m-bug-details { min-height: 156px; }
-/* line 524, ../../app/Stylesheets/Idea/_Details.sass */
+.m-bug-details { min-height: 156px; vertical-align: top; }
+/* line 525, ../../app/Stylesheets/Idea/_Details.sass */
 .m-bug-details .author { float: left; margin: 0px 26px 18px 0px; display: none; }
-/* line 529, ../../app/Stylesheets/Idea/_Details.sass */
+/* line 530, ../../app/Stylesheets/Idea/_Details.sass */
 .m-bug-details .author img { width: 104px; }
-/* line 532, ../../app/Stylesheets/Idea/_Details.sass */
+/* line 533, ../../app/Stylesheets/Idea/_Details.sass */
 .m-bug-details .thumbnails-column { width: 320px; text-align: right; padding-left: 52px; }
-/* line 538, ../../app/Stylesheets/Idea/_Details.sass */
+/* line 539, ../../app/Stylesheets/Idea/_Details.sass */
 .m-bug-details .bug-thumbnail { max-height: 156px; display: block; margin-bottom: 26px; overflow: hidden; vertical-align: middle; text-align: center; position: relative; -webkit-filter: grayscale(100%); -moz-filter: grayscale(100%); filter: grayscale(100%); }
-/* line 549, ../../app/Stylesheets/Idea/_Details.sass */
+/* line 550, ../../app/Stylesheets/Idea/_Details.sass */
 .m-bug-details .bug-thumbnail .attachment-name { opacity: 0; position: absolute; bottom: 0; right: 0; left: 0; padding: 3px; background: rgba(0, 0, 0, 0.8); color: white; font-size: 12px; line-height: 16px; font-family: "open-sans", "Open Sans"; transition: all 0.2s ease-out; }
-/* line 563, ../../app/Stylesheets/Idea/_Details.sass */
+/* line 564, ../../app/Stylesheets/Idea/_Details.sass */
 .m-bug-details .bug-thumbnail:hover .attachment-name { opacity: 1; }
-/* line 566, ../../app/Stylesheets/Idea/_Details.sass */
+/* line 567, ../../app/Stylesheets/Idea/_Details.sass */
 .m-bug-details .bug-thumbnail .thumbnail { width: 100%; }
-/* line 569, ../../app/Stylesheets/Idea/_Details.sass */
+/* line 570, ../../app/Stylesheets/Idea/_Details.sass */
 .m-bug-details .bug-thumbnail + .bug-thumbnail { clear: both; margin-top: 1em; }
-/* line 573, ../../app/Stylesheets/Idea/_Details.sass */
+/* line 574, ../../app/Stylesheets/Idea/_Details.sass */
 .m-bug-details .m-markdown { vertical-align: text-top; max-width: 82em; }
-/* line 582, ../../app/Stylesheets/Idea/_Details.sass */
+/* line 583, ../../app/Stylesheets/Idea/_Details.sass */
 .m-bug-details .m-markdown p { margin: 0px; font-size: 1em; line-height: 26px; margin-bottom: 26px !important; }
 
-/* line 590, ../../app/Stylesheets/Idea/_Details.sass */
+/* line 591, ../../app/Stylesheets/Idea/_Details.sass */
 .m-bug-state { display: inline-block; color: white; padding: 3px 10px; line-height: 1; vertical-align: baseline; margin-right: 4px; text-align: center; }
-/* line 606, ../../app/Stylesheets/Idea/_Details.sass */
+/* line 607, ../../app/Stylesheets/Idea/_Details.sass */
 .m-bug-state.type-0, .m-bug-state.type-3, .m-bug-state.type-4 { background: #dddddd; text-shadow: 0px 1px 0px #f7f7f7; color: #666666; }
-/* line 611, ../../app/Stylesheets/Idea/_Details.sass */
+/* line 612, ../../app/Stylesheets/Idea/_Details.sass */
 .m-bug-state.type-1 { background: #db3c6e; }
-/* line 614, ../../app/Stylesheets/Idea/_Details.sass */
+/* line 615, ../../app/Stylesheets/Idea/_Details.sass */
 .m-bug-state.type-2 { background: #f7d929; border: 1px solid #e9c909; color: #333333; text-shadow: none; }
-/* line 620, ../../app/Stylesheets/Idea/_Details.sass */
+/* line 621, ../../app/Stylesheets/Idea/_Details.sass */
 .m-bug-state.type-5 { background: #a7c467; }
 
-/* line 624, ../../app/Stylesheets/Idea/_Details.sass */
+/* line 625, ../../app/Stylesheets/Idea/_Details.sass */
 .m-icon-button { display: inline-block; vertical-align: middle; text-align: center; margin: auto; color: white; text-decoration: none; line-height: 26px; background: #01a9d8; font-size: 1rem; width: 30px; height: 30px; margin-left: 10px; cursor: pointer; }
-/* line 643, ../../app/Stylesheets/Idea/_Details.sass */
+/* line 644, ../../app/Stylesheets/Idea/_Details.sass */
 .m-icon-button i { display: inline-block; vertical-align: middle; }
-/* line 648, ../../app/Stylesheets/Idea/_Details.sass */
+/* line 649, ../../app/Stylesheets/Idea/_Details.sass */
 .m-icon-button i:before { vertical-align: baseline; }
-/* line 651, ../../app/Stylesheets/Idea/_Details.sass */
+/* line 652, ../../app/Stylesheets/Idea/_Details.sass */
 .m-icon-button .icomoon-plus { font-size: 11px; }
-/* line 658, ../../app/Stylesheets/Idea/_Details.sass */
+/* line 659, ../../app/Stylesheets/Idea/_Details.sass */
 .m-icon-button img { line-height: inherit; vertical-align: middle; }
-/* line 663, ../../app/Stylesheets/Idea/_Details.sass */
+/* line 664, ../../app/Stylesheets/Idea/_Details.sass */
 .m-icon-button + .m-icon-button, .m-icon-button + .button-dropdown .m-icon-button { margin-left: 0; }
-/* line 666, ../../app/Stylesheets/Idea/_Details.sass */
+/* line 667, ../../app/Stylesheets/Idea/_Details.sass */
 .m-icon-button.edit-button { background: #a7c467; }
-/* line 669, ../../app/Stylesheets/Idea/_Details.sass */
+/* line 670, ../../app/Stylesheets/Idea/_Details.sass */
 .m-icon-button.edit-button:hover { background: #91dc46; }
-/* line 672, ../../app/Stylesheets/Idea/_Details.sass */
+/* line 673, ../../app/Stylesheets/Idea/_Details.sass */
 .m-icon-button.dev-button { background: #45caf7; }
-/* line 675, ../../app/Stylesheets/Idea/_Details.sass */
+/* line 676, ../../app/Stylesheets/Idea/_Details.sass */
 .m-icon-button.delete-button { background: #cf2d4e; }
-/* line 678, ../../app/Stylesheets/Idea/_Details.sass */
+/* line 679, ../../app/Stylesheets/Idea/_Details.sass */
 .m-icon-button.comments-button { background: #414141; }
-/* line 681, ../../app/Stylesheets/Idea/_Details.sass */
+/* line 682, ../../app/Stylesheets/Idea/_Details.sass */
 .m-icon-button.regular-button { background: transparent; color: #777777 !important; }
 
 /* line 1, ../../app/Stylesheets/Idea/_History.sass */

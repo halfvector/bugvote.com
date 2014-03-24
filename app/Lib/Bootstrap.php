@@ -116,7 +116,7 @@ class Bootstrap
 	public $ctx;
 
 	// new executeRoute() replacement
-	public function runController($target, $params)
+	public function runController($target, $params, &$rendered = false)
 	{
 		$p = $this->perf->start("Route run: $target()");
 
@@ -205,6 +205,8 @@ class Bootstrap
 
 		$p1->stop();
 		$p->stop();
+
+		$rendered = $context->rendered;
 	}
 
 	public $clockworkEnabled = false;
@@ -231,10 +233,12 @@ class Bootstrap
 
 		$p->next("Route dispatch");
 
+		$rendered = false;
+
 		$match = $this->router->match();
 		if($match)
 		{   // run the matching controller
-			$this->runController($match["target"], $match["params"]);
+			$this->runController($match["target"], $match["params"], $rendered);
 		} else
 		{   // no controller found. show 404.
 			$renderer = new MustacheRenderer($this->paths, $this->logger, $this->perf);
@@ -242,6 +246,10 @@ class Bootstrap
 		}
 
 		$p->stop();
+
+		// only draw perf data when rendering a page (eg, not handling POST or redirecting)
+		if($rendered)
+			$this->perf->dump();
 
 		if(isset($clockwork) && !strstr($match["target"], "Clockwork")) {
 			$clockwork->resolveRequest();

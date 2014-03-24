@@ -28,9 +28,6 @@ register_shutdown_function(
 
 		$logRenderer->Write("log", $eventLog);
 		$logRenderer->Write("performance", $performanceLog);
-
-		// TODO: find a better place for the visual dump below, preferrably before </html>
-		$bootstrap->perf->dump();
 	}
 );
 
