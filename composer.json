@@ -13,7 +13,6 @@
 		"behat/mink-goutte-driver": "*",
 		"behat/mink-extension": "*",
 		"brainsware/php-markdown-extra-extended": "dev-master",
-		"dz0ny/jade.php": "dev-master",
 		"mthaml/mthaml": "*",
 		"klein/klein": "*",
 		"jbroadway/urlify": "*",
@@ -29,6 +28,7 @@
 	},
 	"minimum-stability": "dev",
 	"config": {
-		"bin-dir": "bin/"
+		"bin-dir": "bin/",
+		"preferred-install": "dist"
 	}
 }

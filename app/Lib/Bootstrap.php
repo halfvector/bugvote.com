@@ -123,10 +123,7 @@ class Bootstrap
 
 		$p1 = $p->fork("DB Config load");
 
-		if(APP_DEPLOYED == 'HOME')
-			$databaseSettings = DatabaseSettings::load("home-staging", $this->paths);
-		else
-			$databaseSettings = DatabaseSettings::load("joyent-staging", $this->paths);
+		$mysqlConf = DatabaseSettings::load("mysql", $this->paths);
 
 		$p1->next("Context bootstrap");
 
@@ -139,7 +136,7 @@ class Bootstrap
 		$p2 = $p1->fork("MariaDB + Redis + ObjectCache");
 
 		$context->cache = new ObjectCache(null);
-		$context->dal = new DAL($databaseSettings, $this->logger, $this->perf);
+		$context->dal = new DAL($mysqlConf, $this->logger, $this->perf);
 		$context->redis = new Redis();
 
 		$p2->next("Mustache + Url + Assets");
