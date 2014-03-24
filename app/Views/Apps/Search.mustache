@@ -1,0 +1,26 @@
+<div class="search">
+	<form class="form-horizontal" method="GET" action="{{search.queryUrl}}" enctype="multipart/form-data">
+		<fieldset>
+			<div class="input-append">
+				<input class="input-xlarge" name="q" type="text" placeholder="App Name" value="{{search.currentQuery}}" />
+				<button class="btn" type="submit">Search</button>
+			</div>
+		</fieldset>
+	</form>
+</div>
+
+{{#search.results}}
+	<div class="app">
+		<div class="imgContainer">
+			<img src="{{imgUrl}}" />
+		</div>
+		<div class="infoContainer">
+			<div class="appTitle">
+				<a href="{{appUrl}}">{{appName}}</a>
+			</div>
+			<div class="developerName">
+				by <a href="#">{{fullName}}</a>
+			</div>
+		</div>
+	</div>
+{{/search.results}}

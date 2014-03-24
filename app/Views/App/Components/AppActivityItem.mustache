@@ -1,0 +1,23 @@
+<div class="m-app-activity-item l-helement">
+
+    <a class="l-col poster" href="{{urlViewProfile}}">
+    	{{#isDeveloper}}
+        <div class="developer-tag" title="this is the developer! say hi!">developer</div>
+    	{{/isDeveloper}}
+        <img class="avatar" src="{{#urlAvatarImg}}52x52{{/urlAvatarImg}}" alt="" />
+    </a>
+
+    <div class="l-col activity">
+        <div class="byline">
+            <a href="#" class="name">{{fullName}}</a>
+            <time class="timeago" datetime="{{eventTimeIso8601}}"></time>
+
+            {{#isBugReport}}<span class="m-end-tag bug-report">bug report</span>{{/isBugReport}}
+        </div>
+
+        <h3 class="title">
+            <a class="link" href="{{suggestionUrl}}">{{title}}</a>
+        </h3>
+
+    </div>
+</div>

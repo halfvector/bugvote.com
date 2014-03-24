@@ -1,0 +1,41 @@
+.m-content-footer
+	text-align: center
+	vertical-align: middle
+	line-height: $base-line-height * 2
+	//background: orange
+	border-top: 1px solid #eee
+	font-size: 12px
+	width: 80%
+	margin: 0 auto
+
+	.copy
+		display: inline-block
+		@include transform(scaleX(-1))
+		font-size: 12px
+		font-family: tahoma
+
+	.logo
+		line-height: 1
+		img
+			vertical-align: middle
+			line-height: 1
+
+	.footer-links
+		text-align: left
+		list-style: none
+		width: 40%
+
+		li
+			line-height: 100%
+			display: inline-block
+
+			a
+				display: inline-block
+				padding: .5em
+
+		li+li
+			margin-left: 1em
+
+	.footer-links-right
+		@extend .footer-links
+		text-align: right

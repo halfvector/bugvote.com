@@ -1,0 +1,33 @@
+.m-alerts
+	padding: $base-line-height
+	width: 80%
+	margin: 0 auto
+
+	.alert
+		padding: 0px 20px
+		line-height: $base-line-height * 2
+		margin-bottom: $base-line-height
+
+		//border-radius: 6px
+		border: 1px solid red
+		+boldFont
+
+		&.alert-error
+			background-color: #fcf8e3
+			border-color: #faebcc
+			color: #8a6d3b
+
+		button.close
+			border: none
+			background: transparent
+			padding: 0px 15px
+			margin: auto
+			float: right
+			vertical-align: middle
+			font-size: inherit
+			color: #000
+			cursor: pointer
+			opacity: .6
+
+			&:hover
+				opacity: 1

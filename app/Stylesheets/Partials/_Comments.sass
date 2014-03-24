@@ -1,0 +1,145 @@
+.hidden
+	display: none
+
+.animated-vote-controller
+	display: inline-block
+	float: left
+	text-align: center
+	margin: 1em 0 0 1em
+	padding: 0em 0 0
+	//width: 2em
+	vertical-align: top
+
+	@include media($screen-compact)
+		display: none
+
+	.controller
+		opacity: 0
+		+transition(all 0.1s ease-in)
+
+		.upVote
+			margin-top: .5em
+			+transition(all 0.1s ease-in)
+		.downVote
+			margin-top: -1em
+			+transition(all 0.1s ease-in)
+
+	a
+		&:hover
+			text-decoration: none
+
+	.upVote, .downVote
+		font-size: 1.2em
+		$size: 1.5em
+		width: $size
+		line-height: $size
+		display: block
+		color: #777
+
+		&:hover
+			color: $colorOrange
+
+	.rating
+		display: none
+
+	strong
+		display: block
+
+	span
+		display: none
+
+.dev-news-comment
+	border: 1px solid transparent
+	border-radius: .5em
+	background: #fff
+	display: inline-block
+	position: relative
+	width: 100%
+	vertical-align: top
+
+	.issue-type
+		padding: 0
+		padding-right: 5px
+
+	$commenterAvatarSize: 4.2em
+
+	.chained-space
+		width: $commenterAvatarSize + 1em
+		display: inline-block
+
+	.avatar
+		// this container collapses and the child floats out
+		// simplest way of creating stable fixed + fluid columns
+		display: block
+		text-align: center
+		vertical-align: text-top
+
+		div
+			float: left
+			margin: 0 1em 0 0
+			display: inline-block
+			width: $commenterAvatarSize
+			height: $commenterAvatarSize
+			background-repeat: no-repeat
+			background-size: cover
+			background-position: 0% 0%
+			transition: all .2s ease-out
+
+	.pull-left
+		margin: 0
+
+	&.bug-fix
+		.media-body
+			border-left: 3px solid #ff7e00
+
+	&.new-feature
+		.media-body
+			border-left: 3px solid #00b4ff
+
+	.media-body
+		background: #f7f7f7
+		color: #444
+		padding-left: 1em
+		min-height: 5em
+		vertical-align: text-bottom
+		box-shadow: 0px 1px 2px #ccc
+		margin-bottom: .2em
+
+		.header
+			font-size: 1.6em
+			font-family: 'open sans light'
+			line-height: 1.3em
+			padding: .2em 0 .3em
+
+		.message
+			font-family: 'segoe ui'
+			margin-bottom: .6em
+			//min-height: 2em
+
+	.controls
+		padding: .75em
+		//box-shadow: inset 0px 1px 2px #ddd
+		background: #fff
+		text-align: right
+		//margin: 1em 0 0 1em
+
+		.btn
+			i.helper
+				display: inline-block
+				padding: 0 .25em
+
+.legend
+	display: inline-block
+
+	.bug-fix
+		border-left: 1em solid #ff7e00
+		padding-left: 1em
+		margin: 1em
+		margin-left: 0
+		display: inline-block
+
+	.new-feature
+		border-left: 1em solid #00b4ff
+		padding-left: 1em
+		margin: 1em
+		display: inline-block

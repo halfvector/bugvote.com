@@ -1,0 +1,74 @@
+.dropdown {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  height: 28px;
+  width: 150px;
+  background: #f2f2f2;
+  border: 1px solid;
+  border-color: white #f7f7f7 #f5f5f5;
+  border-radius: 3px;
+  @include linear-gradient(top, transparent, rgba(black, .06));
+  @include box-shadow(0 1px 1px rgba(black, .08));
+
+  &:before, &:after {
+	content: '';
+	position: absolute;
+	z-index: 2;
+	top: 9px;
+	right: 10px;
+	width: 0;
+	height: 0;
+	border: 4px dashed;
+	border-color: #888 transparent;
+	pointer-events: none;
+  }
+
+  &:before {
+	border-bottom-style: solid;
+	border-top: none;
+  }
+
+  &:after {
+	margin-top: 7px;
+	border-top-style: solid;
+	border-bottom: none;
+  }
+}
+
+.dropdown-select {
+  position: relative;
+  width: 130%;
+  margin: 0;
+  padding: 6px 8px 6px 10px;
+  height: 28px;
+  line-height: 14px;
+  font-size: 12px;
+  color: #62717a;
+  text-shadow: 0 1px white;
+  /* Fallback for IE 8 */
+  background: #f2f2f2;
+  /* "transparent" doesn't work with Opera */
+  background: rgba(black, 0) !important;
+  border: 0;
+  border-radius: 0;
+  -webkit-appearance: none;
+
+  &:focus {
+	z-index: 3;
+	width: 100%;
+	color: #394349;
+	outline: 2px solid #49aff2;
+	outline-offset: -2px;
+	outline: none;
+  }
+
+  > option {
+	margin: 3px;
+	padding: 6px 8px;
+	text-shadow: none;
+	background: #f2f2f2;
+	border-radius: 3px;
+	cursor: pointer;
+  }
+}

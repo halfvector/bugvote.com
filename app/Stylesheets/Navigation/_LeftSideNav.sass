@@ -1,0 +1,212 @@
+.m-left-menu
+	z-index: 300
+	position: relative
+
+	$inactiveHoverColor: #3b3b41
+	$inactiveColor: #777
+	$dropShadowColor: rgba(#999, 0.4)
+
+	+media($screen-compact)
+		display: table-row !important
+
+	+media($screen-normal)
+		display: table-cell
+
+	ul
+		text-align: right
+		list-style: none
+		z-index: 40
+		position: relative
+		padding: 0px
+		margin: 0px
+		overflow: hidden
+
+		+media($screen-compact)
+			display: inline-block
+			width: 100%
+			margin-bottom: -1px
+			vertical-align: bottom
+
+		+media($screen-normal)
+			display: block
+			margin-right: -1px
+			margin-top: 1em
+			margin-bottom: 0
+
+		li
+			text-align: right
+			display: block
+			padding: 0 0 1em
+			margin: 0px
+			float: none
+
+			$buttonPadding: 0.6em
+
+			+media($screen-compact)
+				float: left
+				display: inline-block
+				padding: 0
+				margin: 1em 0 0
+
+			&.active
+				border-bottom: 0px
+				a
+					$border-radius: 1em
+
+					color: #3b3b41
+					background: $pageNavigationActiveTabColor
+					border-radius: $border-radius 0 0 $border-radius
+					box-shadow: 0px 1px 2px $dropShadowColor
+					border: 1px solid #bbb
+					border-right: none
+					border-color: transparent
+
+					// flip active-item vertically for small screens
+					+media($screen-compact)
+						border: 1px solid #aaa
+						border-bottom: none
+						border-radius: 12px 12px 0px 0px
+						box-shadow: 0px -1px 2px $dropShadowColor
+						text-align: center
+
+					&:hover
+						.button-insides
+							color: #3b3b41
+				.count
+					display: inline-block
+					background: #777
+				.title
+					color: #333
+
+			&.header
+				padding: 20px 0px 5px
+				font: normal 11px 'Open Sans'
+				text-shadow: 0px 1px 0px #fff
+				color: #777
+				text-transform: uppercase
+				display: none
+			a
+				color: $pageNavigationInactiveTabColor
+				border: none
+				display: inline-block
+				margin: 0px
+				padding: 0px 0px
+				// border becomes visible on activation
+				border: 1px solid transparent
+				border-right: none
+				//border-right: 1px solid transparent
+
+				+media($screen-compact)
+					border: 1px solid transparent
+					border-bottom: none
+					display: inline-block
+
+				text-decoration: none
+				vertical-align: middle
+
+				&:hover
+					color: $inactiveHoverColor
+				i
+					border: none
+					display: inline-block
+					font-size: 18px
+					width: 1em
+					line-height: 2em
+					text-shadow: 0px 1px 1px rgba(#fff, 1)
+					position: relative
+					vertical-align: middle
+					margin-right: .5em
+
+				.count
+					display: inline-block
+					//float: right
+					background: #ccc
+					$size: 1.8em
+					//min-width: $size
+					height: $size
+					line-height: $size
+					vertical-align: middle
+					padding: 0em .6em
+					text-align: center
+					color: #fff
+					font-family: $fontSemiBold
+					font-weight: normal
+					font-size: 1em
+
+				.button-insides
+					display: inline-block
+					vertical-align: middle
+					position: relative
+					margin: auto
+					line-height: 1
+					//padding: 0.2em
+					//padding: 1em 1em 1em .5em
+					padding: .5em
+					padding-right: .5em
+					padding-left: .5em
+
+				.title
+					display: inline-block
+					//background:  red
+					padding-left: 1em
+					vertical-align: middle
+					line-height: 2em
+					//width: 6em
+					width: 100%
+					text-align: right
+
+				&:hover
+					.notification
+						$size: 24px
+						width: $size
+						height: $size
+						top: -12px
+						left: -2px
+						font-size: 15px
+
+		.notification-container
+			position: absolute
+			top: 10px
+			left: -10px
+
+		.notification
+			display: inline-block
+			background: -webkit-linear-gradient(top, rgba(220, 220, 220, 1) 0%, rgba(170, 170, 170, 1) 100%)
+			cursor: default
+			-webkit-transition: all 0.15s
+			border-radius: 30px
+			$size: 20px
+			width: $size
+			height: $size
+			font: normal 12px/17px arial
+			text-align: center
+			color: #fff
+			text-shadow: 1px 1px 0px rgba(black, 0.4)
+			border: 1px solid #aaa
+			box-shadow: #dddddd 0px 1px 1px 0px, inset 0px 1px 1px rgba(255, 255, 255, 0.3), inset 0px -1px 1px rgba(70, 70, 70, 0.1)
+			position: absolute
+			top: -6px
+			left: 0
+			pointer-events: none
+
+			&.orange
+				background: -webkit-linear-gradient(top, rgba(254, 227, 152, 1) 0%, rgba(254, 191, 78, 1) 100%)
+				border-color: #e8aa44
+			&.blue
+				background: -webkit-linear-gradient(top, rgba(170, 227, 248, 1) 0%, rgba(113, 206, 243, 1) 100%)
+				border-color: #7cb7cd
+			&.red
+				background: -webkit-linear-gradient(top, rgba(247, 130, 151, 1) 0%, rgba(245, 104, 121, 1) 100%)
+				border-color: #d8657a
+
+			span
+				position: absolute
+				left: 50%
+				top: 50%
+				width: 20px
+				height: 20px
+				line-height: 20px
+				margin-left: -10px
+				margin-top: -10px
+				vertical-align: middle
+				text-align: center

@@ -1,0 +1,25 @@
+<div class="header-wrapper">
+	<div class="personalAppHeader">
+	    <div class="imgContainer" style="background-image: url('{{app.imgUrl}}');"></div>
+	    <div class="description">
+	        <div class="heading-container">
+	            <h2 class='heading'><a href='/apps/{{app.projectId}}'>icanhaserror &raquo; {{app.projectTitle}}</a></h2>
+	            <div class="controller">
+	                {{#isAppAdmin}}
+	                    <a class="btn btn-small" href="/apps/{{app.projectId}}/edit"><i class="icomoon-pencil-3"></i> Edit</a>
+	                {{/isAppAdmin}}
+	                {{^isAppAdmin}}
+	                    <a class="btn btn-small btn-success" href="/apps/{{app.projectId}}/follow"><i class="icon-plus"></i> Follow</a>
+	                {{/isAppAdmin}}
+	            </div>
+
+		        <!--<div class="sections">-->
+			        <!--<a class="btn btn-inverse" href="#">Idea Lab</a>-->
+			        <!--<a class="btn" href="#">Garage</a>-->
+			        <!--<a class="btn" href="#">Showcase</a>-->
+		        <!--</div>-->
+	        </div>
+	    </div>
+	    <!--<h1 class="idea-title"><em>Feature</em> {{idea.title}}</h1>-->
+	</div>
+</div>

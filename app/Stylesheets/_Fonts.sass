@@ -1,0 +1,94 @@
+@import "compass/css3/font-face"
+
+$font-folder: '/fonts'
+
+//@import "Fonts/bebasneue"
+//@import "Fonts/opensans"
+@import "Fonts/icomoon"
+
+//$base-font-size: 15px
+//$base-line-height: 24px
+
+// larger
+$base-font-size: 17px
+$base-line-height: 26px
+
+$header-level-1: 23px
+$header-level-2: 30px
+$header-level-3: 54px
+
+$button-font-size: 14px
+
+$base-line-height-rm: 1.6rem
+
+$fontUserComments: Verdana
+
+$base-font-color: #222
+
+.font-user-content
+	//font-family: "Helvetica Neue", "Helvetica", Arial
+	//font-size: $base-font-size
+	//line-height: $base-line-height
+	+regularFont
+
+html
+	body
+		+regularFont
+		font-size: $base-font-size
+		line-height: $base-line-height
+		color: $base-font-color
+
+h1, h2, h3, h4, h5, h6
+	padding: 0
+	margin: 0
+
+	a
+		padding: 0
+		margin: 0
+		color: inherit
+
+// try this scale: 16, 24, 36, 54 (2:3 perfect-fifth scale)
+
+h1
+	+skinnyFont()
+	font-size: 51px
+	line-height: $base-line-height * 2
+	margin-top: $base-line-height
+	margin-bottom: $base-line-height
+
+h2
+	+skinnyFont()
+	font-size: 28px
+	line-height: $base-line-height * 2
+	margin-bottom: $base-line-height
+
+h3
+	+skinnyFont()
+	font-size: 23px
+
+h4
+	font-size: 18px
+
+h5
+	font-size: 1.125em
+	margin-bottom: $base-line-height
+
+h6
+	font-size: 1em
+
+
+a
+	color: $colorBlue
+	text-decoration: none
+
+.m-primary-header
+	line-height: $base-line-height * 2
+	//border: 1px solid red
+	vertical-align: top
+
+pre, code
+	font-size: 11px
+	line-height: 15px
+	padding: 0px
+	margin: 0px
+	display: block

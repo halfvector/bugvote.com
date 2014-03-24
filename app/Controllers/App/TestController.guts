@@ -1,0 +1,11 @@
+{{
+
+class DashboardItemViewModel ->
+
+    test (Context ctx, row) ->
+        this.creatorImg = "N/A"
+        this.createdAge = "N/A"
+        this.suggestionUrl = "N/A"
+
+
+}}

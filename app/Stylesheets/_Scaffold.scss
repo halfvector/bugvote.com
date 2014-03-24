@@ -1,0 +1,30 @@
+.searchBox {
+	vertical-align: top;
+
+	.fields {
+		display: inline-block;
+		vertical-align: top;
+	}
+
+	.terms {
+		display: inline-block;
+		vertical-align: top;
+	}
+
+	select {
+		visibility: hidden;
+		height: 29px;
+	}
+
+	.chzn-container-multi {
+		padding-top: 1px;
+		ul.chzn-choices {
+
+		}
+	}
+
+	.input-append {
+
+		vertical-align: top;
+	}
+}

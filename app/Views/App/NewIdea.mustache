@@ -1,0 +1,109 @@
+{{#hasAlerts}}
+<div class="m-alerts">
+    {{#alerts}}
+        <div class="alert alert-{{type}}">
+            {{message}}
+            <button type="button" class="close" data-dismiss="alert">×</button>
+        </div>
+    {{/alerts}}
+</div>
+{{/hasAlerts}}
+
+<span class="standalone-help-block disabled">
+    <span class="avatar"></span>
+    <span class="tip">
+        <p>Debs</p>
+        <span class="message">
+            What can we improve about bugvote?<br>
+        </span>
+    </span>
+</span>
+
+<section class="m-section-new-idea">
+
+    <h1>Submit a new post</h1>
+    <h2>Post new bug, feature request, or general chat</h2>
+
+    <form method="POST" class="m-form-simple form-style-1" action="" enctype="multipart/form-data" data-focus-on="input:first">
+        <input type="hidden" name="appId" value="{{appId}}" />
+        <input type="hidden" name="csrf" value="{{csrf}}" />
+        <fieldset>
+
+            <div class="form-group">
+                <label for="title">Title:</label>
+                <div class="form-line-input">
+                    <input class="field" autocomplete="off" type="text"
+                           id="title" name="title" tabindex="1"
+                           placeholder="Title" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="title">Tags:</label>
+                <div class="form-line-input">
+                    <input id="idea_tags" name="tags" placeholder="Tags" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="what">What:</label>
+                <textarea class="field details-field" name="details" rows="6" tabindex="2" id="what"
+                          placeholder="Details"></textarea>
+            </div>
+
+        </fieldset>
+
+        <div class="form-actions">
+            <button type="submit" name="action" value="create" class="m-button"><i class="fa fa-flask"></i> PUBLISH</button>
+        </div>
+    </form>
+
+</section>
+
+<script src="/js/jquery-1.9.1.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/chosen.jquery.js"></script>
+<script src="/js/jquery.localize.js"></script>
+<script src="/js/jquery.ui.sortable.js"></script>
+<script src="/js/jquery.timeago.js"></script>
+<script src="/js/selectize.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        var tagger = $('#idea_tags').selectize({
+            plugins: ['remove_button', 'optgroup_columns', 'drag_drop'],
+            options: [
+                // the big split: defect vs improvement
+                { id: "system.bug", group: "recommended", label: "Bug (a defect)" },
+                { id: "system.request", group: "recommended", label: "Feature (new idea)" },
+
+                { id: "crash", group: "extra", label: "Crash" },
+                { id: "visual glitch", group: "extra", label: "Visual Glitch" },
+                { id: "gameplay", group: "extra", label: "Gameplay Issue" },
+            ],
+            optgroups: [
+                { id: 'recommended', label: 'Suggestion Type (choose one)' },
+                { id: 'extra', label: 'Extra tags' },
+            ],
+            labelField: 'label',
+            valueField: 'id',
+            optgroupField: 'group',
+            optgroupLabelField: 'label',
+            optgroupValueField: 'id',
+            searchField: ['label'],
+            optgroupOrder: ['recommended', 'extra'],
+            delimiter: ',',
+            persist: true,
+            create: function(input) {
+                return {
+                    value: input,
+                    text: input,
+                    group: 'extra',
+                    id: input,
+                    label: input
+                }
+            }
+        });
+
+    });
+</script>

@@ -1,0 +1,17 @@
+<h1>Scheduling</h1>
+
+<form action="{{urlUpdatePlane}}" method="post" class="m-form-list-select m-horizontal-form l-horizontal l-vertically-centered">
+    <input type="hidden" name="appId" value="{{appId}}" />
+
+    <div class="form-group">
+        <label class="label">Category:</label>
+        <div class="value">
+        {{#categories}}
+        <div class="item-selector">
+            <button class="button button-flat-action button-rounded" type="submit" name="category" value="{{categoryId}}">{{category}}</button>
+        </div>
+        {{/categories}}
+        </div>
+    </div>
+
+</form>

@@ -1,0 +1,119 @@
+.clearfix:before, [data-medium-element="true"]:before, .clearfix:after, [data-medium-element="true"]:after
+  content: " "
+  display: table
+
+.clearfix:after, [data-medium-element="true"]:after
+  clear: both
+
+img
+  max-width: 100%
+
+q, blockquote
+  display: block
+  margin-top: 1em
+  margin-bottom: 1em
+  border-left: 5px solid #efefef
+  padding-left: 20px
+  margin-left: -25px
+
+[draggable]
+  -moz-user-select: none
+  -khtml-user-select: none
+  -webkit-user-select: none
+  user-select: none
+  -khtml-user-drag: element
+  -webkit-user-drag: element
+
+[contenteditable]
+  outline: 0px solid transparent
+  &:focus
+    outline: 0px solid transparent
+
+.medium-editor-placeholder
+  padding-bottom: 0 !important
+  min-height: 58px
+  &:after
+    content: attr(data-placeholder) !important
+    top: 1em
+
+.hide
+  display: none !important
+
+.mediumInsert
+  position: relative
+  margin: -1em 0 -1em -80px
+  min-height: 18px
+  .mediumInsert-buttons
+    position: absolute
+    display: none
+    width: 80px
+    top: 0
+    left: 0
+    color: #ddd
+    font-size: 0.9em
+    a
+      text-decoration: underline
+      cursor: pointer
+      &.active
+        font-weight: bold
+    .mediumInsert-buttonsIcon
+      position: absolute
+      top: 0
+      right: 10px
+    ul.mediumInsert-buttonsOptions
+      margin: 0
+      padding: 0
+      list-style: none
+      display: none
+  .mediumInsert-placeholder
+    position: relative
+    margin-left: 80px
+    text-align: center
+    .mediumInsert-images
+      img
+        margin-top: 1em
+        margin-bottom: 10px
+        vertical-align: top
+      a
+        position: absolute
+        top: 1em
+        width: 30px
+        height: 30px
+        background-color: #3b3b3b
+        background-repeat: no-repeat
+        background-position: center center
+        cursor: pointer
+        &.mediumInsert-imageRemove
+          right: 0
+          background-image: url(/img/medium-insert/remove.png)
+        &.mediumInsert-imageResizeSmaller
+          right: 31px
+          background-image: url(/img/medium-insert/resize-smaller.png)
+        &.mediumInsert-imageResizeBigger
+          right: 31px
+          background-image: url(/img/medium-insert/resize-smaller.png)
+          background-image: url(/img/medium-insert/resize-bigger.png)
+      &:first-child:after
+        content: "\a"
+        white-space: pre
+      &:not(:first-child)
+        margin-right: 10px
+        img
+          width: 20%
+    .mediumInsert-maps
+      padding: 10px
+      background: #ccc
+  &.hover .mediumInsert-placeholder
+    background: #f0f0f0
+  &:hover .mediumInsert-buttons
+    display: block
+  &.small .mediumInsert-placeholder
+    width: 33.33%
+    float: left
+    margin-right: 30px
+
+.hover .mediumInsert-placeholder
+  min-height: 14px
+  border: 1px dashed #ddd
+  margin-top: -1px
+  margin-bottom: -1px

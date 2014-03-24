@@ -1,0 +1,32 @@
+<div
+    class="bug-votebox" id="bug-details-votebox"
+    data-bugid="{{suggestionId}}" data-csrf="{{csrf}}" data-endpoint="{{voteUrl}}"
+    >
+    <div class="l-horizontal m-bug-header-votebox">
+        <div class="vote-info">
+            <div class="vote-count"><span id="bug-vote-count">{{numOfVotes}}</span></div>
+            <div class="vote-label disabled">upvotes</div>
+        </div>
+        <div class="arrows-container">
+
+            <div
+                    data-title-1="remove upvote" data-title-0="upvote to say 'me too!'"
+                {{#isUpvoted}}class="up-vote voted" title="remove upvote"{{/isUpvoted}}
+                {{^isUpvoted}}class="up-vote" title="upvote to say 'me too!'"{{/isUpvoted}}
+                    data-action="upvote" data-value="{{upvoteState}}"
+                    >
+                <i class="icomoon-arrow-up"></i>
+            </div>
+
+            <div
+                    data-title-1="remove downvote" data-title-0="downvote/flag an inappropriate post"
+                {{#isDownvoted}}class="down-vote voted" title="remove downvote"{{/isDownvoted}}
+                {{^isDownvoted}}class="down-vote" title="downvote/flag an inappropriate post"{{/isDownvoted}}
+                    data-action="downvote" data-value="{{downvoteState}}"
+                    >
+                <i class="icomoon-arrow-down"></i>
+            </div>
+        </div>
+    </div>
+
+</div>

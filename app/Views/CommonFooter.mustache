@@ -1,0 +1,91 @@
+<!--<script src="/js/jquery-1.10.2.min.js"></script>-->
+
+<!--
+    took me a lot of restraint, but I'll stick with jQuery for now to rapidly grab useful js bits
+    but *NEED* to move to zepto or voyeur or something else more vanilla, jQuery is too heavy for me
+-->
+<!--<script src="/js/zepto.js"></script>-->
+<!--<script src="/js/Voyeur.min.js"></script>-->
+
+<script src="/js/jquery-1.9.1.js"></script>
+<script src="/js/jquery.loadTemplate.js"></script>
+<script src="/js/chosen.jquery.js"></script>
+<script src="/js/jquery.localize.js"></script>
+<script src="/js/jquery.ui.sortable.js"></script>
+<script src="/js/jquery.timeago.js"></script>
+<script src="/js/selectize.min.js"></script>
+<script src="/js/buttons.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/hashgrid.js"></script>
+<script src="/js/jasny.fileupload.js"></script>
+
+<script src="/js/bugvote.js"></script>
+
+<!--<script src="/js/medium-insert/medium-editor.min.js"></script>-->
+<!--<script src="/js/medium-insert/medium-editor-insert-plugin.all.min.js"></script>-->
+
+<!--<script>-->
+    <!--$(function () {-->
+
+        <!--console.log("loading editor..");-->
+
+        <!--var editor = new MediumEditor('#body-editor');-->
+
+        <!--$('#body-editor').mediumInsert({-->
+            <!--editor: editor,-->
+            <!--images: true-->
+        <!--});-->
+
+        <!--console.dir(editor);-->
+    <!--});-->
+<!--</script>-->
+
+<!--
+<script type="text/javascript">
+    (function(doc, script) {
+        var js,
+                fjs = doc.getElementsByTagName(script)[0],
+                add = function(url, id) {
+                    if (doc.getElementById(id)) {return;}
+                    js = doc.createElement("script");
+                    js.src = url;
+                    //js.async = false;
+                    //id && (js.id = id);
+                    fjs.parentNode.insertBefore(js, fjs);
+                };
+
+        // Google Analytics
+        //add(('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js', 'ga');
+        // Google+ button
+        //add('https://apis.google.com/js/plusone.js');
+        // Facebook SDK
+        //add('//connect.facebook.net/en_US/all.js', 'facebook-jssdk');
+        // Twitter SDK
+        //add('//platform.twitter.com/widgets.js', 'twitter-wjs');
+
+        var scripts = [
+            [ "/js/jquery-1.9.1.js", "jQuery" ],
+            [ "/js/chosen.jquery.js", "jQuery.chosen" ],
+            [ "/js/jquery.localize.js", "jQuery.localize" ],
+            [ "/js/jquery.ui.sortable.js", "jQuery.ui.sortable" ],
+            [ "/js/jquery.timeago.js", "jQuery.timeago" ],
+            [ "/js/selectize.min.js", "jQuery.selectize" ],
+            [ "/js/buttons.js", "buttons" ],
+            [ "/js/bootstrap.js", "bootstrap" ],
+            [ "/js/jasny.fileupload.js", "bootstrap.jasny" ],
+            [ "/js/hashgrid.js", "hashgrid" ],
+            [ "/js/bugvote.js", "bugvote" ],
+        ];
+
+        for(var key in scripts) {
+            var script = scripts[key];
+            console.log("loading script: " + script[0]);
+            add(script[0], script[1]);
+        }
+
+    }(document, 'script'));
+</script>
+-->
+
+<!-- to use this, run tools/workers/grunt concat, minimize, and shell -->
+<!--<script src="/js/lexy.package.min.gz.js"></script>-->

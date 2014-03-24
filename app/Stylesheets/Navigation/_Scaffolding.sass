@@ -1,0 +1,93 @@
+.m-root
+	//background: $pageBackgroundColor
+	margin: 0
+
+.m-left-menu
+	display: table-cell
+	width: $left-menu-width
+	background: $pageBackgroundColor
+	vertical-align: top
+
+	ul
+		li
+			&.active
+				a
+					background: $pageContentBackgroundColor
+
+.m-page-and-menu
+	max-width: $page-width
+	width: 90%
+	margin: 0 auto
+	position: relative
+
+.m-left-menu-wide
+	display: block
+	width: $left-menu-width
+	vertical-align: top
+	z-index: 100
+	float: left
+
+.m-page-contents
+	vertical-align: top
+	z-index: 200
+	padding: 0
+
+	//margin-left: $left-menu-width
+
+	+media($screen-compact)
+		display: table-row
+		border-left: none
+		border-radius: 0
+
+	.main-content
+		//padding: $base-line-height
+		padding-right: 0px
+		padding-left: 0px
+
+		position: relative
+		min-height: 42em
+		//min-height: 70em
+
+.m-admin-panel
+	z-index: 100
+	transition: all 0.1s ease-in-out
+	//margin-bottom: $base-line-height
+	background: #f7f7f7
+	line-height: $base-line-height * 2
+
+	.m-icon-button
+		&:hover
+			background: #aaa
+			color: #fff !important
+
+	.main-content
+		width: 90%
+		margin: auto
+		max-width: $page-width
+		text-align: right
+
+	.m-button
+		img
+			height: 25px
+
+	.btn-link
+		text-decoration: none
+		color: #444
+
+		&:hover
+			text-decoration: none
+			color: $colorOrange
+
+	.btn
+		opacity: 0
+		margin-left: 10px
+
+	&.activated
+		height: 110px
+		overflow: visible
+
+		.btn
+			transition: opacity, margin 0.2s ease-out
+			transition-delay: .1s
+			opacity: 1
+			margin-left: 0px

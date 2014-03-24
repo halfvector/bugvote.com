@@ -1,0 +1,84 @@
+//@import 'Breakpoint/style'
+
+//+breakpoint(12)
+//    .idea
+//        width: fluid(8)
+//
+//    .status
+//        width: fixed(4)
+//
+//+breakpoint(0, 6)
+//    .idea
+//        width: fluid(6)
+//    .status
+//        width: fluid(6)
+
+
+.garage
+    .feature
+        padding: 20px 0px
+
+        h4
+            display: block
+
+        .votes
+            display: inline-block
+            //display: none
+            text-align: center
+            padding: 0px 30px 0px 0px
+            vertical-align: top
+
+            a
+                &:hover
+                    text-decoration: none
+
+            .upVote, .downVote
+                opacity: 1
+
+            strong
+                display: block
+
+            span
+                display: block
+
+        .updates
+            display: inline-block
+            float: none
+            width: 500px
+
+        .about
+            padding-left: 70px
+
+        .poster
+            display: inline-block
+            vertical-align: top
+            text-align: center
+            padding-right: 20px
+
+            .avatar
+                padding-top: 4px
+                width: 100px
+                //height: 100px
+                text-align: center
+
+                div
+                    width: 95px
+                    height: 60px
+                    background-repeat: no-repeat
+                    background-size: cover
+                    background-position: 0% 0%
+                    transition: all .2s ease-out
+
+                    &:hover
+                        //background-position: 100% 100%
+                        -webkit-filter: grayscale(0)
+
+                img
+                    border-radius: 0px
+                    width: 80px
+                    height: 80px
+
+        .details
+            display: inline-block
+            width: 500px
+

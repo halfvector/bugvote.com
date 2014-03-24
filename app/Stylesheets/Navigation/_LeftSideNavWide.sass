@@ -1,0 +1,309 @@
+.m-left-user
+	padding: 10px
+	background: #777
+
+	.avatar
+		color: inherit
+		display: inline-block
+
+		img
+			margin-right: 10px
+			vertical-align: middle
+
+	.dropdown-btn
+		vertical-align: middle
+
+.m-left-menu-search
+	margin: 20px 20px 20px 0px
+
+	.m-search-control
+		background: #fff
+		border: 1px solid #ddd
+		box-shadow: none
+		position: relative
+		border-radius: 6px
+		transition: all 0.25s ease-in-out
+		padding: 0px
+		margin: 0px
+
+		input.field
+			width: 100%
+			border: none
+			height: 100%
+			padding: 0px 7px
+			margin: 0px
+			border: 0px
+			line-height: 24px
+			outline: none
+			background: transparent
+			color: #999
+
+		::-webkit-input-placeholder
+			color: #ccc
+
+		button
+			line-height: 1
+			top: 0
+			bottom: 0
+			right: 0
+			margin: 0
+			position: absolute
+			border: none
+			background: none
+			display: block
+			padding: 0px 10px
+			color: #ccc
+
+			&:hover
+				cursor: pointer
+
+body
+	overflow-y: scroll
+
+.m-left-menu-wide-items
+	//background: #eee
+	border-radius: 0px 0px 0px 8px
+	width: 100%
+	padding-top: $base-line-height * 1.5
+	padding-right: 20px
+
+	$inactive-icon-color: #999
+	$active-icon-color: #333
+
+	.menu-section
+		hr
+			margin-top: $base-line-height
+			margin-bottom: $base-line-height
+			height: 1px
+			background: #bbb
+			border: none
+
+	.item-header
+		margin-top: $base-line-height / 2
+		font-family: "verdana"
+		padding-left: 12px
+		font-size: 14px
+		font-weight: bold
+		color: #666
+		margin-bottom: $base-line-height / 2
+
+		.indicator
+			float: right
+			margin-right: 10px
+			color: #aaa
+			font-family: Arial
+			font-weight: 300
+			font-size: 26px
+
+	.menu-item
+		padding: 4px 10px
+		+skinnyFont
+		margin: 8px 0px
+		vertical-align: baseline
+		position: relative
+		display: inline-block
+		width: 100%
+		border-radius: 4px
+
+		color: #777
+		//text-shadow: 0px 1px 0px #eee
+
+		i
+			color: $inactive-icon-color
+			transition: all 0.2s ease-in-out
+
+		&:hover
+			background: #eee
+
+			.title
+				i
+					color: $active-icon-color
+
+		&.active
+			//background: $colorBlue
+			color: #fff
+			text-shadow: 0px 1px 0px rgba(#04a, .3)
+
+			//&:after
+			//	content: ""
+			//	border: 10px solid transparent
+			//	border-right-color: #eee
+			//	width: 0px
+			//	height: 0px
+			//	float: right
+			//	position: absolute
+			//	right: 0
+			//	top: 50%
+			//	margin-top: -10px
+			//	bottom: 0
+			//	margin-right: -20px
+
+			i
+				color: rgba(#fff, .95)
+				text-shadow: none
+
+			//border-left: 5px solid $colorBlue
+			border-radius: 0px
+			background: #eee
+			color: #333
+			text-shadow: 0px 1px 0px #fff
+
+			//background: $colorBlue
+			//color: #fff
+			//text-shadow: none
+
+			i
+				color: #333
+
+	.title
+		color: inherit
+		vertical-align: baseline
+
+		i
+			width: 30px
+			text-align: center
+
+	.notification-container
+		float: right
+		display: block
+		text-align: right
+		line-height: inherit
+		height: $base-line-height
+		vertical-align: baseline
+
+	.notification
+		background: rgba(#456, 0.1)
+		//box-shadow: inset 0px 1px 2px rgba(#013, 0.15)
+		color: #345
+		text-shadow: none
+		border-radius: 2px
+		padding: 0px 5px
+		text-align: center
+		font-size: 12px
+		line-height: 12px
+		font-family: Arial
+		font-weight: bold
+
+		background: $colorLightBlue
+		color: #fff
+
+	.active
+		.notification
+			background: rgba(#444, 0.7)
+			//box-shadow: inset 0px 1px 5px rgba(#04a, 0.3)
+			color: rgba(#fff, 0.9)
+
+			background: $colorBlue
+
+
+.m-left-menu-wide-items-2
+	//background: #eee
+	border-radius: 0px 0px 0px 8px
+	width: 100%
+	padding-top: $base-line-height * 1.5
+	padding-right: 60px
+
+	$inactive-icon-color: #999
+	$active-icon-color: #333
+
+	.menu-section
+		hr
+			margin-top: $base-line-height
+			margin-bottom: $base-line-height
+			height: 1px
+			background: #bbb
+			border: none
+
+	.item-header
+		margin-top: $base-line-height / 2
+		font-family: "verdana"
+		padding-left: 12px
+		font-size: 14px
+		font-weight: bold
+		color: #666
+		margin-bottom: $base-line-height / 2
+
+		.indicator
+			float: right
+			margin-right: 10px
+			color: #aaa
+			font-family: Arial
+			font-weight: 300
+			font-size: 26px
+
+	.menu-item
+		padding: 0px 10px
+		line-height: $base-line-height * 2
+		margin: 0px 0px
+		position: relative
+		display: block
+
+		color: #999
+		//text-shadow: 0px 1px 0px #eee
+		border-left: 5px solid #fff
+
+		i
+			display: none
+			color: #999
+			transition: all 0.2s ease-in-out
+
+		&:hover
+			//background: #eee
+
+			.title
+				i
+					color: $active-icon-color
+
+		&.active
+			i
+				color: $colorOrange
+				text-shadow: none
+
+			//border-left: 5px solid $colorOrange
+			background: #f7f7f7
+			color: #553
+			text-shadow: 0px 1px 0px #fff
+
+			//background: $colorBlue
+			//color: #fff
+			//text-shadow: none
+
+	.title
+		color: inherit
+		vertical-align: baseline
+
+		i
+			width: 30px
+			text-align: center
+
+	.notification-container
+		float: right
+		display: block
+		text-align: right
+		line-height: inherit
+		height: $base-line-height
+		vertical-align: baseline
+
+	.notification
+		background: rgba(#456, 0.1)
+		//box-shadow: inset 0px 1px 2px rgba(#013, 0.15)
+		color: #345
+		text-shadow: none
+		border-radius: 2px
+		padding: 0px 5px
+		text-align: center
+		font-size: 12px
+		line-height: 12px
+		font-family: Arial
+		font-weight: bold
+
+		background: $colorLightBlue
+		color: #fff
+
+	.active
+		.notification
+			background: rgba(#444, 0.7)
+			//box-shadow: inset 0px 1px 5px rgba(#04a, 0.3)
+			color: rgba(#fff, 0.9)
+
+			background: $colorBlue

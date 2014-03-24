@@ -1,0 +1,83 @@
+.m-bug-header-votebox
+	//width: 113px !important
+	text-align: right
+	vertical-align: inherit
+
+	$votedIndicatorColor: #444 // $colorLightGreen // #ffb400
+	$votedIndicatorColor: $colorGreen4
+	$voteInactiveColor: #ddd //#ede5e2
+
+	width: 110px
+	position: relative
+	//margin-top: -40px
+	height: 80px
+	//background: #eee
+
+	.vote-info
+		padding-right: 0
+
+	.vote-count
+		line-height: 52px
+
+		span
+			display: inline-block
+			color: inherit
+			+skinnyFont
+			font-size: 40px
+			line-height: inherit
+			vertical-align: baseline
+			//background: purple
+
+
+	.vote-label
+		font-family: $fontRegular
+		color: #999
+		font-size: 12px
+		//background: orange
+		line-height: $base-line-height
+
+	.arrows-container
+		//padding-right: $base-line-height
+		text-align: center
+		width: 60px
+		//vertical-align: baseline
+
+		.vote-button
+			display: block
+			clear: both
+			color: $voteInactiveColor
+			text-decoration: none
+			cursor: pointer
+			//border: 1px solid green
+			min-width: 36px
+
+			i
+				line-height: inherit
+				padding: 0px
+				margin: 0px
+				height: auto
+				display: block
+
+		.voted
+			color: $votedIndicatorColor
+
+		.up-vote
+			@extend .vote-button
+			line-height: 36px
+			//background: green
+
+			&:hover
+				color: $votedIndicatorColor
+			i
+				font-size: 24px
+
+		.down-vote
+			@extend .vote-button
+			line-height: $base-line-height
+			//background: orange
+
+			i
+				font-size: 16px
+
+			&:hover
+				color: $votedIndicatorColor

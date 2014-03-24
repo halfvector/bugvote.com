@@ -1,0 +1,18 @@
+<div class="m-section-header l-horizontal l-stretch l-pull-right">
+    <div>
+        <h1>Devlog</h1>
+    </div>
+
+    <div class="controls">
+        <a href="{{urlNewPost}}" class="m-icon-button edit-button" title="Submit a new post"><i class="icomoon-plus"></i></a>
+    </div>
+</div>
+
+<div class="m-devlog-entries">
+{{#entries}}
+    <div class="entry">
+        <div class="title"><h2>{{title}}</h2></div>
+        <div class="body">{{{logHTML}}}</div>
+    </div>
+{{/entries}}
+</div>

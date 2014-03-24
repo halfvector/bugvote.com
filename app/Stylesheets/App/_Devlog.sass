@@ -1,0 +1,88 @@
+.m-select-bug
+	font-size: 15px
+	line-height: 20px
+	color: #333
+	vertical-align: baseline
+
+	.header
+		+regularFont
+
+		.title
+			+boldFont
+			//font-weight: bold
+
+			i
+				margin-right: 5px
+				font-size: 1em
+				color: #555
+
+
+	.description
+		opacity: 0.7
+
+	.byline
+		font-size: 13px
+
+
+.flat-theme
+	.selectize-control
+
+		> ::before
+			transition: opacity 0.2s
+			content: ' '
+			z-index: 2
+			position: absolute
+			display: block
+			top: 12px
+			right: 34px
+			width: 16px
+			height: 16px
+			background: url('/img/selectize/spinner.gif')
+			background-size: 16px 16px
+			opacity: 0
+
+		&.loading::before
+			opacity: 0.4
+
+		.selectize-input
+			line-height: $base-line-height
+			padding: 4px 8px
+
+			&.has-items
+				padding: 4px 4px
+
+			> .item
+				display: inline-block
+				background: #f7f7f7
+				border: none
+				width: 90%
+				border-radius: 5px
+				padding: 0px 8px
+				margin: 0px
+				color: #777
+				cursor: pointer
+				text-shadow: none
+				box-shadow: none
+				font-size: 1rem
+				line-height: $base-line-height
+				+skinnyFont
+
+				&.active
+					background: #f7f7f7
+					border: none
+					color: #777
+
+				.remove
+					border: none
+					font-size: 1rem
+					width: 30px
+
+				& + .item
+					margin-top: 4px
+
+				.title
+					+boldFont
+					color: #333
+					margin-right: 5px
+
+.m-devlog-entries

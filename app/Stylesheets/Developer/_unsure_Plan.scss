@@ -1,0 +1,196 @@
+//h4 {
+//  font: normal 20px 'Open Sans Light';
+//  color: #444;
+//}
+//
+//h3 {
+//  font: normal 30px 'Open Sans';
+//}
+
+$tagTextColor: #fff;
+$tagBgColor: #A0D36E;
+
+.statusUpdate {
+    vertical-align: top;
+
+    input {
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    .editor {
+        width: 500px;
+        padding: 4px;
+        height: auto;
+    }
+
+    button {
+        vertical-align: top;
+    }
+}
+
+.planEntry {
+
+    margin: 10px 0px;
+    position: relative;
+    display: block;
+
+    time {
+        display: inline-block;
+        padding: 1px 1px;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .description {
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+
+    .tag {
+
+        i {
+            margin-left: 0px;
+            margin-right: 4px;
+        }
+
+        color: $tagTextColor;
+        background: $tagBgColor;
+        padding: 1px 6px;
+        text-decoration:none;
+        border-radius:4px;
+
+        &:hover{
+            background: #555;
+            color: #fff;
+        }
+    }
+
+    .tagSimple {
+        display: inline-block;
+        position: relative;
+        vertical-align: text-top;
+        $bgColor: lighten(#0089e0,30%);
+
+        a {
+            float:left;
+            height:24px;
+            line-height:24px;
+            position:relative;
+            font-size:11px;
+
+            margin-left:20px;
+            padding:0 10px 0 12px;
+            background: $bgColor;
+            color:#fff;
+            text-decoration:none;
+            -moz-border-radius-bottomright:4px;
+            -webkit-border-bottom-right-radius:4px;
+            border-bottom-right-radius:4px;
+            -moz-border-radius-topright:4px;
+            -webkit-border-top-right-radius:4px;
+            border-top-right-radius:4px;
+
+            &:before{
+                content:"";
+                float:left;
+                position:absolute;
+                top:0;
+                left:-12px;
+                width:0;
+                height:0;
+                border-color:transparent $bgColor transparent transparent;
+                border-style:solid;
+                border-width:12px 12px 12px 0;
+            }
+
+            &:after{
+                content:"";
+                position:absolute;
+                top:10px;
+                left:0;
+                float:left;
+                width:4px;
+                height:4px;
+                -moz-border-radius:2px;
+                -webkit-border-radius:2px;
+                border-radius:2px;
+                background:#fff;
+                -moz-box-shadow:-1px -1px 2px #004977;
+                -webkit-box-shadow:-1px -1px 2px #004977;
+                box-shadow:-1px -1px 2px #004977;
+            }
+
+            &:hover{background:#555;}
+
+            &:hover:before{border-color:transparent #555 transparent transparent;}
+        }
+    }
+
+
+    .tags {
+        margin:0;
+        padding:0;
+        //position:absolute;
+        //right:24px;
+        //bottom:-12px;
+        list-style: none;
+        display: inline-block;
+        clear: both;
+
+        li, a {
+            float:left;
+            height:24px;
+            line-height:24px;
+            position:relative;
+            //font-size:11px;
+        }
+
+        a {
+            margin-left:20px;
+            padding:0 10px 0 12px;
+            background: $tagBgColor;
+            color: $tagTextColor;
+            text-decoration:none;
+            -moz-border-radius-bottomright:4px;
+            -webkit-border-bottom-right-radius:4px;
+            border-bottom-right-radius:4px;
+            -moz-border-radius-topright:4px;
+            -webkit-border-top-right-radius:4px;
+            border-top-right-radius:4px;
+
+            &:before{
+                content:"";
+                float:left;
+                position:absolute;
+                top:0;
+                left:-12px;
+                width:0;
+                height:0;
+                border-color:transparent $tagBgColor transparent transparent;
+                border-style:solid;
+                border-width:12px 12px 12px 0;
+            }
+
+            &:after{
+                content:"";
+                position:absolute;
+                top:10px;
+                left:0;
+                float:left;
+                width:4px;
+                height:4px;
+                -moz-border-radius:2px;
+                -webkit-border-radius:2px;
+                border-radius:2px;
+                background:#fff;
+                -moz-box-shadow:-1px -1px 2px darken($tagBgColor,25%);
+                -webkit-box-shadow:-1px -1px 2px darken($tagBgColor,25%);
+                box-shadow:-1px -1px 2px darken($tagBgColor,25%);
+            }
+
+            &:hover{background:#555;}
+
+            &:hover:before{border-color:transparent #555 transparent transparent;}
+        }
+    }
+}

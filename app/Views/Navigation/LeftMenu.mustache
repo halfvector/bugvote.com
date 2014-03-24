@@ -1,0 +1,14 @@
+<div class="m-left-menu">
+    <ul>
+        {{#primaryMenu.menuItems}}
+        <li{{#active}} class="active"{{/active}}>
+            <a href="{{url}}" title="{{title}}">
+                <span class="button-insides">
+                    <span class="title"><i class="{{icon}}"></i></span>
+                </span>
+
+            </a>
+        </li>
+        {{/primaryMenu.menuItems}}
+    </ul>
+</div>

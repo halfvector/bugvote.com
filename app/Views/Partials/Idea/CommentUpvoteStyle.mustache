@@ -1,0 +1,58 @@
+<div class="m-comment-with-upvote">
+
+    <div class="l-horizontal l-vertically-top l-fill-last">
+
+        <div class="votes">
+            <div class="vote-wrapper">
+                <a class="vote-button vote-up" href="#" title="useful (click again to undo)"><i class="icomoon-arrow-up"></i></a>
+                <div class="rating"><strong>1203</strong><span>votes</span></div>
+                <a class="vote-button vote-down" href="#" title="not useful (click again to undo)"><i class="icomoon-arrow-down"></i></a>
+            </div>
+        </div>
+
+        <div class="avatar">
+            <a href="{{urlViewUserProfile}}" rel="nofollow" class="poster-link">
+                <img src="{{#urlProfileImage}}48x48{{/urlProfileImage}}" />
+            </a>
+        </div>
+
+        <div class="post-controls">
+            {{#canEdit}}
+                <a class="easy-icon-button edit-button" href="/ideas/{{suggestionId}}/edit"><i class="fa fa-edit"></i></a>
+            {{/canEdit}}
+
+            <a class="easy-icon-button comment-button" href="/ideas/{{suggestionId}}/edit"><i class="fa fa-reply"></i></a>
+            <a class="easy-icon-button delete-button" href="/ideas/{{suggestionId}}/edit"><i class="fa fa-eraser"></i></a>
+
+            {{#DISABLED}}
+                <div class="btn-group">
+                    <button class="btn btn-mini dropdown-toggle" data-toggle="dropdown">
+                        <i class="icon-cog"></i> <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu pull-right">
+                        {{#canFlag}}
+                            <li><a href="/ideas/{{suggestionId}}/close"><i class="icon-flag"></i> Flag</a></li>
+                        {{/canFlag}}
+                        {{#canDelete}}
+                            <li><a href="/ideas/{{suggestionId}}/close"><i class="icon-trash"></i> Delete</a></li>
+                        {{/canDelete}}
+                    </ul>
+                </div>
+            {{/DISABLED}}
+        </div>
+
+        <div class="details">
+            <div class="byline">
+                <a href="#" class="name">{{fullName}}</a>
+                <div class="time">{{postAge}}</div>
+            </div>
+            <div class="comment-body">{{{comment}}}</div>
+            <div class="controls">
+                <a class="m-small-button comment-button" data-reply-to="{{commentId}}"><i class="fa fa-reply"></i> Reply</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!--<hr class="m-separator">-->

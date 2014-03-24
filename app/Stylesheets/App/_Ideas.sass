@@ -1,0 +1,94 @@
+@import "Components/IdeaListItem_Stats"
+@import "Components/BuglistItemVotebox"
+@import "Components/BugSearch"
+
+
+.m-bugslist-nav
+	line-height: $base-line-height * 3
+	display: inline-block
+
+	.nav-pills
+		list-style: none
+		//border: 1px solid green
+		display: inline-block
+		//line-height: $base-line-height
+
+		li
+			display: inline-block
+			vertical-align: baseline
+			line-height: $base-line-height * 1.333
+			//border: 1px solid red
+
+			a
+				display: inline-block
+				border-radius: $site-action-border-radius
+				padding: 0px 20px
+				color: inherit
+				//border: 1px solid blue
+
+			&.active
+				a
+					//background: $colorPink2
+					background: $colorBlue
+					color: #fff
+
+.m-buglist
+	//margin-top: $base-line-height
+	padding: $base-line-height / 2 0px
+
+.m-buttons-toolbar
+	line-height: $base-line-height * 2
+	font-size: 0px
+
+.m-button
+	display: inline-block
+	padding: 0px 20px
+	margin: 0px
+	//border: 1px solid red
+	border: none
+	line-height: $base-line-height * 1.4
+	vertical-align: middle
+
+	border-radius: $site-action-border-radius
+	background-color: $colorGreen4
+	color: #fff
+	+boldFont
+	font-size: $button-font-size
+	cursor: pointer
+
+	&:hover
+		background-color: $colorGreen
+
+	i
+		vertical-align: baseline
+		margin-right: 3px
+		font-size: 14px // snap to highest quality size (icomoon: 14px, fontawesome: ?)
+
+	transition: all .2s ease-out
+
+	&.form-button
+		background: $colorLightBlue
+
+		&:hover
+			background: darken($colorLightBlue, 20%)
+
+.m-small-button
+	display: inline-block
+	margin: 0px
+	padding: 0px 8px
+	border: none
+	min-width: $base-line-height
+	text-align: center
+	//background-color: $colorGreen4
+	color: #ccc
+	//+boldFont
+	font-size: $button-font-size
+	cursor: pointer
+
+	&:hover
+		color: #444
+
+	i
+		vertical-align: baseline
+		margin-right: 3px
+		font-size: 14px // snap to highest quality size (icomoon: 14px, fontawesome: ?)

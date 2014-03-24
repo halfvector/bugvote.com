@@ -1,0 +1,193 @@
+.m-home
+
+	.projects-list
+		line-height: $base-line-height
+		margin-bottom: $base-line-height
+		margin-left: $base-line-height / 2
+		color: #333
+		font-size: 16px
+
+		.project
+			display: block
+
+		a
+			color: inherit
+
+
+
+// everything below can be thrown out
+
+.feature-placeholder
+	display: block
+	width: auto
+	max-width: 15em
+	background: #f7f7f7
+	border: 1px solid #ccc
+	padding: 2px 5px
+	margin: 1em
+
+	&:before
+		color: #666
+		font-size: 80%
+		text-transform: uppercase
+		content: "feature placeholder: "
+		display: block
+
+
+.standalone-help-block
+	//background: #eee
+	display: inline-block
+	padding: 0
+	margin: 1em 1em
+	line-height: 1em
+	font-size: 1em
+	color: #333
+	vertical-align: text-top
+	//line-height: $base-line-height * 2
+
+	.tip
+		display: block
+		margin-left: 65px
+		padding: 0
+
+		.message
+			display: inline-block
+			clear: both
+			padding: .5em
+			margin: 0
+			line-height: 1.4
+			margin-bottom: .25em
+			background: #f7f7f7
+			border-radius: 4px
+
+	.avatar
+		display: inline-block
+		//border-radius: 50%
+		//border-radius: 6px
+		float: left
+		width: 45px
+		height: 45px
+		content: ""
+		background-color: #fff
+		background-image: url('/img/placeholders/avatar9.jpg')
+		background-repeat: no-repeat
+		background-size: contain
+
+	p
+		color: #888
+		display: block
+		font-weight: bold
+		padding: 0 0 .25em .25em
+		margin: 0
+
+.common-form
+	margin: 1em 0 0
+	padding: 1em 1em 0
+	max-width: 55em
+	width: 100%
+	display: inline-block
+	border-top: 2px solid $colorLightGray
+
+	&.simple
+		border: none
+		margin: 0
+		padding: 0 1em
+
+	.controls
+		padding: .5em 0 1em 5em
+
+	.action-controls
+		border-top: 2px solid $colorGreen
+		margin: 1em 0 0 0
+		padding: 1em 1em 1em 1em
+		text-align: right
+
+	.help-block
+		//background: #ccc
+		display: inline-block
+		padding: .25em
+		margin: 0
+		line-height: 1em
+		font-size: 1em
+		color: #333
+		vertical-align: text-top
+
+		.tip
+			display: block
+			margin-left: 65px
+			padding: 0
+
+			.message
+				display: inline-block
+				clear: both
+				padding: .5em
+				margin: 0
+				margin-bottom: .25em
+				background: #f7f7f7
+				border-radius: 4px
+
+		.avatar
+			display: inline-block
+			//border-radius: 50%
+			//border-radius: 6px
+			float: left
+			width: 45px
+			height: 45px
+			content: ""
+			background-color: #fff
+			background-image: url('/img/placeholders/avatar10.jpg')
+			background-repeat: no-repeat
+			background-size: contain
+
+		p
+			color: #888
+			display: block
+			font-weight: bold
+			padding: 0 0 .25em .25em
+			margin: 0
+
+	.post-comment
+		//background: #eee
+		border-radius: 6px
+		display: table
+
+		.avatar
+			display: table-cell
+			vertical-align: top
+			div
+				width: 5em
+				height: 5em
+				margin: 1em
+				background-size: cover
+				background-repeat: no-repeat
+				border-radius: 4px
+
+		.content
+			display: table-cell
+			width: 100%
+			padding: 1em 1em 1em 0
+			vertical-align: top
+
+			textarea
+				width: 100%
+				font-size: 1em
+				line-height: 1.45em
+				height: 6em
+				margin: 0
+				padding: .4em .7em
+				max-width: 50em
+
+			.toolbar
+				text-align: right
+
+	.fileupload-exists.thumbnail
+		max-width: 152px
+		max-height: 152px
+
+	.fileupload-new.thumbnail
+		width: 102px
+		height: 102px
+
+.m-login
+	h1
+		margin-bottom: 0px

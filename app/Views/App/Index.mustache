@@ -1,0 +1,144 @@
+
+<div class="box-content alerts">
+    {{#alerts}}
+        <div class="alert alert-{{type}}">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            {{message}}
+        </div>
+    {{/alerts}}
+</div>
+
+<h3>Showcase</h3>
+<div class="subFeatures">
+    <div class="postCompact">
+        <div class="status">
+            <i class="icon-ok"></i>
+        </div>
+        <div class="details">
+            <h4>Animation Splitting</h4>
+            <div>
+                30 days ago. Thanks to Jacky Chan, Bill Bob, and Jim Blinn.
+            </div>
+        </div>
+    </div>
+
+    <div class="postCompact">
+        <div class="status">
+            <i class="icon-ok"></i>
+        </div>
+        <div class="details">
+            <h4>Spherical Interpolation support for keyframe interpolation</h4>
+        </div>
+    </div>
+
+    <div class="postCompact">
+        <div class="status">
+            <i class="icon-ok"></i>
+        </div>
+        <div class="details">
+            <h4>Cubic Interpolation support for keyframe interpolation</h4>
+            <div>
+                You can find this new option in the animation-import dialog. Cubic Interpolation works great for walking animations, enjoy!
+            </div>
+        </div>
+    </div>
+</div>
+
+<h3>Prioritization</h3>
+<div class="subFeatures">
+    <div class="post">
+        <h4>Optimization: GPU based skinning</h4>
+        <div class="votes">
+            <div class="voteControl">
+                <a class="upVote" href="#"><i class="icon-chevron-up"></i></a>
+                <div><strong>1203</strong><span>votes</span></div>
+                <a class="downVote" href="#"><i class="icon-chevron-down"></i></a>
+            </div>
+        </div>
+        <div class="poster">
+            <div class="avatar">
+                <img src="/img/placeholders/avatar-11.jpeg" />
+            </div>
+            <div class="name">Dan Dobbs</div>
+        </div>
+        <div class="details">
+            <div>I have a game with many animated characters and the performance suffers quite a bit due to the skeletal animation processing happening CPU side. If the heavy math was offloaded to the fast GPUs (where supported) it would greatly speedup my game and let the players enjoy a nice high framerate even with a full battlefield!</div>
+        </div>
+    </div>
+    <div class="post">
+        <h4>Animation Splitting</h4>
+        <div class="votes">
+            <div class="voteControl">
+                <a class="upVote" href="#"><i class="icon-chevron-up"></i></a>
+                <div><strong>754</strong><span>votes</span></div>
+                <a class="downVote" href="#"><i class="icon-chevron-down"></i></a>
+            </div>
+        </div>
+        <div class="poster">
+            <div class="avatar">
+                <img src="/img/placeholders/avatar-12.png" />
+            </div>
+            <div class="name">Jacky Chan</div>
+        </div>
+        <div class="details">
+            <div>
+                I have a bunch of characters with animations all in one FBX file, so when importing into the engine I need to be able to split the animations using a separate XML file which defines the animation names and keyframe ranges. The tangents at the start and end frames need to be repaired in order to allow seemless looping!
+            </div>
+        </div>
+    </div>
+</div>
+
+<h3>Idea Lab</h3>
+<div class="subFeatures">
+    <div class="post">
+        <h4>Frame-rate Interpolation <div class="badge">WIP</div></h4>
+        <div class="poster">
+            <div class="avatar">
+                <img src="/img/placeholders/avatar-10.png" />
+            </div>
+            <div class="name">Matt Mathew</div>
+        </div>
+        <div class="details">
+            <div>I would love to be able to choose an importing frame-rate that the system would automatically interpolate the fbx into. Sometimes I get models encoded in various frame-rates, and its always a pain to interpolate them one by one.</div>
+        </div>
+    </div>
+</div>
+
+{{#roadmap}}
+
+    <h1>Ideas <a class="btn" href="{{createUrl}}">New</a></h1>
+
+    {{#items}}
+        <div class="roadmapItem">
+            <div class="title">
+                <a href="{{editUrl}}">{{title}}</a>
+            </div>
+
+            <div class="progress">
+                <div title="feature x" rel="tooltip" class="bar bar-success" style="width: 10%;"></div>
+                <div title="big feature y" rel="tooltip" class="bar bar-success" style="width: 20%;"></div>
+                <div title="feature z" rel="tooltip" class="bar bar-success" style="width: 10%;"></div>
+                <div class="bar bar-success" style="width: 10%;"></div>
+                <div class="bar bar-danger" style="width: 10%;"></div>
+                <div class="bar bar-danger" style="width: 10%;"></div>
+                <div class="bar bar-danger" style="width: 10%;"></div>
+                <div class="bar bar-danger" style="width: 20%;"></div>
+
+            </div>
+
+            <!--{{#tags}}
+                <span class="tag"><a href="#">{{.}}</a></span>
+            {{/tags}}-->
+
+            <!--<ul class="tags">
+            {{#tags}}
+                <li>
+                    <a href="#">{{.}}</a>
+                </li>
+            {{/tags}}
+            </ul>-->
+        </div>
+    {{/items}}
+
+{{/roadmap}}
+

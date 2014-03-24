@@ -1,0 +1,211 @@
+<!--
+<div id="ribbon">
+	<div class="status_message">
+		<i class="icon-check-empty"></i> ADMIN
+	</div>
+	<div class="vertical-ribbon">
+		<div class="inset"></div>
+		<div class="container">
+			<div class="base"></div>
+			<div class="left_corner"></div>
+			<div class="right_corner"></div>
+			<div class="holder">
+				<a href="{{adminModeUrl}}" class="admin-toggle" title="toggle admin mode">
+					<i class="icon-pencil"></i>
+				</a>
+			</div>
+		</div>
+
+	</div>
+</div>
+-->
+
+<div class="idea-header suggestion-type-{{idea.suggestionTypeId}}">
+    <div class="bug-indicator">{{suggestionType}}</div>
+    <div class="header-progress">
+        <div class="progress-label">{{suggestionState}}</div>
+        <div class="progress-container">
+            <div class="progress-step"></div>
+            <div class="progress-step"></div>
+            <div class="progress-step"></div>
+            <div class="progress-step"></div>
+            <div class="progress-bar" style="width: {{suggestionProgress}}%">
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="idea-title-header">
+    <h1 class="idea-title">{{{idea.title}}}</h1>
+    {{#canEditIdea}}
+        <div class="m-idea-buttons edit">
+            <a href="{{ideaEditUrl}}" class="" title="edit idea"><i class="icon-pencil"></i></a>
+        </div>
+    {{/canEditIdea}}
+</div>
+
+{{#idea}}
+    <div class="m-bug-header-votebox">
+        <form
+                method="post" class="transparent-form" action="{{voteUrl}}"
+                enctype="multipart/form-data">
+            <input type="hidden" name="idea" value="{{suggestionId}}" />
+            <div class="vote-details">
+                <div class="vote-count">{{numOfVotes}}</div>
+                <div class="vote-label">UPVOTES</div>
+            </div>
+            <div class="arrows-container">
+                {{#isUpvoted}}
+                    <button name="vote" value="0" class="up-vote voted" title="undo upvote">
+                        <i class="icomoon-arrow-up"></i>
+                    </button>
+                {{/isUpvoted}}
+                {{^isUpvoted}}
+                    <button name="vote" value="1" class="up-vote" title="upvote a good idea">
+                        <i class="icomoon-arrow-up"></i>
+                    </button>
+                {{/isUpvoted}}
+                {{#isDownvoted}}
+                    <button name="vote" value="0" class="down-vote voted" title="undo downvote">
+                        <i class="icomoon-arrow-down"></i>
+                    </button>
+                {{/isDownvoted}}
+                {{^isDownvoted}}
+                    <button name="vote" value="-1" class="down-vote" title="downvote an inappropriate idea">
+                        <i class="icomoon-arrow-down"></i>
+                    </button>
+                {{/isDownvoted}}
+            </div>
+        </form>
+    </div>
+{{/idea}}
+
+<div class="idea-details">
+
+    <div class="ribbon disabled">
+        <h3>Related</h3>
+        <!-- attachments -->
+        <div class="idea-attachments">
+            {{#related}}
+                {{> /Partials/Idea/IdeaListItemMini }}
+            {{/related}}
+        </div>
+    </div>
+
+    <div class="bug-byline">
+        Details maintained by <a href="#">{{idea.fullName}}</a>; last updated <a href="{{idea.revisionHistoryUrl}}">{{idea.originalAge}} ago</a>
+    </div>
+    <div class="op-avatar">
+        <img src={{idea.authorImg}} />
+    </div>
+
+    <div class="m-bug-description">
+        {{{idea.description}}}
+        <br><br>
+    </div>
+
+
+    <div class="section-title">
+        Attachments
+    </div>
+
+    <!-- attachments -->
+    <div class="idea-attachments">
+        {{#attachments}}
+            <div class="attachment">
+                {{#isImage}}
+                    <a class="attachment-button" href="{{assetUrl}}">
+                        <div class="attachment-thumbnail" style="background-image: url('{{assetUrl}}')">
+
+                        </div>
+                        <div class="thumbnail-label">
+                            {{attachmentName}}
+                        </div>
+                    </a>
+                {{/isImage}}
+                {{^isImage}}
+                    <a class="attachment-button" href="{{assetUrl}}">
+                        <div class="attachment-thumbnail" style="background-image: url('/img/placeholders/avatar_150x150.jpg')">
+
+                        </div>
+                        <div class="thumbnail-label">
+                            {{attachmentName}}
+                        </div>
+                    </a>
+                {{/isImage}}
+            </div>
+        {{/attachments}}
+    </div>
+</div>
+
+<br><br>
+
+<div class="section-title">
+    Developer's Log
+</div>
+
+{{#devlog}}
+
+    {{bodyMarkup}}
+{{/devlog}}
+
+<form
+        method="post" class="post-comment-form" action="{{postDeveloperLogEntryUrl}}"
+        enctype="multipart/form-data" data-focus-on="input:first">
+    <div class='post-comment'>
+        <div class='avatar'>
+            <div style="background-image: url('{{user.avatarUrl}}')"></div>
+        </div>
+        <div class='content'>
+            <div class='block'>
+                <input type="hidden" name="csrf" value="{{csrf}}"/>
+                <input type="hidden" name="id" value="{{idea.seoUrlId}}"/>
+                <textarea
+                        name="message" tabindex="1"
+                        placeholder="A great update!">{{message}}</textarea>
+                <div class="toolbar">
+                    <button
+                            type="submit" name="action" value="commit"
+                            class="button button-small button-rounded button-flat-action">
+                        <i class="icon-comment"></i>&nbsp; Post
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<br><br>
+
+<div class="section-title">
+    Comments
+</div>
+
+{{#comments}}
+    {{> /Partials/Idea/CommentUpvoteStyle}}
+{{/comments}}
+
+<form
+        method="post" class="post-comment-form" action="{{postCommentUrl}}"
+        enctype="multipart/form-data" data-focus-on="input:first">
+    <div class='post-comment'>
+        <div class='avatar'>
+            <div style="background-image: url('{{user.avatarUrl}}')"></div>
+        </div>
+        <div class='content'>
+            <div class='block'>
+                <input type="hidden" name="csrf" value="{{csrf}}"/>
+                <input type="hidden" name="source" value="ideas.details"/>
+                <input type="hidden" name="ideaId" value="{{idea.suggestionId}}"/>
+                <textarea name="comment" tabindex="1"
+                          placeholder="I have a grand opinion on this merry topic!">{{comment}}</textarea>
+
+                <div class="toolbar">
+                    <!--<button class='btn btn-success'>Comment</button>-->
+                    <button class="button button-small button-rounded button-flat-action"><i class="icon-comment"></i> Comment</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,60 @@
+<div class="media user-idea">
+	<div class="pull-right controller comments hidden">
+		<a href="{{ideaEditUrl}}" class="" title="edit idea"><i class="icon-warning-sign"></i></a>
+		<div class="rating-value">5</div>
+	</div>
+	<div class="pull-right controller comments hidden">
+		<a href="{{ideaEditUrl}}" class="" title="edit idea"><i class="icon-comments"></i></a>
+		<div class="rating-value">12</div>
+	</div>
+    <div class="pull-right controller rating">
+        <form
+            method="post" class="transparent-form" action="{{voteUrl}}"
+            enctype="multipart/form-data">
+            <input type="hidden" name="idea" value="{{idea.suggestionId}}" />
+            <input type="hidden" name="vote" value="{{newVoteValue}}" />
+            {{#currentVoteValue}}
+                <button class="vote-button voted" title="unlove" type="submit">
+                    <i class="icon-heart"></i>
+                </button>
+                <div class="rating-value">{{numOfVotes}}
+	                <!--<em title="your vote">[+1]</em>-->
+                </div>
+            {{/currentVoteValue}}
+            {{^currentVoteValue}}
+                <button class="vote-button" title="love" type="submit">
+                    <i class="icon-heart"></i>
+                </button>
+                <div class="rating-value">{{numOfVotes}}</div>
+            {{/currentVoteValue}}
+        </form>
+    </div>
+    <div class="pull-right controller edit hidden">
+        <a href="{{ideaEditUrl}}" class="" title="edit idea"><i class="icon-pencil"></i></a>
+    </div>
+
+	<div class="pull-left hidden">
+		<div class="vote-controller">
+			<a class="up-vote" href="#"><i class="icon-chevron-up"></i></a>
+			<div>
+				<strong>1203</strong>
+			</div>
+			<a class="down-vote" href="#"><i class="icon-chevron-down"></i></a>
+		</div>
+	</div>
+
+    <div class="pull-left">
+        <img src="/img/placeholders/avatar-13.png" />
+    </div>
+    <div class="media-body">
+	    <h1 class="idea-title">{{idea.title}}</h1>
+
+	    {{#isRevised}}
+        <div class="media-heading">Penny Buttercup <span class="time">3 months ago</span></div>
+		{{/isRevised}}
+
+	    {{^isRevised}}
+		<div class="media-heading">by <strong>Penny Buttercup</strong> 3 months ago</div>
+	    {{/isRevised}}
+    </div>
+</div>

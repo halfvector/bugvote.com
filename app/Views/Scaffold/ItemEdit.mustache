@@ -1,0 +1,13 @@
+<form method="POST" class="form-horizontal" enctype="multipart/form-data">
+	<input type="hidden" name="csrf" value="{{csrf}}" />
+	<fieldset>
+		{{#fields}}
+			{{#getEditor}}{{/getEditor}}
+		{{/fields}}
+		<div class="form-actions">
+			<button type="submit" name="action" value="save" class="btn btn-success">Save</button>
+			<button type="submit" name="action" value="cancel" class="btn">Cancel</button>
+			<button type="submit" name="action" value="delete" class="btn btn-danger">Delete</button>
+		</div>
+	</fieldset>
+</form>

@@ -1,0 +1,12 @@
+<div class="btn-group-2">
+	{{#getThirdNavItems}}
+        <div class="wrapper {{active}}">
+		<a href="{{url}}" class="btn">
+            {{title}}
+			{{#notifications}}
+				<span class="notification blue">{{notifications}}</span>
+			{{/notifications}}
+        </a>
+        </div>
+	{{/getThirdNavItems}}
+</div>

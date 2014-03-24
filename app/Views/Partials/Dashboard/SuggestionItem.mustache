@@ -1,0 +1,39 @@
+{{#isBugFix}}
+<div class="media dash__idea-short bug-fix">
+{{/isBugFix}}
+{{^isBugFix}}
+<div class="media dash__idea-short new-feature">
+{{/isBugFix}}
+
+	<div class="pull-left issue-type disabled">
+		&nbsp;
+	</div>
+
+	<div class="media-body">
+
+
+		<div class="idea__title">
+			{{#isBugFix}}<i class="bug-fix-icon icon-warning-sign"></i>{{/isBugFix}}
+			{{^isBugFix}}<i class="new-feature-icon icon-plus"></i>{{/isBugFix}}
+			<a href="{{suggestionUrl}}">{{{title}}}</a>
+		</div>
+
+		<div class="idea__stats">
+			{{#commented}}
+				<i class="icon-comments user_commented" title="commented"> {{comments}}</i>
+			{{/commented}}
+			{{^commented}}
+				<i class="icon-comments" title="not commented"> {{comments}}</i>
+			{{/commented}}
+
+			{{#vote}}
+				<i class="icomoon-arrow-up user__voted" title="voted"> {{votes}}</i>
+			{{/vote}}
+			{{^vote}}
+				<i class="icomoon-arrow-up" title="not voted"> {{votes}}</i>
+			{{/vote}}
+		</div>
+
+	</div>
+
+</div>

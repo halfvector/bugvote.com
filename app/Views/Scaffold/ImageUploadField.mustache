@@ -1,0 +1,16 @@
+<div class="control-group">
+	<label class="control-label" for="prependedInput">{{{field}}}</label>
+	<div class="controls">
+		<div class="fileupload fileupload-new" data-provides="fileupload">
+			<div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
+				<label class="img-wrapper-label" for="picture"><img src="{{{value}}}" /></label>
+			</div>
+			<div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+			<div>
+				<span class="btn btn-file"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span><input id="picture" name="{{{field}}}" type="file" /></span>
+				<a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
+				<span class="help-inline">(Recommended size: 150x150, but don't stress it.)</span>
+			</div>
+		</div>
+	</div>
+</div>

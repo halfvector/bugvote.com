@@ -1,0 +1,176 @@
+{{#idea}}
+<section class="l-centered-narrow m-section-edit-idea">
+
+    <div class="idea-title-header">
+        <h1 class="idea-title">{{{idea.title}}}</h1>
+    </div>
+
+    <br>
+
+    <div class="box-content alerts">
+        {{#alerts}}
+            <div class="alert alert-{{type}}">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                {{message}}
+            </div>
+        {{/alerts}}
+    </div>
+
+    <form method="POST" class="bootstrap simple-common-form" action="" enctype="multipart/form-data" data-focus-on="input:first">
+        <input type="hidden" name="csrf" value="{{csrf}}" />
+        <input type="hidden" name="suggestionId" value="{{suggestionId}}" />
+
+        <fieldset>
+            <div class="form-group">
+	            <label class="control-label" for="title">Title:</label>
+                <input
+                    id="title" maxlength="128" autocomplete="off" type="text" class="form-control"
+                    name="title" tabindex="1" placeholder="Peaceful Fish: Deluxe" value="{{{title}}}" />
+            </div>
+
+            <div class="form-group">
+                <label for="title">Tags:</label>
+                <div class="form-line-input">
+                    <input id="idea_tags" name="tags" placeholder="Tags" />
+                </div>
+            </div>
+
+            <div class="form-group">
+	            <label class="control-label" for="description">Description:</label>
+                <textarea id="description" class="form-control" name="description" rows="10" tabindex="2" placeholder="This is a big feature with many sub-parts..">{{{description}}}</textarea>
+                <!--<div contenteditable="true" id="body-editor" name="description" tabindex="2" placeholder="This is a big feature with many sub-parts..">{{{description}}}</div>-->
+            </div>
+
+            <div class="form-group">
+	            <label class="control-label" for="changelog">One-liner describing changes:</label>
+                <input id="changelog" class='form-control' type='text' tabindex="3" name='reason' maxlength="64" placeholder='fixed a typo' />
+            </div>
+
+            <div class="form-group wrap-field">
+                <div>
+                <label class="control-label" for="changelog">Attachments:</label>
+                </div>
+
+            {{#no}}
+	            {{#attachments}}
+                <div class="m-thumbnail">
+                    <img src="{{#urlThumbnailImg}}190x140{{/urlThumbnailImg}}" />
+
+                    <span class="title">
+                        {{attachmentName}}
+                        <a href="#" class="m-icon-button delete-button"><i class="icomoon-remove2"></i></a>
+                    </span>
+                </div>
+	            {{/attachments}}
+            {{/no}}
+
+	        <div class="form-group screenshot-uploader" id="attachments-list">
+
+                {{#attachments}}
+                    <div class="m-thumbnail" data-provides="attachment">
+                        <img src="{{#urlThumbnailImg}}190x140{{/urlThumbnailImg}}" />
+                        <input type="hidden" name="keepAttachments[]" value="{{assetId}}" />
+                        <span class="title">
+                            {{attachmentName}}
+                            <a href="#" class="m-icon-button delete-button" data-dismiss="attachment"><i class="icomoon-remove2"></i></a>
+                        </span>
+                    </div>
+                {{/attachments}}
+
+
+                <div class="fileupload fileupload-new" data-provides="fileupload">
+                    <div class="fileupload-new thumbnail">
+                        <div class="placeholder"></div>
+                        <!--<img data-src="holder.js/100%x100%" alt="100%x100%"-->
+                             <!--src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAL4AAACMCAYAAADCxhM7AAAFbklEQVR4Xu2ZO0vlUBhFz1V8Y6coFoqInTaCKP59KxXETmwVK+FaKfic4Rw4l5hJzB5nqv0tKx9fJnevvXJykhmNx+NfiS8IBCMwQvxgjRO3EEB8RAhJAPFD1k5oxMeBkAQQP2TthEZ8HAhJAPFD1k5oxMeBkAQQP2TthEZ8HAhJAPFD1k5oxMeBkAQQP2TthEZ8HAhJAPFD1k5oxMeBkAQQP2TthEZ8HAhJAPFD1k5oxMeBkAQQP2TthEZ8HAhJAPFD1k5oxMeBkAQQP2TthEZ8HAhJAPFD1k5oxMeBkAQQP2TthEZ8HAhJAPFD1k5oxMeBkAQQP2TthEZ8HAhJAPFD1k5oxMeBkAQQP2TthEZ8HAhJAPFD1k5oxMeBkAQQP2TthEZ8HAhJAPFD1k5oxMeBkAQQP2TthEZ8HAhJAPFD1k5oxMeBkAQQP2TthEZ8HAhJAPFD1k5oxMeBkAQQP2TthEZ8HAhJAPFD1k5oxMeBkAQQP2TthEZ8HAhJAPFD1k5oxMeBkAQQP2TthEZ8HAhJAPFD1k5oxMeBkAQQX6j98/MznZ2dpefn53RycpIWFhbKUXd3d+nm5qZ8PxqNvvxtPB6nq6urlI/NX3t7e2l9fV04WyrHdJ2vHlzPu7a2lvb398uv/+V80ocyG0L8gULf39/T6elp+vj4+CJ3FW11dbXId3l5WS6Mo6OjMpePWVxcLD83/zYzM/PtGfvOVw+qF8XT01Oq4tdjfnI+M5/lOIj/DaqmhO1Vva6629vbaWdnZ7L655X97e2t3Am6/jY7O1vuBEtLS+WiuL6+Tvf39+WOsLKyMrnIuu4i+Xd5/uHhIeXPVi+67z6LepeRjTEZRPwB8S8uLtLBwcFk1a5bnT7ZsuxZ7i7x64WQ7wCPj4/p+Pg4nZ+fT+4MWea+8zW3M5ubm+n29nZQ/Ho+E1f/awzEF3B27bnrVqeu3Fnm/Lss2+vra1nF2yt+/VndzjSfKepnmJqaSru7u+WuUVf8etfoO58QMdwI4guVKw+3eZXPQm9tbQ2u+PmU9UJpPqC29/FN8ZtborpdGtrqsOL3l4v4/yB+89C69Rna4+c9d71b5Afdl5eXP974tC+0ubm58pYnP9C2v5aXl9PGxkbvMwV7/O6CEf+H4ndtdZS3OtPT00Xi/Jbo8PCwrPz5+/ygW9/4DL3ObL9R4q2OUGJrBPEFZn0i1u1H/ifm5+e/yNv3Xr1vP97c8vyt+M0H35/8v4GAwG4E8e0qJZBCAPEVSszYEUB8u0oJpBBAfIUSM3YEEN+uUgIpBBBfocSMHQHEt6uUQAoBxFcoMWNHAPHtKiWQQgDxFUrM2BFAfLtKCaQQQHyFEjN2BBDfrlICKQQQX6HEjB0BxLerlEAKAcRXKDFjRwDx7SolkEIA8RVKzNgRQHy7SgmkEEB8hRIzdgQQ365SAikEEF+hxIwdAcS3q5RACgHEVygxY0cA8e0qJZBCAPEVSszYEUB8u0oJpBBAfIUSM3YEEN+uUgIpBBBfocSMHQHEt6uUQAoBxFcoMWNHAPHtKiWQQgDxFUrM2BFAfLtKCaQQQHyFEjN2BBDfrlICKQQQX6HEjB0BxLerlEAKAcRXKDFjRwDx7SolkEIA8RVKzNgRQHy7SgmkEEB8hRIzdgQQ365SAikEEF+hxIwdAcS3q5RACgHEVygxY0cA8e0qJZBCAPEVSszYEUB8u0oJpBBAfIUSM3YEEN+uUgIpBBBfocSMHQHEt6uUQAoBxFcoMWNHAPHtKiWQQgDxFUrM2BFAfLtKCaQQQHyFEjN2BBDfrlICKQQQX6HEjB0BxLerlEAKAcRXKDFjRwDx7SolkEIA8RVKzNgR+A3l0lK1Ri7wtwAAAABJRU5ErkJggg=="-->
+                             <!--style="height: 100%; width: 100%; display: block;" />-->
+                    </div>
+                    <div class="fileupload-preview fileupload-exists thumbnail"></div>
+                    <div class="controls">
+                        <span class="m-button btn-file">
+                            <span class="fileupload-new">Select File..</span>
+                            <span class="fileupload-exists">Change</span>
+                            <input id="pic1" name="attachments[]" type="file" />
+                        </span>
+                        <span class="edit-controls fileupload-exists">
+                            NEW IMAGE
+                            <a href="#" class="fileupload-exists m-icon-button delete-button" data-dismiss="fileupload"><i class="icomoon-remove2"></i></a>
+                        </span>
+                    </div>
+                </div>
+	        </div>
+
+            <a onclick="addMore()" class="btn btn-default">Add More</a>
+
+            <script type="text/template" id="attachment-template">
+            </script>
+
+            </div>
+
+        </fieldset>
+
+        <div class="action-controls">
+            <button type="submit" name="action" value="save" class="btn btn-success">Save</button>
+            <button type="submit" name="action" value="cancel" class="btn btn-default">Cancel</button>
+
+            <button type="submit" name="action" value="cancel" class="btn btn-danger">Delete</button>
+        </div>
+
+        <script defer>
+            function addMore() {
+                $("#attachments-list").append($("#attachment-template").html());
+            }
+        </script>
+
+    </form>
+
+</section>
+{{/idea}}
+
+<script src="/js/jquery-1.9.1.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/chosen.jquery.js"></script>
+<script src="/js/jquery.localize.js"></script>
+<script src="/js/jquery.ui.sortable.js"></script>
+<script src="/js/jquery.timeago.js"></script>
+<script src="/js/selectize.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        var tagger = $('#idea_tags').selectize({
+            plugins: ['remove_button', 'optgroup_columns', 'drag_drop'],
+            options: [
+                // the big split: defect vs improvement
+                { id: "system.bug", group: "recommended", label: "Bug (a defect)" },
+                { id: "system.request", group: "recommended", label: "Feature (new idea)" },
+
+                { id: "crash", group: "extra", label: "Crash" },
+                { id: "visual glitch", group: "extra", label: "Visual Glitch" },
+                { id: "gameplay", group: "extra", label: "Gameplay Issue" },
+            ],
+            optgroups: [
+                { id: 'recommended', label: 'Suggestion Type (choose one)' },
+                { id: 'extra', label: 'Extra tags' },
+            ],
+            labelField: 'label',
+            valueField: 'id',
+            optgroupField: 'group',
+            optgroupLabelField: 'label',
+            optgroupValueField: 'id',
+            searchField: ['label'],
+            optgroupOrder: ['recommended', 'extra'],
+            delimiter: ',',
+            persist: true,
+            create: function(input) {
+                return {
+                    value: input,
+                    text: input,
+                    group: 'extra',
+                    id: input,
+                    label: input
+                }
+            }
+        });
+
+    });
+</script>

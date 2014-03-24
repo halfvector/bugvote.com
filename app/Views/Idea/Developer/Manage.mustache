@@ -1,0 +1,33 @@
+Managing: <h1><a href="{{urlViewIdea}}">{{idea.title}}</a></h1>
+<form method="post" class="m-horizontal-form">
+
+    <input type="hidden" name="suggestionId" value="{{ideaUrlId}}" />
+
+    <div class="form-group">
+        <label for="bugType" class="label">Bug Type</label>
+        <div class="value">
+            {{#suggestionTypes}}
+            <select name="{{name}}" data-placeholder="Choose Suggestion Type" class="suggestion-type-selector" rel="chosen">
+                {{> Scaffold/Dropdown }}
+            </select>
+            {{/suggestionTypes}}
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="bugType" class="label">Bug Status</label>
+        <div class="value">
+            {{#suggestionStates}}
+            <select name="{{name}}" data-placeholder="Choose Status" class="progress-selector" rel="chosen">
+                {{> Scaffold/Dropdown }}
+            </select>
+            {{/suggestionStates}}
+        </div>
+    </div>
+
+    <div class="toolbar">
+        <button name="adminAction" value="save" class="button button-rounded button-action button-small"><i class="icon-check"></i> Update</button>
+        <a href="{{urlViewIdea}}">Cancel</a>
+    </div>
+
+</form>

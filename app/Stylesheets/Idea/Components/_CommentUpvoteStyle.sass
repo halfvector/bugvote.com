@@ -1,0 +1,180 @@
+.m-comment-with-upvote
+	//width: 100%
+	max-width: 90%
+	//border-top: 1px solid #eee
+	//padding-top: $base-line-height - 2px
+	margin-bottom: $base-line-height
+
+	$buttonWidth: 46px // large enough hit-area to touch
+	$buttonOverlap: 4px
+
+	$commenterAvatarSize: 60px
+	$arrowSize: .85em
+	$activeColor: #ccc
+
+	position: relative
+
+	&:hover
+		//background: #f7f7f7
+
+		.post-controls
+			opacity: 1
+
+		//.details
+		//	.name
+		//		color: darken($colorOrange,10%) !important
+
+		.votes
+			.vote-button
+				color: #999
+			.vote-up
+				bottom: 0px !important
+				//padding-bottom: 8px !important
+				//padding-top: 8px !important
+			.vote-down
+				top: 0px !important
+				//padding-top: 8px !important
+				//padding-bottom: 8px !important
+
+	.votes
+		width: 45px
+		height: $base-line-height * 2
+		text-align: left
+		position: absolute
+		left: -45px
+
+		@include media($screen-compact)
+			.vote-up
+				bottom: 0px
+			.vote-down
+				top: 0px
+
+		@include media($screen-normal)
+			.vote-up
+				bottom: -$buttonOverlap
+				//bottom: 0px
+			.vote-down
+				top: -$buttonOverlap
+				//top: 0px
+
+		.vote-wrapper
+			display: inline-block
+			text-align: center
+			position: relative
+			width: 1px
+			height: 1px
+			margin-top: $base-line-height
+
+		.vote-button
+			+transition(all 0.05s ease-in)
+			color: #eee
+			text-decoration: none
+			font-size: 12px
+			width: $buttonWidth
+			padding: 0px
+			display: inline-block
+			//border: 1px solid green
+			position: absolute
+			line-height: $base-line-height
+
+			i
+				line-height: $base-line-height
+				//border: 1px solid red
+
+			&:hover
+				color: $colorOrange
+
+
+		.voted
+			color: #ffae00
+			opacity: 1
+
+		.rating
+			display: none
+
+		strong
+			display: block
+
+		span
+			display: none
+
+	.avatar
+		text-align: left
+		height: $base-line-height * 2
+		padding-right: 20px
+
+		.poster-link
+			display: inline-block
+			line-height: 1
+			vertical-align: middle
+
+			img
+				display: block
+
+
+	.details
+		@extend .font-user-content
+
+		.byline
+			display: block
+			//color: #999
+			//font-family: $fontRegular
+			//text-transform: uppercase
+			line-height: $base-line-height
+
+			.name
+				display: inline-block
+				color: #0645AD
+				//color: $colorOrange
+				//font-family: $fontSemiBold
+
+			.time
+				display: inline-block
+				padding-left: .5em
+				color: #aaa
+
+		.comment-body
+			display: inline-block
+			max-width: 55em
+			//@extend .font-user-content
+			line-height: $base-line-height
+
+			p
+				margin: 0
+				padding: 0
+
+		.easy-icon-button
+			font-size: 12px
+			line-height: $base-line-height
+
+	.controls
+		//background: #f7f7f7
+		//border-bottom: 2px solid #eee
+		//margin-top: $base-line-height/2
+		//text-align: right
+		line-height: $base-line-height * 1.5
+
+
+	.post-controls
+		display: none
+		width: 44px
+		vertical-align: top
+		text-align: right
+		background: #eee
+		//opacity: 0
+		transition: all ease-in .1s
+		margin-top: 0em
+		margin-right: 0em
+		border-radius: 6px
+
+		.easy-icon-button
+			margin: 6px
+			font-size: 12px
+
+			&+.easy-icon-button
+				margin-top: 0px
+
+
+
+	.m-submit-comment
+		margin-left: 68px

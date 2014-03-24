@@ -1,0 +1,54 @@
+<div class="m-topnav l-horizontal l-vertically-centered">
+    <div>
+        {{#appHeader}}
+            <h2>
+                <a href="/" title="home">bugvote</a>
+                <span> / </span>
+                <a title="project's main page" href="{{urlViewApp}}">{{title}}</a>
+            </h2>
+            <!--<img class="logo" src="/img/upvote-logo-1-tiny.png" />-->
+        {{/appHeader}}
+        {{^appHeader}}
+            <h2>
+                <a href="/" title="home">bugvote</a>
+            </h2>
+
+            <a class="small-logo-link" href="/" title="home">
+                <img src="/img/upvote-logo-1-tiny.png" />
+            </a>
+        {{/appHeader}}
+    </div>
+
+    <div>
+        <form method="get" action="{{appHeader.urlUniversalSearch}}" class="m-search-control-topnav">
+            <input class="field" type="text" name="q" placeholder="Search" autocomplete="off" />
+            <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+    </div>
+
+{{#userStatus.userIsAnon}}
+    <div class="user-control">
+        <a class="text-link" href="/login">Register or Login</a>
+    </div>
+{{/userStatus.userIsAnon}}
+{{#userStatus.userIsRegular}}
+    <div class="bootstrap">
+        <div class="btn-group">
+            <button type="button" class="btn with-avatar"><a href="{{userStatus.urlUserProfile}}"><img src="{{#userStatus.urlUserProfileImage}}34x34:cover{{/userStatus.urlUserProfileImage}}" /></a></button>
+            <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                <span class="caret"></span>
+                <span class="sr-only"></span>
+            </button>
+            <ul class="dropdown-menu pull-right" role="menu">
+                <li><a href="#">Switch to Developer</a></li>
+                <li class="divider"></li>
+                <li><a href="#">Profile</a></li>
+                <li><a href="#">Help</a></li>
+                <li class="divider"></li>
+                <li><a href="/logout">Logout</a></li>
+                <li><a href="/switch?redirect={{signedUrl.url}}&signature={{signedUrl.signature}}">Switch users..</a></li>
+            </ul>
+        </div>
+    </div>
+{{/userStatus.userIsRegular}}
+</div>

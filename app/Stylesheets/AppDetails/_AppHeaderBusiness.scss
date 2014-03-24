@@ -1,0 +1,90 @@
+.appHeader, .imgContainer, .description, h1, h2 {
+    //@include debug-block();
+}
+
+.appHeader {
+    display: inline-block;
+    width: 100%;
+    padding: 0em 0em 0em;
+
+    .imgContainer {
+        display: inline-block;
+        vertical-align: middle;
+        padding: 0px;
+        clear: none;
+        float: left;
+
+        background: url("/img/angrybirds-logo.png") no-repeat;
+        background-size: cover;
+        width: 4em;
+        height: 4em;
+        margin: 0 2em 2em 0;
+        //border-radius: 15%;
+
+        @include media($screen-compact) {
+            display: none;
+            padding: 0px;
+        }
+
+        @include media($tablet) {
+            display: none;
+        }
+
+        img {
+            border-radius: 0px 0px 30px 30px;
+            //box-shadow: -1px 2px 3px #aaa;
+            //border: 2px solid #888;
+            border-right: none;
+            border-top: none;
+            border-radius: 0px;
+            padding: 0px;
+            margin: 0px;
+        }
+    }
+
+    .description {
+        display: inline-block;
+        vertical-align: top;
+        clear: none;
+        padding: 0px 0px;
+        //font: 300 30px/30px 'OpenSans';
+        color: #888;
+
+        .heading {
+            //font: 400 1em/1em 'OpenSansLight';
+            padding: 0px;
+            margin: 0px;
+            //color: #444;
+            //font-size: 1em;
+            //line-height: 1em;
+
+            a {
+                color: inherit;
+                text-decoration: none;
+            }
+        }
+
+        .subheading {
+            //font: normal .5em/2em 'OpenSansLight';
+            padding: 0px;
+            margin: 0px;
+            //font-size: .5em;
+            //line-height: 2em;
+
+            a {
+                text-decoration: none;
+                color: inherit;
+                border-bottom: 1px solid #7cf;
+
+                &:hover {
+                    //color: #3cf;
+                    border-bottom: 1px solid #08c;
+                }
+            }
+        }
+
+        @include media($tablet) {
+
+        }
+    }
+}

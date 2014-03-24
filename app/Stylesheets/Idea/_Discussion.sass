@@ -1,0 +1,224 @@
+
+.post-comment-form
+	//max-width: 60em
+	//display: inline-block
+	//border-top: 2px solid $colorGreen
+
+	$avatarSize: 3em
+
+	.post-comment
+		border-radius: 6px
+
+		.avatar
+			display: inline
+			vertical-align: top
+
+			div
+				display: block
+				float: left
+				width: $avatarSize
+				height: $avatarSize
+				margin: 0 1em
+				background-size: cover
+				background-repeat: no-repeat
+				//border-radius: 4px
+
+		.content
+			margin-left: 5em
+			//padding: 1em 1em 1em 0
+			vertical-align: top
+
+			.block
+				display: block
+
+			textarea
+				width: 100%
+				font-size: 1em
+				line-height: 1.45em
+				height: 6em
+				margin: 0
+				padding: .4em .7em
+				border-radius: 0
+				border: 1px solid #eee
+				max-width: 50em
+
+				&::-webkit-input-placeholder
+					//font-style: italic
+					color: #ccc
+
+
+	.toolbar
+		display: block
+		//background: #f7f7f7
+		border-radius: 0 0px 6px 6px
+		margin: 1em 0 0
+		//padding: .5em
+		//text-align: right
+
+	.controls
+		padding: 0 1em 0
+		text-align: right
+
+.idea__comment
+	border: 1px solid transparent
+	background: #fff
+	display: inline-block
+	position: relative
+	width: 100%
+	vertical-align: top
+	//transition: all ease-out .1s
+	padding: 0.5em
+
+	$commenterAvatarSize: 3em
+	$arrowSize: .85em
+	$activeColor: #ccc
+
+	&:hover
+		//border: 1px solid #ccc
+		background: #eee
+
+		.post-controls
+			opacity: 1
+		.details
+			.name
+				color: darken($colorOrange,10%)
+		.votes
+			.voteControl
+				opacity: 1
+				.upVote, .downVote
+					margin: 0
+
+	.votes
+		display: inline-block
+		float: left
+		text-align: center
+		margin: 0em .5em 0 0em
+		padding: 0em 0 0
+		vertical-align: top
+
+		@include media($screen-compact)
+			display: none
+
+		.voteControl
+			opacity: .4
+			+transition(all 0.1s ease-in)
+
+			.upVote
+				margin-top: .2em
+				+transition(all 0.1s ease-in)
+			.downVote
+				margin-top: -.4em
+				+transition(all 0.1s ease-in)
+
+		a
+			&:hover
+				text-decoration: none
+
+		.voteControl-old
+			opacity: 0
+			+transition(all 0.1s ease-in)
+
+			.upVote
+				margin-top: .5em
+				+transition(all 0.1s ease-in)
+			.downVote
+				margin-top: -1em
+				+transition(all 0.1s ease-in)
+
+		a
+			&:hover
+				text-decoration: none
+
+		.upVote, .downVote
+			font-size: 1.2em
+			$size: 1.5em
+			width: $size
+			line-height: $size
+			display: block
+			color: #777
+
+			&:hover
+				color: $colorOrange
+
+		.rating
+			display: none
+
+		strong
+			display: block
+
+		span
+			display: none
+
+	.avatar
+		// this container collapses and the child floats out
+		// simplest way of creating stable fixed + fluid columns
+		display: inline
+		text-align: center
+		vertical-align: text-top
+
+		div
+			float: left
+			margin: .5em
+			display: inline-block
+			//margin: 0.3em 0px 0px
+			width: $commenterAvatarSize
+			height: $commenterAvatarSize
+			background-repeat: no-repeat
+			background-size: cover
+			background-position: 0% 0%
+			transition: all .2s ease-out
+
+	.details
+		display: block
+		margin: .5em
+		margin-left: $commenterAvatarSize + 2em
+		vertical-align: baseline
+
+		@include media($screen-compact)
+			margin-left: $commenterAvatarSize + 2em
+
+		.info-row
+			display: block
+			vertical-align: top
+			color: #000
+			font-size: 14px
+			line-height: 18px
+			padding-bottom: 4px
+			font-family: $fontSemiBold
+
+			&:hover
+				color: darken($colorOrange,10%)
+
+			.name
+				display: inline-block
+
+			.time
+				display: inline-block
+				padding-left: .5em
+				color: #aaa
+
+
+		.markdown-container
+			display: inline-block
+			max-width: 55em
+
+			p
+				margin: 0
+				padding: 0
+
+	.post-controls
+		display: inline-block
+		vertical-align: top
+		float: right
+		opacity: 0
+		transition: all ease-in .1s
+		margin-top: -.5em
+		margin-right: -.5em
+
+		a
+			font-size: 1em
+			//color: #444
+			text-decoration: none
+
+			//&:hover
+			//	color: $colorOrange

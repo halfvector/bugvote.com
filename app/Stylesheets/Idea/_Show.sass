@@ -1,0 +1,1100 @@
+.vote-indicator
+	position: relative
+	text-align: center
+
+	.icon-wrapper
+		background: $colorOrange
+		border-radius: 2em
+		width: 2em
+		height: 2em
+		line-height: 2em
+		vertical-align: middle
+		text-align: center
+		position: relative
+		text-decoration: none
+
+		i
+			color: #fff
+
+	.label-helper
+		//position: absolute
+		//bottom: -2em
+		text-align: center
+		color: #000
+
+.disabled
+	display: none !important
+
+.workItem
+	margin: 10px
+
+	.avatar
+		display: inline-block
+		width: 150px
+		height: 100px
+		float: left
+
+		div
+			background-repeat: no-repeat
+			background-size: cover
+			width: 100px
+			height: 100px
+	.notes
+		display: inline-block
+		width: 500px
+
+.headerContainer
+	margin: 1em 0em
+	display: table
+
+	.voting
+		display: table-cell
+		vertical-align: middle
+		text-align: center
+		padding: 0
+
+		font-family: $fontSemiBold
+
+		a
+			text-decoration: none
+			color: inherit
+			//border-radius: 50px
+			//background: #eee
+			color: #aaa
+			display: table
+			vertical-align: middle
+			margin: 0
+			font-size: 1.5em
+			line-height: 1em
+			//padding: .6em 1em
+			min-width: 3.5em
+			//min-height: 3.5em
+
+			span
+				margin: auto
+				display: table-cell
+				vertical-align: middle
+
+			&:hover
+				color: #fff
+				background: #3297FD
+
+			i
+				line-height: 1em
+				display: block
+				//padding: 0 0 .3em
+				color: inherit
+
+
+	.details
+		display: table-cell
+		padding: 0 0 0 1em
+
+	.ideaHeader
+		margin: 0
+		padding: 0
+		height: auto
+		line-height: 1em
+		font-size: 1em
+		color: #555
+		//font-weight: bold
+		text-transform: uppercase
+		//padding: .5em 1em
+		//border-left: 5px solid $colorLightGray
+		font-family: arial
+		display: none
+
+	.ideaTitle
+		display: block
+		font-size: 2em
+		line-height: 1.2em
+		font-weight: 300
+		font-family: 'open sans light'
+
+	.controller
+		span
+			display: inline-block
+			margin: 0 0 0 1em
+			color: $colorDarkGray
+
+/* /ideas/17 */
+//@include media($screen-normal)
+//    .ideaContainer
+//        display: table
+//        .idea
+//            display: table-cell
+//        .status
+//            display: table-cell
+//            width: 15em
+@include media($screen-compact)
+	.ideaContainer
+		display: block
+		.idea
+			display: block
+		.status
+			display: block
+
+$imgSize: 4.3em
+$imgSpacing: 2em
+
+.appImage
+	display: inline-block
+	vertical-align: top
+	margin: 0 $imgSpacing $imgSpacing 0
+	div
+		width: $imgSize
+		height: $imgSize
+		background-size: cover
+		background-repeat: no-repeat
+
+.suggestionDetails
+	display: inline-block
+	vertical-align: top
+
+	.appName
+		a
+			color: inherit
+			text-decoration: none
+			&:hover
+				color: $colorOrange
+
+	.ideaTitle
+		vertical-align: middle
+//color: $colorOrange
+.ideaContainer
+	text-align: left
+	vertical-align: top
+	margin: 0
+	width: 100%
+
+.hidden
+	display: none
+
+.page-element
+	padding: 0
+	margin: 0
+	margin-bottom: 1em
+	max-width: 70em
+
+.ideaHeader
+	margin: 0
+	font-size: 85%
+	color: #555
+	//font-weight: bold
+	text-transform: uppercase
+	//padding: .5em 1em
+	border-bottom: 2px solid $colorLightGray
+	display: inline-block
+
+.ideaTitle
+	margin: 0em 0em 0
+	//font-family: $fontNames
+
+.poster2
+	display: block
+	margin-bottom: 1em
+	margin-left: 0em
+	vertical-align: middle
+
+	$avatarSize: 4em
+
+	.avatar
+		display: inline-block
+		vertical-align: middle
+		//width: $avatarSize + 20px
+		padding-right: 1em
+
+		div
+			width: $avatarSize
+			height: $avatarSize
+			background-repeat: no-repeat
+			background-size: cover
+
+	.details
+		display: inline-block
+		vertical-align: middle
+		line-height: 1.3em
+		font-family: serif
+
+		.name
+			font-family: sans-serif
+			font-size: 1.1em
+			line-height: 1.2em
+			font-weight: bold
+
+.inline-header
+	display: inline-block
+	padding-bottom: .2em
+	//border-bottom: 1px solid $colorYellow
+	margin-bottom: .8em
+
+.idea-details-container
+	margin: 1em 0
+	//padding: 1em
+	//padding: 1em 0 1em 5em
+	//background: #f7f7f7
+
+	.description
+		line-height: 1.5em
+		max-width: 55em
+
+.idea
+	padding: 0em 0em
+
+	#idea_status_dropdown_chzn
+		width: 10em
+
+	form
+		input
+			clear: both
+			display: block
+		.editor
+			display: block
+			max-width: 55em
+			height: 20em
+
+	.title
+		display: inline-block
+		clear: both
+		margin: 0
+		padding: 0
+		font-size: 2em
+		line-height: 1em
+
+		i
+			display: inline-block
+			color: #888
+			font-size: .75em
+			margin-right: .5em
+			vertical-align: baseline
+
+
+	.controls
+		width: 50em
+		padding: 1em 1em 0em
+		//margin: .5em 1em 0em
+		//display: none
+		border-top: 2px solid $colorBlue
+		//border-bottom: 1px solid $colorBlue
+		a
+			background: $colorBlue
+			color: #fff
+			text-shadow: none
+
+			&:hover
+				background: lighten($colorBlue, 10%)
+
+	.poster-big
+		display: inline-block
+		margin: 1em 0em 1em
+		vertical-align: middle
+
+		$avatarSize: 5em
+
+		.avatar
+			display: inline-block
+			vertical-align: middle
+			padding-right: 1em
+
+			div
+				width: $avatarSize
+				height: $avatarSize
+				background-repeat: no-repeat
+				background-size: cover
+
+		.details
+			display: inline-block
+			vertical-align: middle
+
+			.changes
+				font-style: italic
+
+			.name
+				//font-size: 1.1em
+				//line-height: 1.2em
+				font-weight: bold
+				display: inline
+
+	.poster
+		display: block
+		clear: both
+		margin: 1em 1em 0em
+		vertical-align: middle
+
+		.inline-header
+			padding: .5em 0em
+			margin: 0
+
+		$avatarSize: 4em
+
+		.avatar
+			display: inline-block
+			vertical-align: middle
+			padding-right: 1em
+
+			div
+				width: $avatarSize
+				height: $avatarSize
+				background-repeat: no-repeat
+				background-size: cover
+
+		.details
+			display: inline-block
+			vertical-align: middle
+
+			.changes
+				font-style: italic
+
+			.name
+				//font-size: 1.1em
+				//line-height: 1.2em
+				font-weight: bold
+				display: inline
+
+			.age
+				display: inline
+				float: right
+				color: #888
+
+	.voters
+		$contributorAvatarSize: 2em
+		padding: 1em 1em 1em
+		margin: 0
+		display: block
+
+		.inline-header
+			display: block
+			display: none
+			margin: 0
+			padding: 0
+
+		.rating
+			display: inline-block
+			padding: 0 1em 0 0
+			margin: 0
+
+		.contributor
+			vertical-align: middle
+			line-height: 100%
+			display: inline-block
+
+			.avatar
+				display: inline-block
+				width: $contributorAvatarSize
+				text-align: center
+				vertical-align: middle
+
+				div
+					width: $contributorAvatarSize
+					height: $contributorAvatarSize
+					background-repeat: no-repeat
+					background-size: cover
+					background-position: 0% 0%
+					transition: all .2s ease-out
+
+					&:hover
+						//background-position: 100% 100%
+						-webkit-filter: grayscale(0)
+
+			.name
+				display: inline-block
+
+		.more
+			margin-top: 5px
+			display: inline-block
+
+	.contributors
+		$contributorAvatarSize: 26px
+		padding-left: 3px
+		//display: none
+		.contributor
+			padding: 2px 0px
+			vertical-align: middle
+			line-height: 100%
+
+			.avatar
+				display: inline-block
+				width: $contributorAvatarSize
+				text-align: center
+				vertical-align: middle
+				margin-right: 5px
+
+				div
+					width: $contributorAvatarSize
+					height: $contributorAvatarSize * 0.7
+					background-repeat: no-repeat
+					background-size: cover
+					background-position: 0% 0%
+					transition: all .2s ease-out
+
+					&:hover
+						//background-position: 100% 100%
+						-webkit-filter: grayscale(0)
+
+			.name
+				display: inline-block
+
+		.more
+			margin-top: 5px
+			display: inline-block
+
+.inline-contributors
+	$contributorAvatarSize: 35px
+	padding-left: 3px
+	display: inline-block
+	width: 20em
+	margin-right: 5em
+
+	.contributor
+		padding: 2px 0px
+		vertical-align: middle
+		line-height: 100%
+		display: inline-block
+
+		.avatar
+			display: inline-block
+			width: $contributorAvatarSize
+			text-align: center
+			vertical-align: middle
+			margin-right: 5px
+
+			div
+				width: $contributorAvatarSize
+				height: $contributorAvatarSize * 0.7
+				background-repeat: no-repeat
+				background-size: cover
+				background-position: 0% 0%
+				transition: all .2s ease-out
+
+				&:hover
+					//background-position: 100% 100%
+					-webkit-filter: grayscale(0)
+
+		.name
+			display: inline-block
+			display: none
+
+	.more
+		margin-top: 5px
+		display: inline-block
+
+.inline-status
+	display: inline-block
+	vertical-align: top
+	width: 20em
+
+.updates
+	display: none
+
+	.update
+		margin: 1em 1em 2em
+
+		h5
+			padding: 0 0
+			margin: 0 0em .5em
+			display: inline-block
+			border-bottom: 1px solid #3cf
+
+		.message
+			padding-left: 1em
+
+.status
+	margin-bottom: 20px
+	background: #fff
+	display: none
+
+
+
+.history
+	.poster
+		display: block
+		clear: both
+		margin: 1em 1em 0em
+		vertical-align: middle
+
+		.inline-header
+			padding: .5em 0em
+			margin: 0
+
+		$avatarSize: 3em
+
+
+
+		.avatar
+			display: inline-block
+			vertical-align: middle
+			padding-right: 1em
+
+			div
+				width: $avatarSize
+				height: $avatarSize
+				background-repeat: no-repeat
+				background-size: cover
+
+		.details
+			display: inline-block
+			vertical-align: middle
+			width: 500px
+
+			.changes
+				font-style: italic
+
+			.name
+				//font-size: 1.1em
+				//line-height: 1.2em
+				font-weight: bold
+				display: inline
+
+			.age
+				display: inline
+				padding-left: 10px
+				//float: right
+				color: #888
+
+.discussion-teaser
+	background: #eee
+
+.votes
+	display: inline-block
+	padding: .3em 1em 0px 1em
+	vertical-align: top
+	text-align: center
+	padding-top: 1em
+
+
+	strong
+		display: inline
+
+	.voteControl
+		color: #444
+		//background: lighten($colorGreen, 40%)
+		//border: 1px solid lighten($colorGreen, 30%)
+
+	a
+		&:hover
+			text-decoration: none
+
+	.upVote, .downVote
+		color: inherit
+		font-size: 1.5em
+		@include media($screen-compact)
+			font-size: 35px
+
+	.voted
+		color: $colorGreen
+
+	strong
+		display: block
+
+	span
+		display: none
+
+.details
+	display: block
+
+.header-separator
+	$primaryColor: $colorDarkGray
+	border-bottom: 2px solid $primaryColor
+	//margin-bottom: 1em
+	font-family: 'open sans bold'
+	font-size: 1em
+	//padding-bottom: .5em
+	color: $primaryColor
+	vertical-align: middle
+
+	.border-wrapper
+		//border: 2px solid $primaryColor
+		border-radius: 3em
+		display: inline-block
+		//margin-right: .5em
+
+		.icon-wrapper
+			font-size: 1em
+			text-align: center
+			vertical-align: center
+			text-decoration: none
+			display: block
+			padding: none
+
+			i
+				font-size: 1.3em
+				$size: 1.5em
+				width: $size
+				height: $size
+				line-height: $size
+				display: inline-block
+				vertical-align: middle
+				color: $primaryColor
+
+.simple-section
+	padding: 1em
+
+
+.last-modified-message
+	margin: 0
+	margin: 0 4em 1em
+	padding: 1em
+	max-width: 51em
+	background: #f7f7f7
+
+	.pull-left
+		width: 2em
+		margin-right: 1em
+
+	em
+		font-size: .8em
+		color: #777
+		font-style: normal
+		padding-left: .5em
+
+	.name
+		display: inline-block
+		vertical-align: top
+		clear: none
+		font-weight: bold
+		color: #444
+
+		&:hover
+			color: darken($colorOrange,10%)
+
+.user-message
+	.pull-left
+		width: 3.5em
+		margin-right: 1em
+
+	em
+		font-size: .8em
+		color: #777
+		font-style: normal
+		padding-left: .5em
+
+.developer-message
+	//border-top: 3px solid $colorBlue
+	//border-left: 5px solid $colorBlue
+	padding: 1em
+
+	.pull-left
+		width: 4em
+		margin-right: 1em
+
+	.media-body
+		max-width: 55em
+
+	.media-heading
+		margin: 0
+		padding: 0
+		font-size: 1em
+		line-height: 1.5em
+
+		em
+			//font-size: .8em
+			vertical-align: baseline
+			color: #aaa
+			font-style: normal
+			padding-left: .5em
+
+.user-idea
+	padding: 0
+	margin: 0
+	//padding-left: 3em
+	line-height: 1em
+	padding-bottom: 1em
+	border-bottom: 2px solid #ccc
+
+	.vote-controller
+		vertical-align: middle
+		text-align: center
+		color: #444
+
+		.up-vote, .down-vote
+			color: #444
+			font-size: 1.3em
+			text-decoration: none
+			&:hover
+				color: $colorOrange
+
+		strong
+			display: inline-block
+			line-height: 1.3em
+
+	.media-body
+		line-height: 1em
+
+	.pull-left
+		width: 4em
+		margin-right: 1em
+
+	.controller
+		font-size: 1em
+		width: 2em
+		margin-right: .6em
+		text-align: center
+		line-height: 1em
+
+		.vote-button
+			display: inline-block
+			font-size: 1em
+			text-align: center
+			margin: auto
+			color: #fff
+			background: $colorDarkGray
+			width: 2em
+			height: 2em
+			line-height: 2em
+			border-radius: 50px
+			text-decoration: none
+
+			&.voted
+				background: $colorOrange
+
+		a
+			display: inline-block
+			font-size: 1em
+			text-align: center
+			margin: auto
+			color: #fff
+			background: $colorBlue
+			width: 2em
+			height: 2em
+			line-height: 2em
+			border-radius: 50px
+			text-decoration: none
+
+		.rating-value
+			line-height: 2em
+			vertical-align: baseline
+			font-size: .9em
+			color: #999
+			font-family: verdana
+
+			em
+				font-style: normal
+				font-size: .9em
+				line-height: 2em
+				vertical-align: baseline
+				color: $colorOrange
+
+		&.edit
+			a
+				background: $colorGreen
+
+		&.comments
+			a
+				background: $colorDarkGray
+
+
+	.idea-details
+		max-width: 55em
+		font-size: 1.2em
+
+	.media-heading
+		margin: 0
+		padding: 0
+		font-size: 1em
+		line-height: 1.5em
+		//color: #333
+		//font-family: "segoe ui"
+		font-family: $fontSemiBold
+
+		.time
+			color: #aaa
+			padding-left: .5em
+
+		em
+			//font-size: .8em
+			vertical-align: baseline
+			color: #aaa
+			font-style: normal
+			padding-left: .5em
+
+	.idea-title
+		display: inline-block
+		font-size: 1.6em
+		line-height: 1.5em
+		font-weight: 400
+		font-family: "segoe ui"
+		color: #444
+
+	.controls-container
+		display: inline-block
+		//line-height: 1em
+		width: 100%
+
+		.controls-panel
+			display: inline-block
+			float: left
+			padding: 0 1em
+			vertical-align: text-top
+			line-height: 2em
+			opacity: 0
+
+	&:hover
+		.controls-panel
+			opacity: 1
+
+
+.work-progress
+	.pull-left
+		width: 100px
+
+	.progress
+		width: 55%
+		min-width: 200px
+		margin: 0
+
+
+// sections
+
+.idea-status
+
+	.review
+		padding-left: 4.5em
+
+		.work-progress
+			display: none
+
+.idea-toolbar
+	//twbackground: #f2f2f2
+	//border-top: 1px solid $colorDarkGray
+	max-width: 55em
+	//padding: 1em 1em 1em
+	//margin: 0em 1em
+	padding: .5em
+
+.idea-state
+	//background: #c2e2f2
+	padding: 2em 2.5em
+
+.idea-state-dark
+	font-size: 14px
+	padding: 1em 0em
+	border-bottom: 2px solid #ccc
+
+.state-button
+	margin: 2em 2em 0
+	border: 3px solid #fff
+	box-shadow: 0px 1px 3px rgba(#444, .3)
+	border-radius: 5em
+	display: inline-block
+	box-sizing: border-box
+	position: relative
+	transition: all 150ms ease-out
+
+	.label-helper
+		position: absolute
+		bottom: -1.6em
+		left: -2em
+		right: -2em
+		height: 1em
+		//background: orange
+		text-align: center
+
+		.label-actual
+			$label-bg-color: #fff
+			background-color: $label-bg-color
+			//-webkit-filter: drop-shadow(0 1px 2px rgba(#000,0.15))
+			color: #555
+
+			display: inline-block
+			border-radius: .3em
+			position: relative
+			padding: 0em 1.2em
+			text-align: center
+			font: bold 11px "segoe ui"
+			line-height: 1.7em
+
+			&:after
+				top: 100%
+				border: solid transparent
+				content: " "
+				height: 0
+				width: 0
+				position: absolute
+				pointer-events: none
+				border-color: rgba(#fff, 0)
+				border-top-color: $label-bg-color
+				border-width: 8px
+				left: 50%
+				margin-left: -8px
+
+	@mixin colorTheme($color, $text-color: #555)
+		background: $color
+		box-shadow: inset 0px 1px 2px darken($color, 30%)
+
+		.icon-wrapper
+
+			i
+				text-shadow: 0px 1px 0px darken($color,15%)
+
+		.label-helper
+			.label-actual
+				color: $text-color
+
+	&.button-pink
+		+colorTheme($colorPink)
+
+	&.button-green
+		+colorTheme($colorLightGreen)
+
+	&.button-blue
+		+colorTheme($colorLightBlue)
+
+	&.button-disabled
+		+colorTheme(rgba(#ccc, 0.5), #aaa)
+
+	.icon-wrapper
+
+		border-radius: 5em
+		font-size: 1em
+		$size: 2.5em
+		width: $size
+		height: $size
+		line-height: $size
+		text-align: center
+		vertical-align: middle
+		text-decoration: none
+		display: inline-block
+		padding: none
+
+		i
+			font-size: 1.4em
+			display: inline-block
+			margin: 0
+			vertical-align: middle
+			color: #fff
+
+	&:hover
+
+		.icon-wrapper
+			i
+				font-size: 1.8em
+
+.button-connector
+	height: 2px
+	width: 2em
+	margin: 0
+	display: inline-block
+	background: rgba(#ccc, 0.5)
+	margin-bottom: .25em
+	border-left: 1em solid transparent
+
+	&.connector-green
+		border-left-color: $colorLightGreen
+
+	&.connector-blue
+		border-left-color: $colorLightGreen
+
+	&.connector-dark
+		border-left-color: $colorDarkGray
+
+	&.connector-off
+		border-left-color: rgba(#ccc, 0.5)
+
+	&.connector-half
+		border-left-width: 1em
+
+	&.connector-full
+		border-left-width: 2em
+
+.state-button-2d
+	$inside-color: $colorBlue
+	$border-color: $colorBlue
+	$text-color: #444
+
+	margin: 0 0em 2em
+	border: 3px solid $border-color
+	border-radius: 5em
+	display: inline-block
+	box-sizing: border-box
+	position: relative
+	padding: .25em
+
+	@mixin colorTheme($color, $text-color: #555)
+		border-color: $color
+		.icon-wrapper
+			i
+				color: $color
+
+	&.button-pink
+		+colorTheme($colorPink)
+
+	&.button-green
+		+colorTheme($colorLightGreen)
+
+	&.button-blue
+		+colorTheme($colorLightBlue)
+
+	&.button-dark
+		+colorTheme($colorDarkGray)
+
+	&.button-disabled
+		+colorTheme(rgba(#ccc, 0.5), #aaa)
+
+	.label-helper
+		position: absolute
+		bottom: -1.5em
+		left: -3em
+		right: -3em
+		height: 1em
+		text-align: center
+
+		.label-actual
+			display: inline-block
+			$labelColor: rgba(#fff,0)
+			background-color: $labelColor
+			border-radius: .3em
+			position: relative
+			padding: 0em 1.2em
+			text-align: center
+			font: normal 12px tahoma
+			line-height: 1.7em
+			color: $text-color
+			//display: none
+
+			&:after
+				top: 100%
+				border: solid transparent
+				content: " "
+				height: 0
+				width: 0
+				position: absolute
+				pointer-events: none
+				border-color: rgba(#fff, 0)
+				border-top-color: $labelColor
+				border-width: 8px
+				left: 50%
+				margin-left: -8px
+
+
+	.icon-wrapper
+		border-radius: 5em
+		font-size: 1em
+		$size: 1.5em
+		//background: #ccc
+		width: $size
+		height: $size
+		line-height: $size
+		text-align: center
+		vertical-align: middle
+		text-decoration: none
+		display: block
+		padding: none
+
+		i
+			font-size: 1em
+			display: inline-block
+			margin: 0
+			vertical-align: middle
+			color: $inside-color
+
+// todo items
+.todo-item
+	//background: #f7f7f7
+	border-radius: .4em
+	padding: .25em .5em
+	margin: 1em 0
+
+	i
+		font-size: 20px
+		vertical-align: middle
+		padding-right: .5em

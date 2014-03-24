@@ -1,0 +1,86 @@
+<div class="m-topnav-wide-2">
+    <div class="topnav-contents">
+
+    {{#appHeader}}
+
+        <div class="expander-button" id="topnav-expander-container">
+            <a id="topnav-expander-button" href="#" class="topnav-icon-button regular-button" title="Reveal Menu"><i class="fa fa-bars"></i></a>
+        </div>
+
+        <h2 class="project-header">
+            <a href="/">Bugvote</a> / <a class="app-name" title="project's main page" href="{{urlViewApp}}">{{title}}</a>
+        </h2>
+
+        <div class="bottom-row">
+
+            <div class="menu-items" id="topnav-primary-menu">
+            {{#primaryMenu.menuItems}}
+                <a
+                    {{#active}} class="topnav-icon-button regular-button active"{{/active}}
+                    {{^active}} class="topnav-icon-button regular-button"{{/active}}
+                    href="{{url}}" title="{{title}}">
+                    <span class="title"><i class="{{icon}}"></i></span>
+
+                    <!--<span class="notification-container">-->
+                    <!--<span class="notification">5</span>-->
+                    <!--</span>-->
+                </a>
+            {{/primaryMenu.menuItems}}
+            </div>
+
+            <div class="topnav-search">
+                <form method="get" action="{{appHeader.urlUniversalSearch}}" class="topnav-search-control">
+                    <!-- placeholder for a dropdown search-fine-tuning selector -->
+                    <input class="field" type="text" value="{{{query}}}" name="q" placeholder="Find bug, comment, or feature" autocomplete="off" />
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                </form>
+            </div>
+
+        </div>
+
+    {{/appHeader}}
+
+    {{^appHeader}}
+
+        <h2 class="project-header">
+            <a href="/">Bugvote</a>
+        </h2>
+
+    {{/appHeader}}
+
+    {{^userStatus.userIsAnon}}
+        <div class="topnav-user">
+            <div class="m-dropdown">
+                <a href="#" class="dropdown-trigger m-icon-button" title="Manage Profile">
+                    <img src="{{#userStatus.urlUserProfileImage}}34x34:cover{{/userStatus.urlUserProfileImage}}" />
+                </a>
+
+                <div class="dropdown-content">
+                    <ul class="dropdown-list">
+                        <li><a href="{{userStatus.urlUserProfile}}"><i class="fa fa-calendar fa-fw"></i> Manage Profile</a></li>
+                        <li><a href="#"><i class="fa fa-rocket fa-fw"></i> Do</a></li>
+                        <li class="dropdown-list-divider"></li>
+                        <li>
+                            <a href="/switch?redirect={{signedUrl.url}}&signature={{signedUrl.signature}}">
+                                <i class="fa fa-sign-out fa-fw"></i>
+                                Switch users..
+                            </a>
+                        </li>
+                        <li class="dropdown-list-divider"></li>
+                        <li><a href="/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
+                    </ul>
+                    <span class="arrow-up"><i class="fa fa-caret-up"></i></span>
+                </div>
+            </div>
+        </div>
+    {{/userStatus.userIsAnon}}
+    {{#userStatus.userIsAnon}}
+        <div class="topnav-user">
+            <a class="topnav-link" href="/login"><i class="fa fa-sign-in"></i> Login</a>
+            <a class="topnav-link" href="/register">Sign up</a>
+        </div>
+    {{/userStatus.userIsAnon}}
+
+    </div>
+
+</div>

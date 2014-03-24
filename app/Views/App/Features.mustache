@@ -1,0 +1,17 @@
+{{#dateGroupedFeatures}}
+	<div class="date-group">
+		<div class="header">{{date}}</div>
+	{{#features}}
+		{{#isBugFix}}
+			<div class="new-bugfix-release">
+				<span class="descriptor">Fixed:</span> <a href="{{suggestionUrl}}">{{title}}</a>
+			</div>
+		{{/isBugFix}}
+		{{^isBugFix}}
+			<div class="new-feature-release">
+				<span class="descriptor">Added:</span> <a href="{{suggestionUrl}}">{{title}}</a>
+			</div>
+		{{/isBugFix}}
+	{{/features}}
+	</div>
+{{/dateGroupedFeatures}}

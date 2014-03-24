@@ -1,0 +1,80 @@
+@import "unsure_Bugs";
+
+h2 {
+	font: 300 30px/50px 'Open Sans';
+
+	color: #777;
+
+	a {
+		color: #444;
+	}
+}
+
+.appHeader, .imgContainer, .description, h1, h2 {
+	//@include debug-block();
+}
+
+.appHeader {
+	//margin-top: 30px;
+	display: table;
+	width: 100%;
+	border-radius: 10px 0px 0px 0px;
+	padding-bottom: 10px;
+
+	.imgContainer {
+		display: table-cell;
+		vertical-align: middle;
+		padding: 0px;
+		//padding-right: 30px;
+
+		background: url("/img/angrybirds-logo.png") no-repeat;
+		background-size: contain;
+		width: 80px;
+		//height: 130px;
+
+		img {
+			border-radius: 0px 0px 30px 30px;
+			//box-shadow: -1px 2px 3px #aaa;
+			//border: 2px solid #888;
+			border-right: none;
+			border-top: none;
+			border-radius: 0px;
+			padding: 0px;
+			margin: 0px;
+		}
+	}
+
+	.description {
+		display: table-cell;
+		vertical-align: top;
+		padding: 0px 0px;
+		padding-left: 30px;
+		font: 300 30px/30px 'Open Sans';
+		color: #888;
+
+		h1 {
+			font: 400 36px/50px 'Open Sans';
+			padding: 0px;
+			margin: 0px;
+			color: #444;
+		}
+
+		h2 {
+			//font: 400 20px/30px Verdana;
+			font: normal 18px 'Open Sans Light';
+			padding: 0px;
+			margin: 0px;
+
+			a {
+				text-decoration: none;
+				color: #000;
+				border-bottom: 1px solid #7cf;
+
+				&:hover {
+					//color: #3cf;
+					border-bottom: 1px solid #08c;
+				}
+			}
+		}
+	}
+}

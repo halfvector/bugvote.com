@@ -1,0 +1,141 @@
+.m-tag
+	padding: 0.0em .5em
+	background-color: #ddd
+	color: #777
+	text-shadow: 0px 1px 0px rgba(#fff, 0.7)
+	text-align: center
+
+	font-family: $fontSkinny
+	font-weight: 300
+	text-transform: uppercase
+	display: inline-block
+	margin: 0px
+	margin-right: 4px
+
+	font-size: 10px
+	line-height: 16px
+	vertical-align: inherit
+
+	&.new-feature
+		background-color: $featureIndicatorColor
+		@if lightness($featureIndicatorColor) > 80%
+			color: #333
+			text-shadow: none
+		@else
+			color: #fff
+			text-shadow: none
+
+	&.bug-fix
+		background-color: $bugIndicatorColor
+		@if lightness($bugIndicatorColor) > 80%
+			color: #777
+			text-shadow: 0px 1px 0px rgba(#fff, 0.7)
+		@else
+			color: #fff
+			text-shadow: 0px 1px 0px rgba(#000, 0.2)
+
+	&.bug-report
+		background-color: $colorPurple4
+		@if lightness($bugIndicatorColor) > 80%
+			color: #777
+			text-shadow: 0px 1px 0px rgba(#fff, 0.7)
+		@else
+			color: #fff
+			text-shadow: 0px 1px 0px rgba(#000, 0.2)
+
+	&.qa
+		background-color: $questionIndicatorColor
+		@if lightness($questionIndicatorColor) > 50%
+			color: #777
+			text-shadow: 0px 1px 0px rgba(#fff, 0.5)
+		@else
+			color: #fff
+			text-shadow: 0px 1px 0px rgba(#000, 0.2)
+
+
+// bug tags used at the end of a byline
+.m-end-tag
+	text-shadow: 0px 1px 0px rgba(#fff, 0.7)
+	text-align: center
+
+	+regularFont
+	text-transform: uppercase
+	//display: inline-block
+	//vertical-align: top
+
+	//$offset: 4px
+	//font-size: 12px
+	//line-height: $base-line-height - $offset * 2
+	//margin-top: $offset + 1px
+
+	display: inline
+	line-height: inherit
+	padding: 2px 5px
+	font-size: 11px
+	vertical-align: top
+
+
+	&.new-feature
+		background-color: $featureIndicatorColor
+		@if lightness($featureIndicatorColor) > 80%
+			color: #333
+			text-shadow: none
+		@else
+			color: #fff
+			text-shadow: none
+
+	&.bug-report
+		background-color: $bugIndicatorColor
+		@if lightness($bugIndicatorColor) > 80%
+			color: #777
+			text-shadow: 0px 1px 0px rgba(#fff, 0.7)
+		@else
+			color: #fff
+			text-shadow: 0px 1px 0px rgba(#000, 0.2)
+
+	&.qa
+		background-color: $questionIndicatorColor
+		@if lightness($questionIndicatorColor) > 50%
+			color: #777
+			text-shadow: 0px 1px 0px rgba(#fff, 0.5)
+		@else
+			color: #fff
+			text-shadow: 0px 1px 0px rgba(#000, 0.2)
+
+	&.bug-report, &.new-feature
+		background-color: #eee
+		color: #777
+		text-shadow: 0px 1px 0px rgba(#fff, 0.5)
+
+.m-bug-status
+	display: inline-block
+	color: #fff
+	+regularFont
+	text-transform: uppercase
+	background: #eee
+
+	margin-right: 4px
+
+	display: inline
+	line-height: inherit
+	vertical-align: baseline
+	padding: 2px 6px
+
+	text-align: center
+
+	&.type-0, &.type-3, &.type-4
+		background: $questionIndicatorColor
+		text-shadow: 0px 1px 0px #f7f7f7
+		color: #666
+
+	&.type-1
+		background: $bugIndicatorColor
+
+	&.type-2
+		background: $colorYellow
+		border: 1px solid darken($colorYellow, 9%)
+		color: #333
+		text-shadow: none
+
+	&.type-5
+		background: $colorGreen4

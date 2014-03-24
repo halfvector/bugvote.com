@@ -1,0 +1,83 @@
+{{#errors}}
+<div class="bootstrap">
+    <div class="alert alert-warning alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <strong>Woah there!</strong>
+        Category title is too short!<br>
+        Good thing there is a sweet guide on <a href="#" class="alert-link">Roadmap Categories Naming</a>.
+    </div>
+</div>
+{{/errors}}
+
+{{#privileges.isDeveloperOrHigher}}
+<section class="m-roadmap-header">
+
+    <form action="{{urlCreateNewSection}}" method="post" class="m-form-inline l-horizontal l-vertically-centered">
+        <input type="hidden" name="appId" value="{{appId}}" />
+        <a class="helper" href="#"><i class="fa fa-info-circle"></i></a>
+        <input class="field" type="text" name="category" placeholder="Create new category.. " autocomplete="off" />
+        <span class="action-button">
+            <button type="submit"><i class="fa fa-plus"></i> Add</button>
+        </span>
+    </form>
+
+</section>
+{{/privileges.isDeveloperOrHigher}}
+
+<section class="m-roadmap-list">
+    <header class="header">Working on right now</header>
+{{#items}}
+    <ul class="l-horizontal m-roadmap-item">
+
+        <li class="vote-container">
+
+            <ul class="l-horizontal m-buglist-item-votebox-simple">
+                <li class="vote-count">
+                    <div class="vote-counter">{{votes}}</div>
+                    <div class="vote-label">votes</div>
+                </li>
+                <li class="arrows">
+                    {{#myvote}}
+                        <a onclick="toggle_upvote( {{suggestionId}}, 0 )" class="up-vote voted" href="#">
+                            <i class="icomoon-arrow-up"></i>
+                        </a>
+                    {{/myvote}}
+                    {{^myvote}}
+                        <a onclick="toggle_upvote( {{suggestionId}}, 1 )" class="up-vote" href="#">
+                            <i class="icomoon-arrow-up"></i>
+                        </a>
+                    {{/myvote}}
+                    <a class="down-vote" href="#">
+                        <i class="icomoon-arrow-down"></i>
+                    </a>
+                </li>
+            </ul>
+
+        </li>
+
+        <li class="bug-info">
+            <div class="topline">
+                <a class="title" href="{{suggestionUrl}}">{{{title}}}</a>
+                    {{#hasTag}}<span class="tag {{tagType}}">{{tag}}</span>{{/hasTag}}
+            </div>
+
+            <div class="byline">
+                <!--<span>posted by</span>-->
+                <a class="name" href="#">
+                    <img class="avatar" src="{{#urlPosterProfileImg}}24x24{{/urlPosterProfileImg}}" />
+                    {{creatorName}}
+                </a>
+                posted
+                <span>&nbsp;{{createdAge}} ago</span>
+            </div>
+        </li>
+    </ul>
+
+{{/items}}
+</section>
+
+{{#categories}}
+<section class="m-roadmap-list">
+    <header class="header">{{category}}</header>
+</section>
+{{/categories}}

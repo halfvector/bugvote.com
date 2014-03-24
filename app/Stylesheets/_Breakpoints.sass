@@ -1,0 +1,38 @@
+// mobile in portrait or landscape mode
+$mobile: new-breakpoint(max-width 480px 4)
+// specific mobile modes
+$mobile-portrait: new-breakpoint(max-width 320px 4)
+$mobile-landscape: new-breakpoint(max-width 480px 4)
+// tablets (basically the iPad)
+$tablet: new-breakpoint(min-width 480px max-width 1200px 8)
+// a typical desktop (bit bigger than an iPad)
+$desktop: new-breakpoint(min-width 800px 8 max-width 1100px 8)
+// a legit desktop (1920px)
+$desktop-large: new-breakpoint(min-width 1100px 12)
+// an extra for developers (dual-screen, usually 1920px * 2)
+$desktop-dualscreen: new-breakpoint(min-width 2100px 16)
+
+/////// meta devices
+// all phones and small desktop windows
+$screen-compact: new-breakpoint(max-width 600px 4)
+// any devices with a comfortable screen size
+$screen-normal: new-breakpoint(min-width 601px 8)
+// any generous screen, where we can show extras
+$screen-large: new-breakpoint(min-width 1200px 8)
+
+
+// up = portrait
+// side = landscape
+$small-phone-up: new-breakpoint(max-width 320px)
+$small-phone-side: new-breakpoint(max-width 480px)
+
+$small-tablet-up: new-breakpoint(min-width 320 max-width 600px)
+$small-tablet-side: new-breakpoint(min-width 320 max-width 800px)
+
+$normal-tablet-up: new-breakpoint(min-width 600 max-width 800px)
+
+$smaller-than-ipad: new-breakpoint(max-width 1024px)
+
+$under-400px: new-breakpoint(max-width 400px)
+$under-800px: new-breakpoint(max-width 800px)
+$under-1100px: new-breakpoint(max-width 1100px)

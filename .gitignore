@@ -1,0 +1,11 @@
+.idea
+cache
+.sass-cache
+vendor
+js/repos
+tmp
+composer.lock
+composer.phar
+composer.json.old
+notes/database.dump.sql
+notes/database.dump.sql.tar.gz

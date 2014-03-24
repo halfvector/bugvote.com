@@ -1,0 +1,144 @@
+# the style of this router is a work in progress
+#
+# typical controller:
+# Register:
+#   GET /register RegisterController#show
+#   POST /register RegisterController#commit
+#   DELETE /register RegisterController#delete
+#
+
+#################################################
+# a chrome performance devtool callback
+Clockwork:
+  - GET:        /__clockwork/[*:id]
+    Controller: Clockwork#show
+
+#################################################
+# user login/logout
+Login:
+  - GET: /login
+    Controller: Login#showLogin
+  - POST: /login
+    Controller: Login#commitLogin
+
+Logout:
+  - GET: /logout
+    Controller: Login#commitLogout
+
+#################################################
+# user registration
+Register:
+
+  - GET: /register
+    Controller: Register#show
+
+  # opauth hits these paths twice, first time to send request out, second time when getting response from twitter or facebook
+  # then it forwards to /response/
+
+  - GET: /auth/request/facebook[.*]
+    Controller: Auth#requestFacebook
+  - GET: /auth/request/twitter[.*]
+    Controller: Auth#requestTwitter
+  - POST: /auth/response
+    Controller: Auth#response
+
+  - GET: /switch
+    Controller: UserSwitch#show
+  - POST: /switch
+    Controller: UserSwitch#change
+
+#################################################
+# app details
+
+AppDashboard:
+  - GET: /a/[:appUrl]
+    Controller: App\Dashboard#news
+
+AppIdeas:
+  - GET: /a/[:appUrl]/ideas
+    Controller: App\BugList#showHottestBugs
+
+AppIdeaVote:
+  - POST: /a/[:appUrl]/ideas/vote
+    Controller: App\BugList#vote
+
+AppIdeasNewest:
+  - GET: /a/[:appUrl]/ideas/newest
+    Controller: App\BugList#showLatestBugs
+
+AppSearch:
+  - GET: /a/[:appUrl]/search
+    Controller: App\Search#show
+
+DevlogView:
+  - GET: /a/[:appUrl]/devlog
+    Controller: App\Devlog#show
+
+DevlogNew:
+  - GET: /a/[:appUrl]/devlog/new
+    Controller: App\Devlog#create
+
+  - POST: /a/[:appUrl]/devlog/new
+    Controller: App\Devlog#commit
+
+  - GET: /a/[:appUrl]/devlog/buglist.json
+    Controller: App\Devlog#ajaxBuglistJson
+
+
+ViewAppRoadmap:
+  - GET: /a/[:appUrl]/roadmap
+    Controller: App\Roadmap#show
+
+
+CreateAppRoadmap:
+  - POST: /a/[:appUrl]/roadmap/create/section
+    Controller: App\Roadmap#createNewSection
+
+Home:
+  - GET: /
+    Controller: Home#home
+
+CreateNewProject:
+  - GET: /new
+    Controller: AppManager#showAppCreationScreen
+
+  - POST: /new
+    Controller: AppManager#handleAppCreationScreen
+
+#################################################
+# user management
+
+UserDetails:
+  - GET: /u/
+    Controller: Users\List#show
+  - GET: /u/[:userId]
+    Controller: User\Profile#show
+  - POST: /u/[:userId]/update
+    Controller: User\Profile#update
+
+#################################################
+# idea management
+
+CreateIdea:
+  - GET: /a/[:appUrl]/submit
+    Controller: Idea\Create#show
+  - POST: /a/[:appUrl]/submit
+    Controller: Idea\Create#commit
+
+EditIdea:
+  - GET: /i/[:ideaId]/[:seoUrl]/edit
+    Controller: Idea\Edit#show
+  - POST: /i/[:ideaId]/[:seoUrl]/edit
+    Controller: Idea\Edit#commit
+
+ViewIdea:
+  - GET: /i/[:ideaId]/[:seoUrl]
+    Controller: Idea\Details#show
+
+PostCommentOnIdea:
+  - POST: /i/[:ideaId]/[:seoUrl]/comment
+    Controller: Idea\Comments#commit
+
+VoteOnIdea:
+  - POST: /i/[:ideaId]/[:seoUrl]/vote
+    Controller: Idea\Details#vote

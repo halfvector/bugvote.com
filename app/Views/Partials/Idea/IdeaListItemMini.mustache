@@ -1,0 +1,42 @@
+<div class="m-buglist-item mini">
+
+	<div class="votebox-container">
+		<div class="m-buglist-item-votebox-simple">
+			<div class="vote-count">
+				<div class="vote-counter">{{votes}}</div>
+				<div class="vote-label">votes</div>
+			</div>
+			<div class="arrows">
+				{{#vote}}
+					<a class="up-vote voted" href="#">
+						<i class="icomoon-arrow-up"></i>
+					</a>
+				{{/vote}}
+				{{^vote}}
+					<a class="up-vote" href="#">
+						<i class="icomoon-arrow-up"></i>
+					</a>
+				{{/vote}}
+				<a class="down-vote" href="#">
+					<i class="icomoon-arrow-down"></i>
+				</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="suggestion-header">
+
+		<div class="title-line">
+			{{#hasTag}}
+				<div class="tag tag-audio">{{tag}}</div>
+			{{/hasTag}}
+			<a class="title" href="{{suggestionUrl}}">{{title}}</a>
+		</div>
+
+		<div class="byline">
+			posted {{createdAge}} ago by
+			<span class="avatar-container" style="background-image: url('{{creatorImg}}')"></span>
+			<span class="name">{{creatorName}}</span>
+		</div>
+	</div>
+</div>

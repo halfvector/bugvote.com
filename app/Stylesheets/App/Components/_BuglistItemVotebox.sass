@@ -1,0 +1,50 @@
+.m-buglist-item-votebox-simple
+	line-height: $base-line-height
+	//background: orange
+
+	.vote-count
+		text-align: right
+		text-transform: uppercase
+		width: 100%
+		//background: red
+
+		.vote-counter
+			+skinnyFont
+			font-size: 21px
+			color: #333
+
+		.vote-label
+			+skinnyFont
+			text-transform: none
+
+	.arrows
+		//background: blue
+
+		.up-vote, .down-vote
+			display: block
+			text-align: center
+			width: 40px
+			text-decoration: none
+			color: #eae5e0
+			cursor: pointer
+			//border: 1px solid red
+
+			&:hover
+				color: #444
+
+		.down-vote
+			// push it down a little
+			i
+				vertical-align: bottom
+
+		.voted
+			//color: #444
+			color: $colorGreen2
+
+		i
+			display: inline-block
+			font-size: 1rem
+			//line-height: $base-line-height * .8
+			padding: 4px 0px
+			//border: 1px solid red
+			//vertical-align: baseline

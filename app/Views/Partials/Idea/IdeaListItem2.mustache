@@ -1,0 +1,51 @@
+<div class="suggestion-list-item-2">
+
+	<div class="list-item-simple-stats">
+		<div class="m-buglist-item-votebox-simple">
+			<div class="row top-row">
+				<div class="counter">{{votes}}</div>
+				{{#myvote}}
+					<a class="stat voted" href="#" title="voted on this">
+						<i class="icomoon-arrow-up"></i>
+					</a>
+				{{/myvote}}
+				{{^myvote}}
+					<a class="stat" href="#" title="votes">
+						<i class="icomoon-arrow-up"></i>
+					</a>
+				{{/myvote}}
+			</div>
+			<div class="row">
+				<div class="counter">{{comments}}</div>
+				{{#mycomments}}
+					<a class="stat voted" href="#" title="commented on this">
+						<i class="icon-comment"></i>
+					</a>
+				{{/mycomments}}
+				{{^mycomments}}
+					<a class="stat" href="#" title="comments">
+						<i class="icon-comment"></i>
+					</a>
+				{{/mycomments}}
+			</div>
+		</div>
+	</div>
+
+	<div class="suggestion-header">
+
+		<div class="title-line">
+			{{#hasTag}}
+				<div class="tag tag-audio">{{tag}}</div>
+			{{/hasTag}}
+			<a class="title" href="{{suggestionUrl}}">{{title}}</a>
+			<span class="stats">
+				<span>1</span> <i class="icon-comment"></i>
+			</span>
+		</div>
+
+		<div class="byline">
+			<span class="avatar-container" style="background-image: url('{{creatorImg}}')"></span> {{createdAge}} ago
+
+		</div>
+	</div>
+</div>

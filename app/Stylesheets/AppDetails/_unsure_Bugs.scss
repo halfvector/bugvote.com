@@ -1,0 +1,39 @@
+.bugEntry {
+	display: table;
+	margin-bottom: 10px;
+
+	.avatarContainer {
+		display: table-cell;
+		padding-right: 30px;
+		img {
+			width: 60px;
+			border-radius: 8px;
+		}
+	}
+
+	.details {
+		display: table-cell;
+		.title {
+
+		}
+	}
+}
+
+.followers {
+	width: 300px;
+	display: inline-block;
+
+	a {
+		display: inline-block;
+		float: left;
+		margin: 0px;
+		padding: 1px;
+		clear: none;
+
+		img {
+			width: 30px;
+			border-radius: 4px;
+		}
+	}
+}
+

@@ -1,0 +1,35 @@
+<div class="m-section-header l-horizontal l-stretch l-pull-right">
+    <div>
+        <h1>
+            Bugs and Suggestions
+        </h1>
+    </div>
+    <div class="controls">
+        <a href="{{urlCreateSuggestion}}" class="m-button"><i class="fa fa-plus"></i> POST</a>
+    </div>
+</div>
+
+<div class="m-bugslist-nav">
+    <ul class="nav nav-pills">
+        <li class="{{hottestClass}}"><a href="{{hottestIdeas}}">Hottest</a></li>
+        <li class="{{newestClass}}"><a href="{{newestIdeas}}">Newest</a></li>
+    </ul>
+</div>
+
+<section class="m-buglist">
+
+    {{#suggestions}}
+        {{> App/Components/BuglistItemStyle1 }}
+    {{/suggestions}}
+
+</section>
+
+<script>
+    function toggle_upvote(idea, vote) {
+        var postData = "idea=" + idea + "&vote=" + vote;
+        $.ajax({url: "{{urlVoteShortcut}}", type: "POST", data: postData})
+         .done(function(data){
+
+        });
+    }
+</script>

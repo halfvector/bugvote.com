@@ -1,0 +1,121 @@
+.transparent-form
+	margin: 0
+	padding: 0
+
+	button
+		border: none
+		padding: 0
+		margin: 0
+		background: none
+
+.simple-common-form
+	margin: 0
+	//padding: 1em 0
+	max-width: 55em
+
+	.action-controls
+		border-top: 2px solid $colorGreen
+		margin: 1em 0 0 0
+		padding: 1em 1em 1em 1em
+		text-align: right
+
+		.btn-danger
+			float: left
+
+	.controls
+		@include media($screen-normal)
+		textarea, select, input, .chzn-container
+			width: 100%
+
+		@include media($screen-compact)
+			textarea, select, input, .chzn-container
+				width: 100%
+
+	.radio
+		margin-top: 1em
+		margin-bottom: 1em
+
+		label
+			vertical-align: top
+		i
+			color: #444
+			font-size: 1.5em
+			float: left
+			margin-left: .2em
+			margin-right: .5em
+			display: inline-block
+
+		strong
+			font-size: 1.1em
+			font-family: $fontSemiBold
+
+		.note
+			display: block
+			color: #666
+			line-height: 1.5
+			font-family: $fontRegular
+
+
+.chzn-container
+	//width: 250px
+
+	.chzn-drop
+		width: 100%
+
+	.chzn-search input
+		width: 100%
+
+.new-idea-form
+	margin: 0px
+	padding: 0px
+
+	fieldset
+		border: none
+		padding: 0px
+		margin: 0px
+
+	.action-controls
+		border-top: 2px solid $colorGreen
+		margin: 1em 0 0 0
+		padding: 1em 1em 1em 1em
+		text-align: right
+
+	.controls
+		@include media($screen-normal)
+		textarea, select, input, .chzn-container
+			width: 100%
+
+		@include media($screen-compact)
+			textarea, select, input, .chzn-container
+				width: 100%
+
+	.radio
+		margin-bottom: $base-line-height
+		//border: 1px solid red
+
+		.radio-button
+			vertical-align: baseline
+
+		label
+			vertical-align: top
+			display: inline-block
+			//border: 1px solid red
+		i
+			color: #444
+			font-size: 1rem
+			display: inline-block
+			//border: 1px solid red
+			vertical-align: baseline
+			width: 30px
+			text-align: center
+
+		strong
+			width: 100px
+			display: inline-block
+
+		.note
+			display: block
+			margin-left: 30px
+			color: #666
+			//line-height: 1.5
+			font-family: $fontRegular

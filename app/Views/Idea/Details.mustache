@@ -1,0 +1,188 @@
+<div class="m-bug-details-header l-horizontal l-stretch">
+
+    <div class="l-filler">
+
+        <div class="byline">
+
+            {{#idea.hasTag}}<span class="m-bug-status type-1">{{suggestionType}}</span>{{/idea.hasTag}}
+
+            <span class="segment">
+                by <a class="name" href="#">{{idea.fullName}}</a>
+                <time class="timeago" datetime="{{idea.postedTimestamp}}"></time>
+            </span>
+
+            <!--<span class="segment">-->
+                <!--<a class="m-bug-state type-1" class="name" href="#">development started</a>-->
+                <!--<time class="timeago" datetime="{{idea.devStartTimestamp}}"></time>-->
+            <!--</span>-->
+
+            <!--<div class="m-bug-state type-2">feedback requested by developer</div>-->
+            <!--<span class="segment"><a class="name" href="#"></a> <time class="timeago" datetime="{{idea.devFinishedTimestamp}}"></time></span>-->
+
+            <!--<div class="pull-right">-->
+                <!--<a class="m-icon-button regular-button" title="Edit"><i class="fa fa-pencil"></i></a>-->
+            <!--</div>-->
+
+            <span class="segment">
+                <div class="m-bug-status type-5">Finished and Shipped</div>
+                <a class="name" href="#"></a> <time class="timeago" datetime="{{idea.devFinishedTimestamp}}"></time>
+            </span>
+        </div>
+
+        <div class="title-wrapper">
+
+            <h1 class="idea-title">
+
+
+                {{{idea.title}}}
+
+                {{#canEditIdea}}
+                    <a class="m-icon-button edit-button" href="{{urlEditIdea}}" title="edit idea"><i class="fa fa-pencil"></i></a>
+                {{/canEditIdea}}
+
+                {{#idea}}
+                    {{> Idea/Components/BugDetailsVotebox }}
+                {{/idea}}
+
+            </h1>
+
+        </div>
+
+
+
+    </div>
+
+    {{#privileges.isDeveloperOrHigher}}
+    <div class="controls">
+
+        {{#canEditIdea}}
+            <a class="easy-icon-button edit-button" href="{{ideaEditUrl}}" class="" title="edit idea"><i class="fa fa-pencil"></i></a>
+        {{/canEditIdea}}
+
+        <span class="m-dropdown">
+            <a href="#" class="dropdown-trigger easy-icon-button dev-button" title="manage idea"><i class="fa fa-gear"></i></a>
+
+            <div class="dropdown-content">
+                <span class="arrow-up"><i class="fa fa-caret-up"></i></span>
+
+                <ul class="dropdown-list">
+                    <li><a href="{{urlPlan}}"><i class="fa fa-calendar fa-fw"></i> Schedule</a></li>
+                    <li><a href="#"><i class="fa fa-rocket fa-fw"></i> Do</a></li>
+                    <li class="dropdown-list-divider"></li>
+                    <li><a href="#"><i class="fa fa-trash-o fa-fw"></i> Delete</a></li>
+                </ul>
+
+            </div>
+        </span>
+    </div>
+    {{/privileges.isDeveloperOrHigher}}
+</div>
+
+<!--<div class="m-bug-details-featured-image">-->
+    <!--<img width="100%" src="/storage/assets/000/0d7/2013-11-09_00003.jpg" />-->
+<!--</div>-->
+
+
+<div class="m-bug-details l-horizontal l-stretch">
+    <div>
+        <div class="author">
+            <img src={{#idea.authorImg}}100x100:cover{{/idea.authorImg}} />
+        </div>
+
+        <div class="m-markdown">
+            {{{idea.description}}}
+        </div>
+    </div>
+
+    <div class="thumbnails-column disabled">
+        <div class="bug-thumbnail">
+            <img class="thumbnail" src="/img/placeholders/bug-report-screenshot.jpg" />
+        </div>
+        <div class="bug-thumbnail">
+            <img class="thumbnail" src="/img/placeholders/bug-report-screenshot-2.jpg" />
+        </div>
+    </div>
+
+{{#hasAttachments}}
+    <div class="thumbnails-column">
+    {{#attachments}}
+        <div class="bug-thumbnail">
+        {{#isImage}}
+            <a href="{{urlAsset}}">
+                <img src="{{#urlResizedImage}}300x200:aspect{{/urlResizedImage}}" />
+                <div class="attachment-name">{{attachmentName}}</div>
+            </a>
+        {{/isImage}}
+        {{^isImage}}
+            <a class="attachment-button" href="{{urlAsset}}">{{attachmentName}}</a>
+        {{/isImage}}
+        </div>
+    {{/attachments}}
+    </div>
+{{/hasAttachments}}
+
+</div>
+
+<section class="m-details-developer">
+
+
+</section>
+
+<template id="ReplyComment">
+    <section class="m-submit-comment l-section l-horizontal l-fill-last">
+        <div class="post-comment">
+            <div class="avatar">
+                <img src="{{#user.urlProfilePic}}48x48{{/user.urlProfilePic}}" />
+            </div>
+        </div>
+        <div class="content">
+            <form
+                method="post" action="{{urlSubmitComment}}" class="m-form-simple"
+                enctype="multipart/form-data" data-focus-on="input:first">
+                <input type="hidden" name="csrf" value="{{csrf}}"/>
+                <input type="hidden" name="source" value="ideas.details"/>
+                <input type="hidden" name="parentCommentId" value="{0}"/>
+                <input type="hidden" name="ideaId" value="{{idea.suggestionId}}"/>
+                <fieldset>
+                    <div class="form-group">
+                        <textarea
+                            name="comment" tabindex="1" class="field field-default"
+                            placeholder="A positive, supportive, and constructive comment.">{{comment}}</textarea>
+                    </div>
+                </fieldset>
+                <div class="form-actions">
+                    <button type="submit" name="action" value="post" class="m-button">COMMENT</button>
+                </div>
+            </form>
+        </div>
+    </section>
+</template>
+
+<section class="l-section m-bug-comments">
+
+    <div class="l-horizontal l-stretch l-pull-right">
+        <header class="large-header"><i class="fa fa-comments"></i> {{numComments}} Comments</header>
+
+        <div class="content disabled">
+            <a href="{{urlCreateSuggestion}}" id="toggle-comment-form" class="button button-rounded button-flat button-flat-action">
+                <i class="icon-plus-sign"></i> Discuss
+            </a>
+        </div>
+    </div>
+
+    {{> App/Components/CommentForm }}
+
+{{#hasComments}}
+    {{#comments}}
+        {{> Partials/Idea/CommentUpvoteStyle}}
+    {{/comments}}
+{{/hasComments}}
+</section>
+
+
+<script>
+    function toggleAdmin()
+    {
+        $(".m-admin-panel").toggleClass("activated");
+    }
+</script>

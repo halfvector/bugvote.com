@@ -1,0 +1,219 @@
+//*, :before, :after
+//	box-sizing: border-box
+//	vertical-align: inherit
+//	line-height: inherit
+
+//*
+//	vertical-align: inherit
+//	line-height: inherit
+
+html
+	height: 100%
+	width: 100%
+	margin: 0px
+	vertical-align: top
+
+	body
+		height: 100%
+		width: 100%
+		//min-width: 460px
+		background: #fff
+		//vertical-align: top
+
+
+
+.m-perf-bars
+	$total-height: $base-line-height * 10
+	$container-height: $base-line-height * 4
+	$bar-height: $container-height
+	$label-offset: $container-height + 10px
+
+	width: 100%
+	height: $total-height
+	//bottom: -$total-height
+	position: relative
+	z-index: 10
+
+
+	.bar-container
+		position: absolute
+		top: 0px
+		height: $container-height
+		margin-top: $base-line-height * 2
+		background: #eee
+		width: 100%
+		//box-shadow: 0px 0px 10px #777
+
+		//&:after
+		//	background: #{" radial-gradient(circle closest-side at 60% 43%, #b03 26%, rgba(187,0,51,0) 27%), radial-gradient(circle closest-side at 40% 43%, #b03 26%, rgba(187,0,51,0) 27%), radial-gradient(circle closest-side at 40% 22%, #d35 45%, rgba(221,51,85,0) 46%), radial-gradient(circle closest-side at 60% 22%, #d35 45%, rgba(221,51,85,0) 46%), radial-gradient(circle closest-side at 50% 35%, #d35 30%, rgba(221,51,85,0) 31%), radial-gradient(circle closest-side at 60% 43%, #b03 26%, rgba(187,0,51,0) 27%) 50px 50px, radial-gradient(circle closest-side at 40% 43%, #b03 26%, rgba(187,0,51,0) 27%) 50px 50px, radial-gradient(circle closest-side at 40% 22%, #d35 45%, rgba(221,51,85,0) 46%) 50px 50px, radial-gradient(circle closest-side at 60% 22%, #d35 45%, rgba(221,51,85,0) 46%) 50px 50px, radial-gradient(circle closest-side at 50% 35%, #d35 30%, rgba(221,51,85,0) 31%) 50px 50px "}
+		//	background-color: #b03
+		//	background-size: 100px 100px
+		//	content: ""
+		//	height: 100%
+		//	width: 100%
+		//	position: absolute
+		//	z-index: 1
+		//	opacity: 1
+
+	@mixin colorize-section($color)
+		$textColor: #fff
+		@if lightness($color) > 80%
+			$textColor: #444
+
+		background: $color
+		$shadowColor: darken($color, 20%)
+		box-shadow: inset 1px 1px 0px $shadowColor, inset -1px -1px 0px $shadowColor
+		color: $textColor
+
+		> .name
+			background: $color
+			border: 1px solid darken($color, 20%)
+			box-shadow: 0px 1px 3px rgba(darken($color, 10%), 0.6)
+			border-radius: 4px
+			color: $textColor
+
+		> .ptr
+			background: $shadowColor
+			box-shadow: 0px 0px 3px darken($shadowColor, 20%)
+
+	.section
+		background: orange
+		display: block
+		position: absolute
+		height: $bar-height
+		bottom: 0px
+		z-index: 100
+
+		$colors: ($colorRed, $colorRed4, $colorPink2, $colorGreen4, $colorYellow2, $colorYellow2, $colorYellow2)
+
+		@for $i from 0 to 25
+			&.depth-#{$i}
+				+colorize-section(nth($colors, ($i % 7 + 1)))
+				height: $bar-height - 3px * $i
+
+		&.section-dal
+			+colorize-section($colorOrange1)
+
+		&.section-render
+			+colorize-section($colorBlue4)
+
+			@for $i from 3 to 10
+				.section-normal.depth-#{$i}
+					+colorize-section(lighten($colorBlue4, ($i - 2) * 8%))
+
+			//.section-normal
+			//	+colorize-section($colorBlue)
+
+		&.section-controller
+			+colorize-section($colorGreen4)
+			> .section-normal
+				+colorize-section($colorGreen2)
+
+		&:hover
+			> .name
+				display: block
+			> .ptr
+				display: block
+
+	$label-height: 40px
+
+	.name
+		position: absolute
+		display: none
+		text-wrap: none
+		overflow: visible
+		background: #444
+		color: #fff
+		//border: 1px solid #ccc
+		//box-shadow: 0px 1px 1px #aaa
+		padding: 0px 10px
+		min-width: 100%
+		z-index: 500
+		left: -10px
+		box-sizing: content-box
+
+		.title
+			text-align: center
+			white-space: pre
+			margin-right: 100px
+
+			strong
+				float: right
+
+	.ptr
+		background: #444
+		width: 1px
+		border-left: 1px dotted #fff
+		position: absolute
+		bottom: 0px
+		display: none
+		box-shadow: 0px 0px 5px #444
+
+		&.ptr-start
+			left: 0px
+
+		&.ptr-end
+			right: 0px
+
+
+	@for $i from 0 through 25
+		.name.label-depth-#{$i}
+			bottom: $label-offset + $label-height * $i
+		.ptr.label-depth-#{$i}
+			height: $label-offset + $label-height * $i
+
+	.ruler-1ms
+		$ruler-height: 10px
+		$ruler-label-offset: $ruler-height + 2px
+
+		height: $ruler-height
+		position: absolute
+		left: 0px
+		right: 0px
+		top: $container-height + 10px
+
+		background-image: #{" linear-gradient(90deg, rgba(0,0,0,.3) 1px, transparent 1px) "}
+		background-size: 30px 10px
+		background-position: -1px 0px
+
+		&:after
+			top: $ruler-label-offset
+			content: "1 msec"
+			position: absolute
+			//background: #ddd
+			color: #000
+			font-size: 12px
+			display: inline-block
+			left: 30px - 4px
+
+	.ruler-10ms
+		$ruler-height: 15px
+		$ruler-label-offset: $ruler-height + 2px
+
+		height: $ruler-height
+		position: absolute
+		left: 0px
+		right: 0px
+		top: $container-height + 10px
+
+		background-image: #{" linear-gradient(90deg, #444 2px, transparent 1px) "}
+		background-size: 300px 10px
+		background-position: -1px 0px
+
+		&:after
+			top: $ruler-label-offset
+			content: "10 msec"
+			position: absolute
+			color: #000
+			font-size: 12px
+			display: inline-block
+			left: 300px - 4px
+
+		&:before
+			top: $ruler-label-offset
+			content: "20 msec"
+			position: absolute
+			color: #000
+			font-size: 12px
+			display: inline-block
+			left: 600px - 4px

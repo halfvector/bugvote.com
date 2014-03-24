@@ -1,0 +1,166 @@
+@import ../../Theme.sass
+
+//$ribbonContainerWidth: 120px
+//$ribbonShadowHeight: 40px
+//$innerRibbonWidth: 50px
+//$innerRibbonHeight: 80px
+//$ribbonCornerSize: $innerRibbonWidth / 2
+//$perforationsOffset: 2px
+
+@mixin vertical-ribbon-builder($ribbonContainerWidth, $ribbonShadowHeight, $innerRibbonWidth, $innerRibbonHeight)
+	$ribbonCornerSize: $innerRibbonWidth / 2
+	$perforationsOffset: 2px
+
+	.vertical-ribbon
+		width: $ribbonContainerWidth
+		min-height: $innerRibbonHeight + 10px
+		margin: 0px auto 0
+		text-align: center
+		position: relative
+		overflow: hidden
+
+	.changelog
+		text-align: center
+		//background: #f7f7f7
+		padding: .5em
+		display: block
+		margin: auto
+		//width: 9em
+		line-height: 1em
+
+		.btn
+			margin: .5em 0
+
+	.status_message
+		padding: 1em 0 0
+		font-family: $fontSemiBold
+		font-size: 11px
+		text-transform: uppercase
+		line-height: 2em
+		color: #888
+		text-align: center
+
+	$ribbonBaseColor: $colorLightBlue
+	$robbonTopColor: lighten($ribbonBaseColor, 10%)
+	$ribbonBottomColor: darken($ribbonBaseColor, 10%)
+
+	// original red colors
+	//$robbonTopColor: rgba(199,59,60,1);
+	//$ribbonBottomColor: rgba(184,32,31,1);
+
+	$ribbonShadowColor: rgba(darken($ribbonBottomColor, 18%), 0.2)
+
+	$toggleColor: rgba(darken($ribbonBottomColor, 15%), 0.9)
+	$toggleShadow: rgba(lighten($ribbonBottomColor, 20%), 0.7)
+
+	.inset
+		width: $ribbonContainerWidth * 0.9
+		height: $ribbonShadowHeight
+		position: absolute
+		top: -$ribbonShadowHeight * 0.9
+		left: $ribbonContainerWidth * 0.05
+		z-index: 5
+		border-radius: 50%
+		background: $ribbonShadowColor
+		box-shadow: 0px 5px 10px 0px $ribbonShadowColor
+
+	.container
+		position: relative
+		width: $innerRibbonWidth
+		height: $innerRibbonHeight
+		overflow: hidden
+		margin: 0 auto
+		border-left: 1px solid darken($ribbonBottomColor, 15%)
+		border-right: 1px solid darken($ribbonBottomColor, 15%)
+
+		//opacity: 0.3
+		transition: all 0.1s ease-in-out
+
+		a
+			transition: all 0.1s ease-in-out
+
+		&:hover
+			opacity: 1
+			a
+				color: #fff
+
+	&.ribbon-activated
+		.container
+			opacity: 1
+		a
+			color: #fff
+
+	.base
+		height: $innerRibbonHeight - $innerRibbonWidth / 2
+		width: $innerRibbonWidth
+		@include background-image(linear-gradient($robbonTopColor 0%, $ribbonBottomColor 100%))
+		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#c73b3c', endColorstr='#b8201f',GradientType=0 )
+		position: relative
+		z-index: 2
+
+	.holder
+		position: absolute
+		top: 0
+		left: 0
+		right: 0
+		bottom: 0
+		vertical-align: middle
+		text-align: center
+		line-height: $innerRibbonHeight * 0.7
+		z-index: 10
+
+	.admin-toggle
+		text-decoration: none
+		font-size: 24px
+		color: $toggleColor
+		text-shadow: 0px 1px 0px $toggleShadow
+		display: inline-block
+		width: 100%
+		height: 100%
+
+		&:hover
+			text-decoration: none
+			color: $toggleColor
+
+	// dark parts
+	.base:after, .base:before
+		content: ''
+		position: absolute
+		top: 0
+		width: $innerRibbonWidth - ($perforationsOffset + 2) * 2
+		height: $innerRibbonHeight - ($perforationsOffset + 2)
+
+	.base:after
+		left: $perforationsOffset
+		border-left: 1px dashed darken($ribbonBottomColor, 18%)
+		border-right: 1px dashed darken($ribbonBottomColor, 18%)
+
+	// bright parts
+	.base:before
+		left: $perforationsOffset + 1px
+		border-left: 1px dashed lighten($ribbonBottomColor, 18%)
+		border-right: 1px dashed lighten($ribbonBottomColor, 18%)
+
+	.left_corner, .right_corner
+		width: $ribbonCornerSize
+		height: $ribbonCornerSize
+		position: absolute
+		bottom: 0px
+		z-index: 1
+		border: $ribbonCornerSize solid
+
+	.left_corner
+		//border-right-width: 2em
+		border-color: $ribbonBottomColor transparent transparent $ribbonBottomColor
+
+	.right_corner
+		right: 0
+		//border-left-width: 2em
+		border-color: $ribbonBottomColor $ribbonBottomColor transparent transparent
+
+
+#ribbon
+	+vertical-ribbon-builder(120px, 40px, 50px, 80px)
+	position: absolute
+	top: 110px
+	right: 23px

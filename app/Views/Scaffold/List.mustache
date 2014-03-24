@@ -1,0 +1,47 @@
+{{#parenting}}
+	Parent of: {{.}}
+{{/parenting}}
+
+{{#autoList}}
+
+	<form method="GET" class="form-horizontal" enctype="application/x-www-form-urlencoded">
+
+		<div class="searchBox">
+			<span class="fields">
+				<h4>Search</h4>
+				<select name="searchFields[]" autocomplete="off" data-placeholder="One or more fields" style="width:350px;" multiple class="chzn-select" tabindex="8">
+					{{#databaseColumns}}
+						<option {{selected}}>{{name}}</option>
+					{{/databaseColumns}}
+				</select>
+			</span>
+			<span class="terms">
+				<h4>For</h4>
+				<div class="input-append">
+					<input class="input-xlarge" autocomplete="off" id="appendedInputButtons" name="q" type="text" value="{{searchQuery}}">
+					<button class="btn" type="submit">Search</button>
+				</div>
+			</span>
+		</div>
+	</form>
+
+	<table class="table easyAutoList">
+		<tr>
+			{{#fields}}
+				<th>{{name}}</th>
+			{{/fields}}
+		</tr>
+		{{#items}}
+		<tr>
+			{{#row}}
+				<td>{{{value}}}</td>
+			{{/row}}
+		</tr>
+		{{/items}}
+	</table>
+
+	{{#actions}}
+		{{{.}}}
+	{{/actions}}
+
+{{/autoList}}

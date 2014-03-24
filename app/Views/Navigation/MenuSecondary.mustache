@@ -1,0 +1,14 @@
+<div class="navigation-container">
+	<ul class="navigation">
+		{{#getSecondaryNavItems}}
+			<li class="{{active}}">
+				<a href="{{url}}">
+				<span class="button-insides">
+					<i class="{{icon}}"></i>
+					<span class="title">{{title}}</span>
+				</span>
+				</a>
+			</li>
+		{{/getSecondaryNavItems}}
+	</ul>
+</div>

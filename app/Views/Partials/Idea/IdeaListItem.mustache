@@ -1,0 +1,57 @@
+<div class="m-buglist-item">
+
+	<div class="votebox-container">
+		<div class="m-buglist-item-votebox-simple">
+			<div class="vote-count">
+				<div class="vote-counter">{{votes}}</div>
+				<div class="vote-label">votes</div>
+			</div>
+			<div class="arrows">
+				{{#myvote}}
+					<a class="up-vote voted" href="#">
+						<i class="icomoon-arrow-up"></i>
+					</a>
+				{{/myvote}}
+				{{^myvote}}
+					<a class="up-vote" href="#">
+						<i class="icomoon-arrow-up"></i>
+					</a>
+				{{/myvote}}
+				<a class="down-vote" href="#">
+					<i class="icomoon-arrow-down"></i>
+				</a>
+			</div>
+		</div>
+	</div>
+
+	<!--<span class="indicators">-->
+		<!--<span class="indicator-block">&nbsp;</span>-->
+	<!--</span>-->
+
+	<div class="suggestion-header">
+
+	{{#hasTag}}
+		<div class="title-line {{tagType}}">
+			<div class="tag-container">
+				<div class="tag">{{tag}}</div>
+			</div>
+			<div class="title-container">
+				<a class="title" href="{{suggestionUrl}}">{{{title}}}</a>
+			</div>
+		</div>
+	{{/hasTag}}
+
+	{{^hasTag}}
+		<div class="title-line">
+			<a class="title" href="{{suggestionUrl}}">{{{title}}}</a>
+		</div>
+	{{/hasTag}}
+
+		<div class="byline">
+			<span>posted by</span>
+			<span class="avatar-container" style="background-image: url('{{creatorImg}}')"></span>
+			<span class="name"><a href="#">{{creatorName}}</a></span>
+			<span>&nbsp;{{createdAge}} ago</span>
+		</div>
+	</div>
+</div>

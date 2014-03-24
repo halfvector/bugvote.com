@@ -1,0 +1,58 @@
+.bug-attachment
+	margin: 0
+	//margin-left: 8em
+	display: block
+	max-width: 40em
+	vertical-align: middle
+
+	&:hover
+		background: #eee
+
+	img
+		display: inline-block
+		vertical-align: middle
+		//margin: 1em
+		margin-bottom: 1em
+		margin-right: 1em
+		border-radius: 4px
+
+	a
+		display: inline-block
+		vertical-align: middle
+		text-decoration: none
+
+.attachment-button
+	text-decoration: none
+	display: inline-block
+
+	&:hover
+		.attachment-thumbnail
+			box-shadow: 0px 0px 0px 3px rgba(#fc3, .6)
+		//border: 1px solid rgba(#fc3,1)
+		.thumbnail-label
+			color: #000
+			padding-bottom: 2px
+			border-bottom: 1px solid rgba(#fc3,1)
+
+
+.attachment-thumbnail
+	display: inline-block
+	position: relative
+	overflow: hidden
+	$size: 5em
+	width: $size
+	height: $size
+	vertical-align: middle
+	text-align: center
+	margin-right: 1em
+	border: 3px solid #fff
+	border-radius: 5px
+	box-shadow: inset 0px 0px 5px rgba(0,0,0,0.2)
+	transition: all 0.2s ease-in-out
+	background-size: cover
+
+
+.thumbnail-label
+	display: inline-block
+	color: #666
+	font-family: $fontSkinny

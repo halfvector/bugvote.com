@@ -1,0 +1,127 @@
+.posts
+	margin: 0em
+
+$ideaPopularityColor: #777
+// darken(#FF9F80, 20%)
+
+.compact-post
+	margin: 0em 0 1em
+	padding: 0em
+	width: 55em
+
+	//background: #eee
+	border-radius: 8px
+
+	&:hover
+		background: #f8f8f8
+		//cursor: pointer
+
+	.button-container
+		display: inline-block
+		width: 2em
+		margin: 0 0em 0 0
+		padding: 1em 0 0 0
+		vertical-align: top
+		text-align: center
+		color: #666
+
+		.vote-button
+			display: inline-block
+			font-size: 1em
+			text-align: center
+			margin: auto
+			color: #fff
+			background: $colorDarkGray
+			width: 2em
+			height: 2em
+			line-height: 2em
+			border-radius: 1em
+			text-decoration: none
+
+			&.voted
+				background: $colorOrange
+
+		.vote-count
+			padding-top: .66em
+			line-height: 1em
+
+
+	.header-container
+		padding: 1em 0em 1em
+		line-height: 2em
+
+	.btn
+		padding: 1em
+		line-height: 1em
+
+	.btn2
+		display: inline-block
+		margin-right: 1em
+		vertical-align: baseline
+
+		i
+			color: $ideaPopularityColor
+			vertical-align: middle
+
+	//&:nth-child(odd)
+	//	background: #f7f7f7
+
+	.header
+		color: #333
+		font-size: 1em
+		line-height: 1em
+		//padding-bottom: 1em
+		//padding: 1em
+		display: inline-block
+		//background: #eee
+		//font-weight: bold
+		font-family: $fontRegular
+
+		a
+			color: inherit
+			text-shadow: 0px 1px 1px #fff
+
+	.progress
+		height: .5em
+		margin: 0
+		border-radius: 0
+		background: none
+		border: none
+		box-shadow: none
+		vertical-align: middle
+		background: #ddd
+		//padding: 2px
+
+		.bar
+			background: $ideaPopularityColor
+			box-shadow: 0px 3px 2px #aaa
+			border-radius: 0
+
+	.post-details
+		display: inline-block
+		//background: #f7f7f7
+		//width: 30em
+		padding: 0 1em 1em
+
+		.comments
+			color: #777
+			display: inline
+			padding-left: 1em
+
+
+
+.idea-popularity
+	margin: 0
+	padding: 0
+
+	i
+		color: $ideaPopularityColor
+		vertical-align: middle
+
+	.media-body
+		vertical-align: middle
+		padding-top: 0
+
+		.progress
+			vertical-align: middle
+			margin: auto

@@ -1,0 +1,23 @@
+<div class="vertical-navigation-container-compact">
+	<ul class="navigation">
+		{{#getPrimaryNavItems}}
+			<li class="header">
+				{{sectionName}}
+			</li>
+			{{#links}}
+				<li class="{{active}}">
+					<a href="{{url}}" title="{{longTitle}}">
+                <span class="button-insides">
+                    <i class="{{icon}}">
+	                    {{#notifications}}
+		                    <span class="notification blue">{{notifications}}</span>
+	                    {{/notifications}}
+                    </i>
+                    <span class="title">{{title}}</span>
+                </span>
+					</a>
+				</li>
+			{{/links}}
+		{{/getPrimaryNavItems}}
+	</ul>
+</div>

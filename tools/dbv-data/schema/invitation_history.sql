@@ -1,0 +1,6 @@
+CREATE TABLE `invitation_history` (
+  `historyId` int(11) NOT NULL AUTO_INCREMENT,
+  `requestId` int(11) NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`historyId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1

@@ -1,0 +1,12 @@
+<h1>Switch to user..</h1>
+
+{{#users}}
+    <div class="switch-user-item">
+        <form method="post">
+            <input type="hidden" name="userId" value="{{userId}}" />
+            <button type="submit" class="m-transparent-button">
+                <img src="{{profileImg}}" />
+            </button>
+        </form>
+    </div>
+{{/users}}

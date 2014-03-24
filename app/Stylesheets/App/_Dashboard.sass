@@ -1,0 +1,194 @@
+.bugs-list-nav
+	margin-top: 1em
+
+.m-section-header
+	line-height: $base-line-height * 2
+	font-size: 0px
+
+	h1
+		display: inline-block
+		//background: #eee
+		//padding-right: $base-line-height / 2
+
+	.controls
+		//border: 1px solid red
+		vertical-align: middle
+
+// keep buttons from wrapping, especially useful when they have a fixed width!
+.button
+	white-space: nowrap
+
+.m-app-activity
+	margin-top: $base-line-height
+
+.dash__container
+	//background: red
+	display: inline-block
+	float: none
+	width: 100%
+
+	+media($screen-compact)
+		background-color: lightpink
+		content: "UNSUPPORTED FORMAT: Compact"
+
+.dash__column
+	//background: orange
+	display: inline-block
+	float: left
+	padding-right: 2em
+	//min-width: 30em
+	width: 33%
+
+	&.last
+		padding-right: 0
+
+.dash__heading
+	font: 300 1.7em 'open sans light'
+	//padding: 0em 1em 0
+	padding: 0 0 .25em
+	margin: 0 0 1em
+	border-bottom: 3px solid #eee
+	vertical-align: top
+
+	.heading__stats
+		float: right
+		text-align: center
+		//line-height: 2.7em
+		margin-top: .5em
+		font-size: .65em
+		font-family: 'open sans bold'
+		font-weight: normal
+		border-radius: 2em
+		$size: 1.9em
+		min-width: $size
+		padding: 0 .5em
+		height: $size
+		line-height: $size
+		text-shadow: 0px 1px 0px #fff
+		box-shadow: inset 0px 2px 3px #e7e7e7
+		background: #f7f7f7
+		color: #777
+
+.dash__idea-short
+	border: 1px solid transparent
+	//border-radius: 4px
+	background: #fff
+	display: block
+	position: relative
+	vertical-align: top
+	margin: .5em 0 0
+
+	$border-width: 3px
+
+	.issue-type
+		padding: 0
+		width: 18px
+		min-height: 5em
+		background-repeat: no-repeat
+		background-position: top right
+
+	.pull-left
+		margin: 0
+
+	//&.bug-fix
+	//	.media-body
+	//		border-left: $border-width solid #ff7e00
+	//	.issue-type
+	//		background-image: url("/img/issue-news-type-bugfix.png")
+	//
+	//&.new-feature
+	//	.media-body
+	//		border-left: $border-width solid #00b4ff
+	//	.issue-type
+	//		background-image: url("/img/issue-news-type-feature.png")
+
+	&.bug-fix
+		.idea__title
+			border-bottom: 2px solid #ff7e00
+
+	&.new-feature
+		.idea__title
+			border-bottom: 2px solid #00b4ff
+
+	.bug-fix-icon
+		color: #ff7e00
+		padding-right: .25em
+		display: none
+
+	.new-feature-icon
+		color: #00b4ff
+		padding-right: .25em
+		display: none
+
+	.media-body
+		//background: #f7f7f7
+		color: #444
+		padding: 0
+		//padding-left: 1em
+		//min-height: 5em
+		//border-radius: 10px
+		display: inline-block
+		width: 100%
+
+		.idea__title
+			font-size: 1.2em
+			font-family: 'open sans light'
+			line-height: 1.4em
+			color: #111
+			padding-bottom: 7px
+			//background: #f7f7f7
+			//padding: .1em .3em
+
+			a
+				color: inherit
+				text-decoration: none
+				&:hover
+					color: $colorBlue
+
+		+media($tablet)
+			.idea__title
+				font-size: 1em
+
+		//padding: .25em
+		//padding-left: .5em
+
+		.idea__stats
+			color: #bbb
+			font-size: .9em
+			//position: absolute
+			right: 0
+			bottom: 0
+			float: right
+			padding: .2em 0 .5em
+
+			.user_commented
+				color: #555
+
+			.user__voted
+				color: #EC225E
+
+			i
+				padding-left: 1em
+
+.pyramid
+	margin-top: 2em
+	text-align: center
+
+	.new
+		background: orange
+		height: 1em
+		width: 10em
+		display: inline-block
+		clear: both
+	.doing
+		background: red
+		height: 1em
+		width: 20em
+		display: inline-block
+		clear: both
+	.done
+		background: green
+		height: 1em
+		width: 40em
+		display: inline-block
+		clear: both

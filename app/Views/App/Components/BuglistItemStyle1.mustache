@@ -1,0 +1,43 @@
+<div class="m-buglist-item l-horizontal">
+
+    <div
+        data-bugid="{{suggestionId}}" data-csrf="{{csrf}}" data-endpoint="{{urlVote}}"
+        data-vote="{{myvote}}"
+        class="m-buglist-item-votebox-simple">
+        <div class="l-horizontal">
+            <div class="vote-count">
+                <div class="vote-counter">{{votes}}</div>
+                <div class="vote-label">votes</div>
+            </div>
+            <div class="arrows">
+                <a class="up-vote">
+                    <i class="icomoon-arrow-up"></i>
+                </a>
+                <a class="down-vote">
+                    <i class="icomoon-arrow-down"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="bug-info">
+        <a class="bug-title" href="{{suggestionUrl}}">
+            {{{title}}}
+        </a>
+
+        <div class="bug-byline">
+            <!--<span>posted by</span>-->
+
+            <a class="name disabled" href="#">
+                <!--<img class="avatar" src="{{#urlPosterProfileImg}}24x24{{/urlPosterProfileImg}}" />-->
+                {{creatorName}}
+            </a>
+            {{#hasTag}}<span class="m-end-tag {{tagType}}">{{tag}}</span>{{/hasTag}}
+            <time class="timeago" datetime="{{postedTimeIso8601}}"></time>
+
+            {{#hasComments}}
+                <span class="comments"><i class="fa fa-comments"></i>{{numOfComments}}</span>
+            {{/hasComments}}
+        </div>
+    </div>
+</div>

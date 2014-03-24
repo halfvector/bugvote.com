@@ -1,0 +1,32 @@
+<div class="m-user-profile">
+
+    <div class="avatar">
+        <img src="{{#urlImageProfile}}100x100{{/urlImageProfile}}" />
+    </div>
+
+    <h1>{{user.fullName}}</h1>
+    {{!
+    <div class="description">3d graphics programmer and web-developer with a focus on writing really long sentences.</div>
+    }}
+
+    <section class="activity-section">
+        <div class="header">popular bug-reports</div>
+
+        {{#bugs}}
+        <div class="m-user-public-activity">
+            <div class="title">
+                <span>{{title}}</span>
+            </div>
+            <div class="byline">
+                {{description}}
+            </div>
+        </div>
+        {{/bugs}}
+    </section>
+
+</div>
+
+
+<h3>{{user.fullName}}</h3>
+<br>
+<a class="btn" href="/settings/profile"><i class="icon-edit"></i> Edit Profile</a>

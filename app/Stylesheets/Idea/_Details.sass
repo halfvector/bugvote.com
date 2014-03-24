@@ -1,0 +1,683 @@
+@import "Components/BugDetailsVotebox"
+@import "Components/BugDetailsVoteboxVertical"
+@import "Components/CommentUpvoteStyle"
+@import "Components/VerticalAttachments"
+@import "Components/VerticalRibbon"
+
+$baseSize: 14px
+$modularFactor: 1.25
+
+.idea-header
+	//padding-bottom: 1em
+	//background: orange
+
+	.bug-indicator
+		display: inline-block
+		padding: 2px 6px
+		vertical-align: top
+		//text-shadow: 0px 1px 0px rgba(#000, 0.15)
+		color: #fff
+		font-family: "segoe ui semibold"
+		//font-size: .9em
+
+		font-family: $fontSkinny
+		//font-size: 13px
+		text-transform: uppercase
+		font-size: 18px
+
+	=header-theme($baseColor)
+		.bug-indicator
+			background: $bugIndicatorColor
+			color: #fff
+		.progress-bar
+			background: $bugProgressColor
+		.progress-container
+			background: lighten($bugProgressColor, 40%)
+
+	// bug report
+	&.suggestion-type-1
+		.bug-indicator
+			background: $bugIndicatorColor
+		.progress-bar
+			background: $bugProgressColor
+		.progress-container
+			background: lighten($bugProgressColor, 40%)
+
+	// new feature request
+	&.suggestion-type-2
+		.bug-indicator
+			background: $featureIndicatorColor
+		.progress-bar
+			background: $featureProgressColor
+		.progress-container
+			background: desaturate(lighten($featureProgressColor, 30%), 20%)
+
+	&.suggestion-type-4
+		.bug-indicator
+			background: $questionIndicatorColor
+		.progress-bar
+			background: $questionProgressColor
+		.progress-container
+			background: lighten($questionProgressColor, 15%)
+
+	.header-progress
+		width: 12em
+		margin-left: 1em
+		display: inline-block
+		vertical-align: top
+		padding: 0px 0px
+
+		.progress-label
+			font-family: $fontSemiBold
+			color: #444
+			font-size: 12px
+			text-transform: uppercase
+
+		.progress-container
+			display: block
+
+			.progress-bar
+				display: block
+				height: 5px
+
+			.progress-step
+				background: transparent
+				border-right: 2px solid #fff
+				width: 20%
+				height: 5px
+				float: left
+				display: inline-block
+
+	.admin-options
+		//background: #eee
+		padding: 2px
+		min-width: 200px
+		float: right
+		text-align: right
+
+	.chzn-container
+		width: 20em
+		margin-bottom: 5px
+
+	.progress-selector
+		width: 20em
+
+
+// giant image around the header, to give the bug-report a more magazine-like look
+.m-bug-details-featured-image
+	margin-bottom: $base-line-height
+	//max-height: $base-line-height * 7
+	overflow: hidden
+
+	img
+		+filter(grayscale(100%))
+
+
+.m-bug-details-header
+	vertical-align: top
+	//margin-bottom: $base-line-height
+
+	.controls
+		line-height: 36px
+		width: 30px
+
+	$votebox-spacing: 120px
+
+	.m-bug-header-votebox
+		width: $votebox-spacing
+
+	.bug-votebox
+		position: absolute
+		display: inline-block
+		//float: left
+		//margin-left: -$votebox-spacing
+		background: orange
+		right: 0px
+		height: 0px
+		width: 0px
+		top: 0%
+		overflow: visible
+		vertical-align: top
+
+	.title-wrapper
+		position: relative
+		margin-right: $votebox-spacing
+		//vertical-align: bottom
+		//line-height: $base-line-height * 2
+		//min-height: $base-line-height * 2
+		//padding-top: $base-line-height / 2
+		//padding-bottom: $base-line-height / 2
+
+	h1
+		+skinnyFont()
+		font-size: 40px
+		line-height: 52px
+		margin-top: $base-line-height
+		margin-bottom: $base-line-height * 2
+		color: #333
+
+	.idea-title
+		position: relative
+		display: inline-block
+		width: 100%
+		vertical-align: inherit
+
+
+	.byline-author
+		width: 115px
+		text-align: right
+		//padding-right: 15px
+		padding-left: 115px
+		//vertical-align: middle
+
+	.byline
+		line-height: $base-line-height * 1.5
+		display: inline-block
+		//background: #f7f7f7
+		//padding: 0px 20px
+		//border-bottom: 2px dotted #eee
+		//font-size: 13px
+		margin-top: $base-line-height
+		margin-bottom: $base-line-height * .5
+
+		.m-bug-status
+			font-size: 13px
+
+		.pull-right
+			line-height: inherit
+			//background: #eee
+			vertical-align: middle
+			text-align: center
+
+		.segment
+			margin-right: 50px
+			display: inline
+			//background: #ddd
+			//line-height: $base-line-height
+			//vertical-align: middle
+
+		a
+			color: inherit
+
+		.name
+			color: #555
+			+boldFont
+			display: inline-block
+
+			&:hover
+				color: $colorOrange
+
+
+.idea-title-header--admin-toolbar
+	//background: #eee
+	display: inline-block
+	padding: .2em
+	margin-bottom: 1em
+
+//.bug-byline
+//	color: #aaa
+//	border-bottom: 1px solid #ddd
+//	//margin: 1em 0 2em
+//	//margin-right: 15em
+//	text-transform: uppercase
+//
+//	font-size: floor( modular-scale($baseSize, -1, $modularFactor) )
+//
+//	margin-bottom: 2em
+//	margin-top: 1em
+//
+//	a
+//		color: inherit
+//		font-family: "OpenSansBold"
+//		font-weight: bold
+//		&:hover
+//			color: $colorOrange
+
+.m-bug-description
+	display: inline-block
+	margin-bottom: 0em
+	min-height: 7em
+	max-width: 55em
+	margin-top: -10px
+	padding-bottom: 1em
+
+	p
+		margin: 0
+		margin-bottom: 1em
+
+	.tag
+		display: inline-block
+		text-transform: uppercase
+		//background: $colorOrange
+		//color: #fff
+		color: #333
+		font-family: "OpenSansBold"
+		font-weight: 600
+		//border-bottom: 1px solid #aaa
+		//padding: 3px
+		font-size: 10px
+		line-height: 1.2em
+
+	.bug-author
+		display: inline-block
+		float: left
+		text-align: center
+		vertical-align: top
+		width: 90px
+		margin-top: -10px
+		margin-right: 15px
+
+		img
+			//float: left
+			vertical-align: middle
+			display: inline-block
+
+	.m-markdown
+		@extend .font-user-content
+
+.developer-buttons
+	font-size: 1em
+	margin-top: 10px
+	margin-bottom: 1em
+	//padding: 10px
+	//width: 50em
+	margin-left: 1em
+	//border-radius: 24px
+	text-align: left
+	display: inline-block
+	vertical-align: middle
+	//background: #eee
+
+	> i
+		margin-right: 1em
+
+	.action
+		display: inline-block
+		margin-right: 2em
+
+	a.circle
+		display: inline-block
+		font-size: 1em
+		text-align: center
+		margin: auto
+		color: #fff
+		background: $colorBlue
+		width: 2em
+		height: 2em
+		line-height: 2em
+		text-decoration: none
+		border-radius: 1em
+
+		i
+			display: inline
+
+.easy-icon-button
+	display: inline-block
+	vertical-align: middle
+	font-size: 1em
+	text-align: center
+	margin: auto
+	color: #fff !important /* bootstrap override */
+	background: $colorBlue
+	width: 2em
+	height: 2em
+	line-height: 2em
+	//border-radius: 50px
+	border-radius: 6px
+	text-decoration: none
+	//margin-right: 1em
+	//margin-left: 1em
+
+	+ .easy-icon-button, + .button-dropdown .easy-icon-button
+		margin-left: 0
+
+	&.edit-button
+		background: $colorGreen
+
+	&.dev-button
+		background: $colorLightBlue
+
+	&.delete-button
+		background: $colorRed
+
+	&.comments-button
+		background: $colorDarkGray
+
+	&.regular-button
+		background: transparent
+
+.section-title
+	color: #aaa
+	font-size: 11px
+	//max-width: 67em
+	border-bottom: 1px solid #ddd
+	margin: 1em 0 2em
+	margin-right: 15em
+	text-transform: uppercase
+
+.m-bug-comments
+	display: block
+	//width: 65%
+	//border-top: 1px solid #eee
+	//padding-top: $base-line-height / 2
+	//background: #fafaf7
+	//background: #eee
+	//margin: -$base-line-height
+	//margin-top: $base-line-height / 2
+	//margin-bottom: $base-line-height
+	//padding: $base-line-height
+	padding: 0px 15px
+
+	.large-header
+		+regularFont
+		display: block
+		font-size: 21px
+		line-height: $base-line-height * 2
+		color: #555
+		//border-top: 1px solid #eee
+		//padding-bottom: $base-line-height / 2
+		//margin-bottom: $base-line-height / 2
+
+		i
+			//border: 1px solid red
+			vertical-align: baseline
+
+
+	.m-submit-comment
+		margin-bottom: $base-line-height
+
+	.m-separator
+		display: block
+		//background: orange
+		border: none
+		background: transparent
+		content: ""
+		margin: 0px
+		padding: 0px
+		height: 1px
+		padding-bottom: $base-line-height - 2px
+		margin-bottom: $base-line-height
+		border-bottom: 1px solid #eee
+		width: 80%
+		margin-left: 100px
+
+
+.m-bug-description-section
+	//border-top: 1px solid #ddd
+	margin-bottom: 1em
+
+.l-section
+	&:after
+		content: ""
+		display: block
+
+	.header
+		font-size: 12px
+		font-family: $fontRegular
+		color: #999
+		text-transform: uppercase
+
+	.header-fancy
+		display: block
+		color: #333
+		font-size: 18px
+		font-family: $fontSkinny
+		line-height: 24px
+		text-transform: uppercase
+		text-shadow: 0px 1px 0px rgba(#fff, 1)
+		border: none
+		margin-bottom: 18px
+		background-color: #f7f7f7
+		padding: 4px 10px
+
+		&:after
+			content: ""
+			display: block
+
+.m-submit-comment
+	min-height: $base-line-height * 3
+	//max-width: 50em
+
+	.field
+		height: $base-line-height * 2
+
+	.form-action
+		border: 0px
+
+	.post-comment
+		$avatarSize: 48px
+		//margin-left: 32px
+
+		.avatar
+			vertical-align: top
+			display: none
+
+			img
+				width: $avatarSize
+				height: $avatarSize
+				margin: 0px
+				margin-right: 15px
+				background-size: cover
+				background-repeat: no-repeat
+				//border-radius: 100px
+
+
+.m-backlog-panel
+	margin-bottom: 3em
+
+.m-scheduler
+	header
+		padding: 3px 9px
+		font-size: 12px
+		font-weight: bold
+		font-family: $fontRegular
+		color: #999
+		background: #f7f7f7
+		+background(linear-gradient(#fff, #333))
+		border-bottom: 1px solid #ddd
+		margin-bottom: 7px
+
+.bug-controls-inline
+	line-height: inherit
+	display: inline
+
+.bug-controls
+	line-height: $base-line-height * 3
+
+.dropdown-btn
+	font-size: 14px
+	line-height: 24px
+	vertical-align: middle
+	margin: 0
+	padding: 0
+	//padding-top: 6px !important
+
+	i
+		font-size: 14px
+
+	.button-dropdown-menu-below
+
+		li a
+			cursor: pointer
+
+	.arrow-up
+		width: 30px
+		height: 20px
+		font-size: 20px
+		position: absolute
+		top: -16px
+		left: 15px
+		text-align: center
+		z-index: 100
+		text-shadow: 0px 3px 6px rgba(0,0,0,0.6)
+		color: #f7f7f7
+		clip: rect(0px, 30px, 16px, 0px)
+		//color: green
+
+		i
+			font-size: inherit
+
+
+.m-bug-details
+	min-height: $base-line-height * 6
+
+	.author
+		float: left
+		margin: 0px 26px 18px 0px
+		display: none
+
+		img
+			width: $base-line-height * 4
+
+	.thumbnails-column
+		width: 320px
+		//background: #eee
+		text-align: right
+		padding-left: $base-line-height * 2
+
+	.bug-thumbnail
+		max-height: ($base-line-height * 6)
+		display: block
+		margin-bottom: $base-line-height
+		overflow: hidden
+		vertical-align: middle
+		text-align: center
+		position: relative
+
+		+filter(grayscale(100%))
+
+		.attachment-name
+			opacity: 0
+			position: absolute
+			bottom: 0
+			right: 0
+			left: 0
+			padding: 3px
+			background: rgba(#000, .8)
+			color: #fff
+			font-size: 12px
+			line-height: 16px
+			font-family: $fontRegular
+			transition: all .2s ease-out
+
+		&:hover .attachment-name
+			opacity: 1
+
+		.thumbnail
+			width: 100%
+
+		+ .bug-thumbnail
+			clear: both
+			margin-top: 1em
+
+	.m-markdown
+		vertical-align: text-top
+		max-width: 82em
+		//font-family: Helvetica
+		//font-weight: 300
+		//font-size: $base-font-size
+		//padding-left: 65px
+		@extend .font-user-content
+
+		p
+			margin: 0px
+			font-size: 1em
+			line-height: $base-line-height
+			//margin-top: 24px !important
+			margin-bottom: $base-line-height !important
+
+
+.m-bug-state
+	display: inline-block
+	//text-shadow: 0px 1px 0px rgba(#235, 0.2)
+	color: #fff
+
+	//font-family: $fontRegular
+	//text-transform: uppercase
+	//font-size: 11px
+
+	padding: 3px 10px
+	line-height: 1
+	vertical-align: baseline
+	margin-right: 4px
+
+	text-align: center
+
+	&.type-0, &.type-3, &.type-4
+		background: $questionIndicatorColor
+		text-shadow: 0px 1px 0px #f7f7f7
+		color: #666
+
+	&.type-1
+		background: $bugIndicatorColor
+
+	&.type-2
+		background: $colorYellow
+		border: 1px solid darken($colorYellow, 9%)
+		color: #333
+		text-shadow: none
+
+	&.type-5
+		background: $colorGreen4
+
+
+.m-icon-button
+	display: inline-block
+	vertical-align: middle
+	//font-size: inherit
+	text-align: center
+	margin: auto
+	color: #fff
+	//border-radius: 3px
+	text-decoration: none
+	line-height: $base-line-height
+	background: $colorBlue
+	//+box-shadow(0px 1px 3px rgba(#000, 0.6))
+
+	font-size: 1rem
+	width: 30px
+	height: 30px
+	margin-left: 10px
+	cursor: pointer
+
+	i
+		display: inline-block
+		//border: 1px solid red
+		vertical-align: middle
+
+		&:before
+			vertical-align: baseline
+
+	.icomoon-plus
+		font-size: 11px
+
+
+	//&:hover
+	//	background: lighten($colorBlue, 10%)
+
+	img
+		//border-radius: 4px
+		line-height: inherit
+		vertical-align: middle
+
+	+ .m-icon-button, + .button-dropdown .m-icon-button
+		margin-left: 0
+
+	&.edit-button
+		background: $colorGreen4
+
+		&:hover
+			background: lighten($colorGreen, 10%)
+
+	&.dev-button
+		background: $colorLightBlue
+
+	&.delete-button
+		background: $colorRed
+
+	&.comments-button
+		background: $colorDarkGray
+
+	&.regular-button
+		background: transparent
+		color: #777 !important

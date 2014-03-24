@@ -1,0 +1,29 @@
+<section class="m-submit-comment l-section l-horizontal l-fill-last">
+    <!--<header class="header">Post</header>-->
+
+    <div class="post-comment">
+        <div class="avatar">
+            <img src="{{#user.urlProfilePic}}48x48{{/user.urlProfilePic}}" />
+        </div>
+    </div>
+
+    <div class="content">
+        <form
+            method="post" action="{{urlSubmitComment}}" class="m-form-simple"
+            enctype="multipart/form-data" data-focus-on="input:first">
+            <input type="hidden" name="csrf" value="{{csrf}}"/>
+            <input type="hidden" name="source" value="ideas.details"/>
+            <input type="hidden" name="ideaId" value="{{idea.suggestionId}}"/>
+            <fieldset>
+                <div class="form-group">
+                    <textarea
+                        name="comment" tabindex="1" class="field field-default"
+                        placeholder="A positive, supportive, and constructive comment.">{{comment}}</textarea>
+                </div>
+            </fieldset>
+            <div class="form-actions">
+                <button type="submit" name="action" value="post" class="m-button">COMMENT</button>
+            </div>
+        </form>
+    </div>
+</section>

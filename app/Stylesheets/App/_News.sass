@@ -1,0 +1,141 @@
+
+.news--release
+	margin-left: 1em
+	margin-top: 2em
+	margin-bottom: 2em
+	background: lighten(#f6d7ab, 15%)
+	padding: 1em
+	border: 1px solid lighten(#f6d7ab, 0%)
+
+	h2
+		font: 1.3em/1.2 normal $fontSkinny
+
+
+.news--post
+	display: table
+	margin-left: 1em
+	vertical-align: top
+
+	&+.news--post
+		margin-top: 2em
+
+	.left-part
+		display: table-cell
+		vertical-align: top
+		width: 9em
+		text-align: right
+
+		.name
+			font: $fontRegular
+			color: #888
+		.age, .timeago
+			font: $fontSkinny
+			color: #aaa
+
+	.avatar-container
+		display: table-cell
+		width: 6em
+		text-align: center
+		vertical-align: top
+		padding: 0 1em
+		position: relative
+
+		.developer-tag
+			background: darken(#a997de, 10%)
+			//border-bottom: 1px solid darken(#a997de, 20%)
+			color: #fff
+			font: normal 10px/1 $fontSemiBold
+			text-transform: uppercase
+			text-align: center
+			margin: auto
+			left: 1em
+			top: -.5em
+			position: absolute
+			padding: 2px 4px
+
+		img
+			border-radius: 30px
+			//width: 3.5em
+
+	.right-part
+		display: table-cell
+		vertical-align: top
+
+		h2
+			font: 1.3em/1.2 normal $fontSkinny
+			padding-bottom: .3em
+			//background: gray
+			color: #000
+
+			a
+				color: inherit
+				text-decoration: none
+
+		%tag
+			font-family: $fontSkinny
+			font-size: 12px
+			line-height: normal
+			padding: 1px 6px
+			color: #000
+			text-transform: uppercase
+			display: inline-block
+
+		.tag-bugreport
+			@extend %tag
+			background: lighten(#f6d7ab, 7%)
+
+
+		.tag-bugfix
+			@extend %tag
+			background: #e0fcd2
+
+
+.m-app-activity-item
+	margin-bottom: $base-line-height
+	vertical-align: top
+
+	$horizontal-spacing: 5px
+
+	.poster
+		position: relative
+		padding-right: 20px
+
+		// TODO: needs to be horizontally centered
+		.developer-tag
+			background: darken(#a997de, 10%)
+			//border-bottom: 1px solid darken(#a997de, 20%)
+			color: #fff
+			font: normal 10px/1 $fontSemiBold
+			text-transform: uppercase
+			text-align: center
+			margin: auto
+			left: -10px
+			position: absolute
+			padding: 3px 4px
+
+		.avatar
+			display: block
+			border-radius: 8px
+
+	.byline
+		color: #444
+
+		.name
+			+boldFont
+			color: inherit
+			margin-right: $horizontal-spacing
+
+			&:hover
+				color: $colorOrange
+
+		.timeago
+			margin-right: $horizontal-spacing
+
+	.title
+		.link
+			color: inherit
+			border-radius: 6px
+
+			&:hover
+				color: $colorOrange
+

@@ -1,0 +1,35 @@
+<div class="idea__comment">
+	{{#no}}
+    <div class="votes">
+        <div class="voteControl">
+            <a class="upVote" href="#" title="useful (click again to undo)"><i class="icon-chevron-up"></i></a>
+            <div class="rating"><strong>1203</strong><span>votes</span></div>
+            <a class="downVote" href="#" title="not useful (click again to undo)"><i class="icon-chevron-down"></i></a>
+        </div>
+    </div>
+	{{/no}}
+    <a href='#' rel='nofollow' class='avatar'>
+        <div style="background-image: url('{{authorImg}}')"></div>
+    </a>
+    <div class='details'>
+        <div class='post-controls'>
+            {{#canEdit}}
+                <a class='btn btn-mini' href="/ideas/{{suggestionId}}/edit"><i class="icon-edit"></i> Edit</a>
+            {{/canEdit}}
+            <div class="btn-group">
+                <button class="btn btn-mini dropdown-toggle" data-toggle="dropdown">
+                    <i class="icon-cog"></i> <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu pull-right">
+                    <li><a href="/ideas/{{suggestionId}}/close"><i class="icon-flag"></i> Flag</a></li>
+                    <li><a href="/ideas/{{suggestionId}}/close"><i class="icon-trash"></i> Delete</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class='info-row'>
+            <div class='name'>{{fullName}}</div>
+	        <div class="time">{{postAge}}</div>
+        </div>
+        <div class='markdown-container'>{{{comment}}}</div>
+    </div>
+</div>

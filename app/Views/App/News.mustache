@@ -1,0 +1,74 @@
+<div class="m-section-header l-horizontal l-stretch l-pull-right">
+    <div>
+        <h1>Recent Activity</h1>
+    </div>
+
+    <div class="controls">
+        <!--<a href="{{urlNewIdea}}" class="m-button"><i class="icomoon-plus"></i> POST</a>-->
+        <a href="{{urlNewIdea}}" class="m-icon-button edit-button" title="Submit a new post"><i class="icomoon-plus"></i></a>
+    </div>
+</div>
+
+<section class="m-app-activity">
+
+{{#events}}
+    {{#isUserActivity}}
+        {{> App/Components/AppActivityItem }}
+    {{/isUserActivity}}
+    {{#isReleaseNews}}
+        <div class="news--release">
+            <h2>July 23rd 2013 - Release v1.5</h2>
+
+            <p>This release contains a lot of goodies!</p>
+            <ul>
+                <li>3 new features (292 votes)</li>
+                <li>7 bug fixes (149 votes)</li>
+                <li>50 new answers, workarounds, and explanations added to the knowledge-base</li>
+            </ul>
+
+            <a href="#">Read more...</a>
+        </div>
+
+    {{/isReleaseNews}}
+{{/events}}
+
+</section>
+
+<br><br><br>
+{{#no}}
+<div class="dash__container">
+    <div class="dash__column">
+        <div class="dash__heading">
+            New Suggestions <span class="heading__stats">{{numOfIdeasNew}}</span>
+        </div>
+
+        {{#new}}
+            {{> /Partials/Dashboard/SuggestionItem }}
+        {{/new}}
+
+        <a href="{{urlViewNewIdeas}}">See More &hellip;</a>
+    </div>
+    <div class="dash__column">
+        <div class="dash__heading">
+            In Progress <span class="heading__stats">{{numOfIdeasDoing}}</span>
+        </div>
+
+        {{#doing}}
+            {{> /Partials/Dashboard/SuggestionItem }}
+        {{/doing}}
+
+        <a href="{{urlViewDoingIdeas}}">See More &hellip;</a>
+    </div>
+    <div class="dash__column last">
+        <div class="dash__heading">
+            Completed <span class="heading__stats">{{numOfIdeasDone}}</span>
+        </div>
+
+        {{#done}}
+            {{> /Partials/Dashboard/SuggestionItem }}
+        {{/done}}
+
+        <a href="{{urlViewDoneIdeas}}">See More &hellip;</a>
+    </div>
+</div>
+{{/no}}

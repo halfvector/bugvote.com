@@ -1,0 +1,152 @@
+.m-section-edit-idea
+
+	.thumbnail-line
+		vertical-align: top
+		position: relative
+
+	.m-thumbnail
+		display: inline-block
+		border-radius: 4px
+		padding: 4px
+		margin: none
+		margin-bottom: 5px
+		overflow: hidden
+		text-align: center
+		vertical-align: middle
+		max-width: 100%
+		background-color: #fff
+		border: 1px solid #ddd
+		transition: all .2s ease-in-out
+		position: relative
+		height: $base-line-height * 7
+		margin-right: $base-line-height
+
+		> img
+			max-height: 100%
+			max-width: 100%
+			margin: auto
+			display: block
+			vertical-align: middle
+			border: none
+
+		.title
+			position: absolute
+			bottom: 4px
+			left: 4px
+			right: 4px
+			background: rgba(#222, 0.9)
+			line-height: 30px
+			color: #fff
+			+skinnyFont
+
+			.icon-button
+				float: right
+				display: inline-block
+
+
+.screenshot-uploader
+	display: block
+
+	$uploader-thumbnail-height: $base-line-height * 7
+
+	.fileupload
+		display: inline-block
+		margin-bottom: $base-line-height
+		//background: #f7f7f7
+		border-radius: 6px
+		position: relative
+		height: $uploader-thumbnail-height
+		min-width: 150px
+		max-width: 500px
+		margin-right: $base-line-height
+
+	.controls
+		left: 4px
+		right: 4px
+		bottom: 4px
+		top: 4px
+		margin: 0px
+		//background: rgba(orange, 0.5)
+		display: block
+		position: absolute
+		vertical-align: middle
+		text-align: center
+		line-height: $uploader-thumbnail-height
+
+	.edit-controls
+		position: absolute
+		bottom: 0px
+		left: 0px
+		right: 0px
+		border-radius: 0px 0px 3px 3px
+		background: rgba(#222, 0.9)
+		line-height: 30px
+		+skinnyFont
+		color: #fff
+
+		.icon-button
+			float: right
+			display: inline-block
+			border-radius: 0px 0px 3px 0px
+
+	.thumbnail
+		display: inline-block
+		border-radius: 4px
+		padding: 3px
+		margin: 0px
+		overflow: hidden
+		text-align: center
+		vertical-align: middle
+		width: 100%
+		height: 100%
+		background-color: #fff
+		border: 1px solid #ddd
+		transition: all .2s ease-in-out
+
+		.placeholder
+			background: #ddd
+			display: inline-block
+			position: absolute
+			left: 4px
+			right: 4px
+			bottom: 4px
+			top: 4px
+			border-radius: 3px
+
+		> img
+			max-height: 100%
+			max-width: 100%
+			margin: auto
+			padding: 0px
+			display: block
+			vertical-align: middle
+			text-align: center
+			border: none
+			border-radius: 3px
+
+	.btn-file
+		position: relative
+		overflow: hidden
+		vertical-align: middle
+
+		> input
+			position: absolute
+			top: 0
+			right: 0
+			margin: 0
+			font-size: 23px
+			cursor: pointer
+			opacity: 0
+			filter: alpha(opacity=0)
+			transform: translate(300px, 0) scale(4)
+			display: block
+
+	.fileupload-new .fileupload-exists
+		display: none
+
+	.fileupload-exists .fileupload-new
+		display: none
+
+	.fileupload-inline .fileupload-controls
+		display: inline
+

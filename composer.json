@@ -1,0 +1,34 @@
+{
+	"require": {
+		"opauth/opauth": "*",
+		"opauth/facebook": "*",
+		"opauth/google": "*",
+		"opauth/twitter": "*",
+		"mustache/mustache": "*",
+		"dflydev/markdown": "*",
+		"behat/behat": "2.4.*@stable",
+		"symfony/yaml": "2.4.*@dev",
+		"symfony/class-loader": "2.4.*@dev",
+		"behat/mink": "*",
+		"behat/mink-goutte-driver": "*",
+		"behat/mink-extension": "*",
+		"brainsware/php-markdown-extra-extended": "dev-master",
+		"dz0ny/jade.php": "dev-master",
+		"mthaml/mthaml": "*",
+		"klein/klein": "*",
+		"jbroadway/urlify": "*",
+		"michelf/php-markdown": "*",
+		"predis/predis": "*",
+		"segmentio/analytics-php": "dev-master",
+		"nesQuick/Metrics": "dev-master",
+		"eventviva/php-image-resize": "dev-master",
+		"itsgoingd/clockwork": "dev-master",
+		"pda/pheanstalk": "dev-master",
+		"altorouter/altorouter": "dev-master",
+		"cowlby/php-loggly-bindings": "*"
+	},
+	"minimum-stability": "dev",
+	"config": {
+		"bin-dir": "bin/"
+	}
+}

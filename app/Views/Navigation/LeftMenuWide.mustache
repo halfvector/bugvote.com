@@ -1,0 +1,71 @@
+<div class="m-left-menu-wide">
+    <div class="m-left-user disabled">
+
+        <a class="avatar" href="{{userStatus.urlUserProfile}}">
+            <img src="{{#userStatus.urlUserProfileImage}}34x34:cover{{/userStatus.urlUserProfileImage}}" />
+        </a>
+
+        <span class="button-dropdown dropdown-btn" data-buttons="dropdown">
+            <a class="easy-icon-button regular-button" href="" title="manage idea"><i class="fa fa-cog"></i></a>
+            <ul class="button-dropdown-menu-below">
+                <span class="arrow-up"><i class="fa fa-caret-up"></i></span>
+                <li><a href="#"><i class="fa fa-info fa-fw"></i> View Profile</a></li>
+                <li class="button-dropdown-divider"></li>
+                <li>
+                    <a href="/switch?redirect={{signedUrl.url}}&signature={{signedUrl.signature}}">
+                        <i class="fa fa-rocket fa-fw"></i>
+                        Switch users..
+                    </a>
+                </li>
+            </ul>
+        </span>
+
+    </div>
+
+    <div class="m-left-menu-search disabled">
+        <form method="get" action="{{appHeader.urlUniversalSearch}}" class="m-search-control">
+            <input class="field" type="text" name="q" placeholder="Search" autocomplete="off" />
+            <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+    </div>
+
+    <div class="m-left-menu-wide-items-2">
+
+        <div class="menu-section">
+
+            <div class="item-header disabled">
+                {{appHeader.title}}
+                <span class="indicator">
+
+                </span>
+            </div>
+
+            {{#primaryMenu.menuItems}}
+            <a
+                {{#active}} class="menu-item active"{{/active}}
+                {{^active}} class="menu-item"{{/active}}
+
+                href="{{url}}" title="{{title}}">
+                <span class="title"><i class="{{icon}}"></i> {{title}}</span>
+
+                <!--<span class="notification-container">-->
+                    <!--<span class="notification">5</span>-->
+                <!--</span>-->
+            </a>
+            {{/primaryMenu.menuItems}}
+
+        </div>
+
+        <!--<div class="menu-section">-->
+
+            <!--<div class="item-header">-->
+                <!--Tags-->
+                <!--<span class="indicator">-->
+                    <!--+-->
+                <!--</span>-->
+            <!--</div>-->
+
+        <!--</div>-->
+
+    </div>
+</div>
