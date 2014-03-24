@@ -6,7 +6,7 @@ class ImageManager
 	const FIT_STRETCH = 3; // not pretty. don't use.
 	const FIT_ASPECT = 1; // no cropping, preserves aspect ratio, may not be exactly the requested width/height.
 
-	protected $root = "//static.dev.bugvote.com/cache";
+	protected $root = "//static.alpha.bugvote.com/cache";
 
 	function getResizeCacheUrl($assetPath, $width, $height, $fitMode = self::FIT_COVER)
 	{
