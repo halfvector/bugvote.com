@@ -151,6 +151,7 @@ class UserManager
 			{	// we have a mismatch: user logged in using account A but partials-media is already associated with account B
 				// user may have duplicate accounts, or something funny is going on
 				// either way this is a sanity failure, tell the user they must disconnect the partials-media integration from account B first
+				$ctx->log->write("Sanity Failure: Duplicate account? $userId != $currentUserId");
 				header("Location: /error/duplicate_account", true, 303);
 				exit;
 			} else

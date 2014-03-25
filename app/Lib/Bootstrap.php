@@ -138,6 +138,9 @@ class Bootstrap
 		$context->dal = new DAL($mysqlConf, $this->logger, $this->perf);
 		$context->redis = new Redis();
 
+		$context->dal->connect();
+		$context->redis->pconnect("/var/run/redis/redis.sock", 0, 60000);
+
 		$p2->next("Mustache + Url + Assets");
 		$context->renderer = new MustacheRenderer($this->paths, $this->logger, $this->perf);
 		$context->images = new ImageManager();
@@ -152,18 +155,13 @@ class Bootstrap
 		$context->permissions = new Permissions($context->dal, $this->logger, $context->user);
 		$p2->stop();
 
-		$p1->next("External services");
-
-		$context->dal->connect();
-		$context->redis->pconnect("/tmp/redis.sock", 0, 60000);
-
 		$this->ctx = $context;
 
 //		$p1->next("Set up analytics");
 
 //		// segment.io analytics system
-//		$context->logentries = LogEntriesCom::getLogger("3a308cd3-e22e-4d11-b3d2-e927a067cb48", true, false, LOG_DEBUG);
-//		Analytics::init("rd2w7xfo2oj9g99ffxz2");
+//		$context->logentries = LogEntriesCom::getLogger("~hash~", true, false, LOG_DEBUG);
+//		Analytics::init("~hash~");
 
 //		// setup user data
 //		Analytics::identify(15, [
@@ -172,7 +170,7 @@ class Bootstrap
 //			"type"		   => "SysOp"
 //		]);
 
-//		$context->metrics = new LibratoClient("aleckz@gmail.com", "793d6c52fe3c8ea4d2cc33051e7f69e037a0e0605376bfbce31a7ceda654da35");
+//		$context->metrics = new LibratoClient("aleckz@gmail.com", "~hash~");
 
 		$p1->next("Controller run");
 

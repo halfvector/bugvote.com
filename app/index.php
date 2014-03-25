@@ -23,8 +23,8 @@ register_shutdown_function(
 
 		// spawn a log-writer
 		//$logRenderer = new LogWriterBrowser();
-		//$logRenderer = new LogWriterRedis($bootstrap->ctx->redis);
-		$logRenderer = new LogWriterUDP();
+		$logRenderer = new LogWriterRedis($bootstrap->ctx->redis);
+		//$logRenderer = new LogWriterUDP();
 
 		$logRenderer->Write("log", $eventLog);
 		$logRenderer->Write("performance", $performanceLog);

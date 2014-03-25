@@ -189,8 +189,10 @@ class NewBugDetailsController extends BaseController
 			"select s.*, unix_timestamp(utc_timestamp()) - unix_timestamp(s.postedAt) as postAgeSec, u.*, a.*
 				from suggestionComments s
 				join users u using (userId)
-				left join assets a on (assetId = profileMediumAssetId)
+				left join socialAccounts sa using (userId)
+				left join assets a on (assetId = profilePicAssetId)
 			where suggestionId = :suggestionId
+			group by commentId
 			order by commentId",
 			["suggestionId" => $vm->ideaId],
 			"suggestion comments"

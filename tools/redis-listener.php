@@ -13,7 +13,7 @@ pcntl_signal(SIGHUP, function ($signo) {
 
 $redis = new Redis();
 //$redis->connect("127.0.0.1:6379");
-$redis->connect("/tmp/redis.sock", 0, 6000000);
+$redis->connect("/var/run/redis/redis.sock", 0, 6000000);
 
 $logglySender = new ApiLogger("1de48388-ead3-46c5-82c3-af509bd34240");
 
