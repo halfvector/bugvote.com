@@ -78,7 +78,7 @@ class CreateController extends BaseController
 			// insert tags
 			foreach($tags as $tag) {
 				$tagId = $ctx->dal->insertSingleObj('insert into tags set tag = :tag', ['tag' => $tag]);
-				$ctx->dal->insert('suggestionTag')->set(['suggestionId' => $ideaId, 'tagId' => $tagId]);
+				$ctx->dal->insert('suggestionTags')->set(['suggestionId' => $ideaId, 'tagId' => $tagId]);
 			}
 
 	        // update suggestion with an seo-friendly tiny-id
@@ -98,8 +98,9 @@ class CreateController extends BaseController
 		}
 		catch(Exception $err)
 		{
+			$ctx->log->writeObject("Error commit new idea:", $err);
 			$ctx->dal->rollbackTransaction();
-			$ctx->klein->flash("Error commiting to database. Oops!", "error");
+			//$ctx->klein->flash("Error commiting to database. Oops!", "error");
 			return $ctx->redirect($ctx->url->createAppNewIdeaUrl($ctx->parameters->strings->appUrl));
 		}
 
