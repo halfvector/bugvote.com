@@ -5,7 +5,11 @@ use Bugvote\Lib\BugvoteAutoload;
 ini_set("xdebug.var_display_max_depth", 5);
 
 define('APP_DEPLOYED', 'HOME');
-define('APP_STATIC_HOSTNAME', 'static.dev.bugvote.com');
+
+if($_SERVER['HTTP_HOST'] == 'www.dev.bugvote.com')
+	define('APP_STATIC_HOSTNAME', 'static.dev.bugvote.com');
+else
+	define('APP_STATIC_HOSTNAME', 'static.alpha.bugvote.com');
 
 define('APP_STATIC_IMG_CACHE', '//' . APP_STATIC_HOSTNAME . '/cache');
 
