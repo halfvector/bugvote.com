@@ -7,6 +7,12 @@ class SignedUrl
 	public $url;
 	public $signature;
 
+	/**
+	 * just an idea for now.
+	 * should use a session-backed secret for signing.
+	 * @param $url
+	 * @param $userId
+	 */
 	function __construct($url, $userId)
 	{
 		$this->userSignatureKey = "userId=$userId signature";

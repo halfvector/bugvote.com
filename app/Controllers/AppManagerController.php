@@ -1,4 +1,4 @@
-<?php namespace Controllers;
+<?php namespace Bugvote\Controllers;
 
 use Bugvote\Services\Context;
 use Bugvote\Commons\BaseController;
@@ -6,8 +6,8 @@ use Bugvote\Commons\PrimaryMenuItem;
 use Bugvote\Commons\SimplePrimaryMenuVM;
 use Bugvote\Commons\UrlHelper;
 use Bugvote\Commons\UserRoles;
+use Bugvote\ViewModels\BasePageVM;
 use Exception;
-use ViewModels\BasePageVM;
 
 class AppManagerController extends BaseController
 {

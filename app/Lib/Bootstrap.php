@@ -231,7 +231,6 @@ class Bootstrap
 		$context->session = $context->user->newSegment("$className");
 
 		// these errors are common enough to have their own handler
-
 		if (!class_exists($className)) {
 			$this->logger->write("ERROR: \"$className\" class not found for route $target");
 			throw new MissingRouteControllerException("$target", $className, $methodName, "Cannot route \"$target\" because class not found: $className'");

@@ -101,7 +101,6 @@ Home:
 CreateNewProject:
   - GET: /new
     Controller: AppManager#showAppCreationScreen
-
   - POST: /new
     Controller: AppManager#handleAppCreationScreen
 

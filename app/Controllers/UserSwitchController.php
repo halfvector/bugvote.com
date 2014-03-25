@@ -29,17 +29,16 @@ class UserSwitchController extends BaseController
 	/** @route GET /switch */
 	function show(Context $ctx)
 	{
-		// HTTP_REFERER may be interesting to check here, to automate the switch and keep the url clean and smart
-		//var_dump($_SERVER);
-
 		$vm = new BasePageVM($ctx);
 		$vm->primaryMenu = new SimplePrimaryMenuVM(
 			[new PrimaryMenuItem("home", "/", "home", "icon-home", 0, true)]
 		);
 
 		$users = $ctx->dal->fetchMultipleObjs("
-			SELECT * FROM users
-				LEFT JOIN assets ON (profileMediumAssetId = assetId)
+			SELECT * FROM users u
+				left join socialAccounts s using (userId)
+				LEFT JOIN assets ON (assetId = ifnull(profileMediumAssetId, profilePicAssetId))
+				group by u.userId
 			"
 		);
 

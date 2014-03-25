@@ -1,8 +1,8 @@
 <?php namespace Bugvote\Core;
 
+use Bugvote\Commons\ImageManager;
 use Bugvote\DataModels\ImageAsset;
 use Bugvote\Services\Context;
-use Bugvote\Commons\ImageManager;
 use Exception;
 
 class ImageUrlGeneratorException extends Exception
@@ -22,31 +22,29 @@ class ImageUrlGenerator
 
 	function __invoke($params = null)
 	{
-		if($params == null)
-		{   // throw a nice error
+		if ($params == null) { // throw a nice error
 			var_dump("Hey you, go specify an image resolution in the template!");
 			throw new ImageUrlGeneratorException("ImageUrlGenerator not configured in template");
 		}
 
-		if(strstr($params, ':'))
+		if (strstr($params, ':'))
 			list($size, $aspect) = explode(':', $params);
-		else
-		{
+		else {
 			$size = $params;
 			$aspect = "";
 		}
 
 		// parse size
 		$array = explode('x', $size);
-		list($width, $height) = array_map( function($int) { return intval($int); }, $array);
-		if($width <= 0 && $height <= 0)
-		{
+		list($width, $height) = array_map(function ($int) {
+			return intval($int);
+		}, $array);
+		if ($width <= 0 && $height <= 0) {
 			var_dump("failed to parse {width}x{height} string: $size");
 			return false;
 		}
 
-		switch($aspect)
-		{
+		switch ($aspect) {
 			// beautiful but crops
 			case 'cover':
 				$resizeFormat = ImageManager::FIT_COVER;

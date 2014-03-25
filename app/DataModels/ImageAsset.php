@@ -13,6 +13,6 @@ class ImageAsset
 
 	static function create($assetId, $filename)
 	{
-		return new ImageAsset( (object) ['assetId' => $assetId, 'originalFilename' => $filename]);
+		return new ImageAsset((object)['assetId' => $assetId, 'originalFilename' => $filename]);
 	}
 }

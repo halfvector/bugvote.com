@@ -11,8 +11,6 @@ class UserPostedSuggestion extends ActivityVM
 {
 	function extend(Context $ctx, $row)
 	{
-		//$this->creatorImg = $ctx->images->getResizeCacheUrl($row->assetPath, 50, 50);
-		//$this->creatorImg = $ctx->assetManager->getResizeUrl($row->assetId, $row->originalFilename, 50, 50);
 		$this->urlAvatarImg = new ImageUrlGenerator($ctx, new ImageAsset($row));
 
 		$this->eventTimeIso8601 = TimeHelper::MySQLTimestampToISO8601($row->happenedAt);
@@ -22,11 +20,10 @@ class UserPostedSuggestion extends ActivityVM
 
 		$this->timestamp = $row->happenedAt;
 
-		if($this->projectRole == 1001)
+		if ($this->projectRole == 1001)
 			$this->userType = UserTypes::APP_DEVELOPER;
 
-		switch($row->type)
-		{
+		switch ($row->type) {
 			case SuggestionEvents::CREATED:
 				// suggestion created (eg: bug reported)
 				$this->eventString = "created";
@@ -44,18 +41,34 @@ class UserPostedSuggestion extends ActivityVM
 		}
 	}
 
-	function isUserActivity() { return true; }
+	function isUserActivity()
+	{
+		return true;
+	}
 
-	function isRegularUser() {
+	function isRegularUser()
+	{
 		return $this->userType == UserTypes::REGULAR_USER;
 	}
 
-	function isDeveloper() {
+	function isDeveloper()
+	{
 		return $this->userType == UserTypes::APP_DEVELOPER;
 	}
 
-	function isBugReport() { return $this->type == SuggestionEvents::CREATED; }
-	function isBugFix() { return $this->type == SuggestionEvents::FIXED; }
-	function isUpdate() { return $this->type == SuggestionEvents::UPDATED; }
+	function isBugReport()
+	{
+		return $this->type == SuggestionEvents::CREATED;
+	}
+
+	function isBugFix()
+	{
+		return $this->type == SuggestionEvents::FIXED;
+	}
+
+	function isUpdate()
+	{
+		return $this->type == SuggestionEvents::UPDATED;
+	}
 }
 

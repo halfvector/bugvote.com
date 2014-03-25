@@ -2,11 +2,6 @@
 
 use Exception;
 
-interface IHandleException
-{
-	function HandleIt();
-}
-
 class ExceptionHandler
 {
 	public function handle($that, $msg, $type, Exception $err)
