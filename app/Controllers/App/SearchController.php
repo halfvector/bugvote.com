@@ -5,8 +5,8 @@ use Bugvote\Commons\PrimaryMenuItem;
 use Bugvote\Commons\ViewModelBase;
 use Bugvote\Services\Context;
 use Bugvote\ViewModels\AppRootVM;
-use Bugvote\ViewModels\SuggestionItemViewModel;
 use Bugvote\ViewModels\BasePageVM;
+use Bugvote\ViewModels\SuggestionItemViewModel;
 
 class SearchVM extends BasePageVM
 {
@@ -29,18 +29,17 @@ class SearchController extends BaseController
 	function show(Context $ctx)
 	{
 		$vm = new AppRootVM($ctx, "search");
-		$vm->primaryMenu->menuItems []= new PrimaryMenuItem("search", "/search", "Search", "fa fa-search", 0, true);
+		$vm->primaryMenu->menuItems [] = new PrimaryMenuItem("search", "/search", "Search", "fa fa-search", 0, true);
 
 		$vm->urlCreateSuggestion = $vm->urlViewApp . "/submit";
 
 		$query = $ctx->parameters->q;
 
-		if($query != "")
-		{
+		if ($query != "") {
 			$matchingBugs = $ctx->dal->fetchMultipleObjs('
 				SELECT
 	                s.suggestionId, s.title, s.suggestionTypeId, s.seoUrlId, s.seoUrlTitle,
-	                o.fullName AS creatorName, oa.assetId AS posterImgId, oa.originalFilename as posterImgFilename,
+	                o.fullName AS creatorName, oa.assetId AS posterImgId, oa.originalFilename AS posterImgFilename,
 	                coalesce(v.votes,0) AS votes,
 	                coalesce(mv.myvote,0) AS myvote,
 	                coalesce(c.comments,0) AS comments,
@@ -56,9 +55,9 @@ class SearchController extends BaseController
 	                    LEFT JOIN (SELECT count(commentId) AS mycomments, suggestionId FROM suggestionComments GROUP BY suggestionId) AS mc ON (c.suggestionId = s.suggestionId AND mv.userId = :userId)
 
 	                    LEFT JOIN users o ON (o.userId = s.userId)
-	                    left join assets oa on (o.profileMediumAssetId = oa.assetId)
+	                    LEFT JOIN assets oa ON (o.profileMediumAssetId = oa.assetId)
 	            WHERE
-	                appId = :appId and match(s.title, s.suggestion) against (:query IN BOOLEAN MODE)
+	                appId = :appId AND match(s.title, s.suggestion) against (:query IN BOOLEAN MODE)
 	            GROUP BY
 	                s.suggestionId
 	            ORDER BY
@@ -70,8 +69,7 @@ class SearchController extends BaseController
 			);
 
 			$vm->suggestions = SuggestionItemViewModel::createCollection($ctx, $matchingBugs);
-		} else
-		{
+		} else {
 			$vm->suggestions = null;
 		}
 

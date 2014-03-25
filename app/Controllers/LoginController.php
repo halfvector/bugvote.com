@@ -12,12 +12,12 @@ class LoginController extends BaseController
 	function showLogin(Context $ctx)
 	{
 		// if already logged in, show user's profile
-		if($ctx->user->getUserId())
+		if ($ctx->user->getUserId())
 			return $ctx->redirect("/profile");
 
 		$vm = new BasePageVM($ctx);
 		$vm->primaryMenu = new SimplePrimaryMenuVM(
-			[ new PrimaryMenuItem("home", "/", "home", "icon-home", 0, true) ]
+			[new PrimaryMenuItem("home", "/", "home", "icon-home", 0, true)]
 		);
 
 		$this->renderTemplate($vm, 'Site', 'Auth/Login');

@@ -190,7 +190,7 @@ class NewBugDetailsController extends BaseController
 				from suggestionComments s
 				join users u using (userId)
 				left join socialAccounts sa using (userId)
-				left join assets a on (assetId = profilePicAssetId)
+				left join assets a on (assetId = ifnull(profilePicAssetId, profileMediumAssetId))
 			where suggestionId = :suggestionId
 			group by commentId
 			order by commentId",

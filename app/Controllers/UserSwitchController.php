@@ -34,12 +34,12 @@ class UserSwitchController extends BaseController
 
 		$vm = new BasePageVM($ctx);
 		$vm->primaryMenu = new SimplePrimaryMenuVM(
-			[ new PrimaryMenuItem("home", "/", "home", "icon-home", 0, true) ]
+			[new PrimaryMenuItem("home", "/", "home", "icon-home", 0, true)]
 		);
 
 		$users = $ctx->dal->fetchMultipleObjs("
-			select * from users
-				left join assets on (profileMediumAssetId = assetId)
+			SELECT * FROM users
+				LEFT JOIN assets ON (profileMediumAssetId = assetId)
 			"
 		);
 
@@ -57,7 +57,7 @@ class UserSwitchController extends BaseController
 			//'signature' => ['type' => 'string'],
 		]);
 
-		if(!$data)
+		if (!$data)
 			$ctx->redirect("/switch");
 
 		// verify signature
@@ -68,8 +68,7 @@ class UserSwitchController extends BaseController
 
 		$ctx->log->write("Testing redirect signature: {$signature_received} vs {$signed->signature}");
 
-		if($signed->signature != $signature_received)
-		{
+		if ($signed->signature != $signature_received) {
 			$ctx->log->write("Redirect signature '{$signature_received}' doesn't match expected '{$signed->signature}'");
 			$ctx->redirect("/switch");
 		}

@@ -13,7 +13,7 @@ class HomePrimaryMenuVM extends BaseNavigationVM
 
 	function __construct()
 	{
-		$this->menuItems []= new PrimaryMenuItem("home", "/", "home", "icon-home", 0, true);
+		$this->menuItems [] = new PrimaryMenuItem("home", "/", "home", "icon-home", 0, true);
 
 		parent::__construct("home");
 	}
@@ -40,17 +40,16 @@ class HomeVM extends BasePageVM
 class HomeController extends BaseController
 {
 	/** @route GET / */
-    public function home(Context $ctx)
-    {
+	public function home(Context $ctx)
+	{
 		$vm = new HomeVM($ctx);
 
 		$vm->projects = $ctx->dal->fetchMultipleObjs('
-			select *
-			from projects
+			SELECT *
+			FROM projects
 		', [], 'projects list');
 
-		foreach($vm->projects as $app)
-		{
+		foreach ($vm->projects as $app) {
 			// $ctx<AssetManager>::getWebPath($assetId);
 			// $ctx->assetManager->getWebPath($assetId);
 			// AssetManager::getWebPath($assetId);
@@ -59,6 +58,6 @@ class HomeController extends BaseController
 			$app->appUrl = UrlHelper::createAppUrl($app->seoUrlTitle);
 		}
 
-        $this->renderTemplate($vm, 'Site', 'Home/Home');
-    }
+		$this->renderTemplate($vm, 'Site', 'Home/Home');
+	}
 }

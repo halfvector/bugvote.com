@@ -36,16 +36,27 @@ use Redis;
 
 class Bootstrap
 {
-	/** @var ObjectCache */		    protected	$cache			= null;
-	/** @var Paths */			    public	    $paths			= null;
-	/** @var IAudit */			    protected	$auditProvider	= false;
-	/** @var AuditFacade */		    protected	$auditFacade	= false;
-	/** @var LogEntriesCom */       public      $logentries     = false;
+	/** @var Paths */
+	public $paths = null;
+	/** @var LogEntriesCom */
+	public $logentries = false;
+	/** @var AppPerformanceLog */
+	public $perf;
+	/** @var ILogger */
+	public $logger;
+	/** @var Context */
+	public $ctx;
+	/** @var ObjectCache */
+	protected $cache = null;
+	/** @var IAudit */
+	protected $auditProvider = false;
+	/** @var AuditFacade */
+	protected $auditFacade = false;
+	/** @var AltoRouter */
+	protected $router;
 
-	/** @var AppPerformanceLog */   public $perf;
-	/** @var ILogger */             public $logger;
+	public $clockworkEnabled = false;
 
-	// the core framework bootstrap, nothing app-specifics here
 	public static function create($appPath)
 	{
 		$bootstrap = new Bootstrap();
@@ -81,7 +92,7 @@ class Bootstrap
 
 		$p1->stop();
 
-		if(isset($_SERVER["REQUEST_URI"])) {
+		if (isset($_SERVER["REQUEST_URI"])) {
 			// handling web-request
 			$logger->write("Handling URI: {$_SERVER["REQUEST_URI"]}");
 		} elseif (isset($_SERVER["argv"])) {
@@ -92,8 +103,49 @@ class Bootstrap
 		return $bootstrap;
 	}
 
-	/** @var AltoRouter */
-	protected $router;
+	// new executeRoute() replacement
+	function dispatch()
+	{
+		$p = $this->perf->start("Route Map build");
+		$this->registerRoutes();
+
+		if ($this->clockworkEnabled) {
+			// dump performance/trace data to clockwork
+			$clockworkPath = $this->paths->AbsoluteTmpPath . "/clockwork";
+			$clockwork = new Clockwork();
+			header("X-Clockwork-Id: " . $clockwork->getRequest()->id);
+			header("X-Clockwork-Version: " . Clockwork::VERSION);
+
+			$clockworkMiddleware = new ClockworkDataSource($this);
+
+			$clockwork->addDataSource(new PhpDataSource());
+			$clockwork->addDataSource($clockworkMiddleware);
+			$clockwork->setStorage(new FileStorage($clockworkPath));
+		}
+
+		$p->next("Route dispatch");
+
+		$rendered = false;
+
+		$match = $this->router->match();
+		if ($match) { // run the matching controller
+			$this->runController($match["target"], $match["params"], $rendered);
+		} else { // no controller found. show 404.
+			$renderer = new MustacheRenderer($this->paths, $this->logger, $this->perf);
+			$renderer->render('Errors/404', []);
+		}
+
+		$p->stop();
+
+		// only draw perf data when rendering a page (eg, not handling POST or redirecting)
+		if ($rendered)
+			$this->perf->dump();
+
+		if (isset($clockwork) && !strstr($match["target"], "Clockwork")) {
+			$clockwork->resolveRequest();
+			$clockwork->storeRequest();
+		}
+	}
 
 	public function registerRoutes()
 	{
@@ -106,16 +158,14 @@ class Bootstrap
 		$p->next("Route setup");
 
 		// register routes
-		foreach($routes as $route)
+		foreach ($routes as $route)
 			$this->router->map($route['verb'], $route['path'], '\\Bugvote\\Controllers\\' . $route['class'] . "Controller#" . $route['method'], $route['name']);
 
 		$p->stop();
 	}
 
-	/** @var Context */
-	public $ctx;
+	// resolves a route and calls executeRoute() to bootstrap a context and use it to execute a controller
 
-	// new executeRoute() replacement
 	public function runController($target, $params, &$rendered = false)
 	{
 		$p = $this->perf->start("Route run: $target()");
@@ -182,8 +232,7 @@ class Bootstrap
 
 		// these errors are common enough to have their own handler
 
-		if(!class_exists($className))
-		{
+		if (!class_exists($className)) {
 			$this->logger->write("ERROR: \"$className\" class not found for route $target");
 			throw new MissingRouteControllerException("$target", $className, $methodName, "Cannot route \"$target\" because class not found: $className'");
 		}
@@ -192,12 +241,10 @@ class Bootstrap
 		// failure here should appear as a 404 to the user: couldn't find the correct resource to handle the request!
 		$instance = new $className($context);
 
-		if(!method_exists($instance, $methodName))
-		{
+		if (!method_exists($instance, $methodName)) {
 			$this->logger->write("ERROR: \"$methodName\" method not found in $target");
 			throw new MissingRouteControllerMethodException("$className::$methodName", $target, $methodName, "Cannot route \"$className::$methodName\" because method $methodName not found in class: '$target'");
-		} else
-		{
+		} else {
 			$instance->$methodName($context);
 		}
 
@@ -205,53 +252,5 @@ class Bootstrap
 		$p->stop();
 
 		$rendered = $context->rendered;
-	}
-
-	public $clockworkEnabled = false;
-
-	// resolves a route and calls executeRoute() to bootstrap a context and use it to execute a controller
-	function dispatch()
-	{
-		$p = $this->perf->start("Route Map build");
-		$this->registerRoutes();
-
-		if( $this->clockworkEnabled ) {
-			// dump performance/trace data to clockwork
-			$clockworkPath = $this->paths->AbsoluteTmpPath . "/clockwork";
-			$clockwork = new Clockwork();
-			header("X-Clockwork-Id: " . $clockwork->getRequest()->id);
-			header("X-Clockwork-Version: " . Clockwork::VERSION);
-
-			$clockworkMiddleware = new ClockworkDataSource($this);
-
-			$clockwork->addDataSource(new PhpDataSource());
-			$clockwork->addDataSource($clockworkMiddleware);
-			$clockwork->setStorage(new FileStorage($clockworkPath));
-		}
-
-		$p->next("Route dispatch");
-
-		$rendered = false;
-
-		$match = $this->router->match();
-		if($match)
-		{   // run the matching controller
-			$this->runController($match["target"], $match["params"], $rendered);
-		} else
-		{   // no controller found. show 404.
-			$renderer = new MustacheRenderer($this->paths, $this->logger, $this->perf);
-			$renderer->render('Errors/404', []);
-		}
-
-		$p->stop();
-
-		// only draw perf data when rendering a page (eg, not handling POST or redirecting)
-		if($rendered)
-			$this->perf->dump();
-
-		if(isset($clockwork) && !strstr($match["target"], "Clockwork")) {
-			$clockwork->resolveRequest();
-			$clockwork->storeRequest();
-		}
 	}
 }

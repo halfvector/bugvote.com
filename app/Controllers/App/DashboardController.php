@@ -24,7 +24,7 @@ class DashboardItemViewModel extends ViewModelBase
 		$this->creatorImg = $ctx->assetManager->GetWebPathForAsset($row->creatorImgId);
 		$this->createdAge = TimeHelper::SmartShortAge($row->createdAgeSec);
 
-		$this->progressPercentage = number_format(rand(0,100),0) . "%";
+		$this->progressPercentage = number_format(rand(0, 100), 0) . "%";
 
 		$this->suggestionUrl = UrlHelper::createIdeaUrl($row->seoUrlId, $row->seoUrlTitle);
 		$this->isBugFix = $row->suggestionTypeId == 1 ? true : false;
@@ -41,60 +41,6 @@ class DashboardItemCollection extends ViewModelCollection
 
 class DashboardController extends BaseController
 {
-	/**
-	 * gets latest suggestions for app $appId from the perspective of user $userId
-	 * @param \Bugvote\Services\Context $ctx
-	 * @param $appId
-	 * @param $userId
-	 * @param $suggestionStateId
-	 * @internal param \Bugvote\Services\Context $qb
-	 * @internal param \AppTogether\Core\DAL $dal
-	 * @return mixed
-	 */
-	function getNewestSuggestions(Context $ctx, $appId, $userId, $suggestionStateId)
-	{
-		return $ctx->dal->fetchMultipleObjs("
-            select
-            	s.suggestionId, s.title, s.suggestionTypeId,
-            	s.seoUrlId, s.seoUrlTitle,
-            	o.fullName as creatorName, o.profileMediumAssetId as creatorImgId,
-            	coalesce(v.votes,0) as votes,
-            	coalesce(mv.myvote,0) as myvote,
-            	coalesce(c.comments,0) as comments,
-            	coalesce(mc.mycomments,0) as mycomments,
-            	unix_timestamp(s.postedAt) as postedAt,
-            	(unix_timestamp(utc_timestamp()) - unix_timestamp(s.postedAt)) as createdAgeSec
-            from
-            	suggestions s
-            		left join (select sum(vote) as votes, suggestionId from suggestionVotes group by suggestionId) as v on (v.suggestionId = s.suggestionId)
-            		left join (select vote as myvote, userId, suggestionId from suggestionVotes group by suggestionId) as mv on (mv.suggestionId = s.suggestionId and mv.userId = :userId)
-
-            		left join (select count(commentId) as comments, suggestionId from suggestionComments group by suggestionId) as c on (c.suggestionId = s.suggestionId)
-            		left join (select count(commentId) as mycomments, suggestionId from suggestionComments group by suggestionId) as mc on (c.suggestionId = s.suggestionId and mv.userId = :userId)
-
-            		left join users o on (o.userId = s.userId)
-            where
-            	appId = :appId and s.suggestionStateId = :suggestionStateId
-            group by
-            	s.suggestionId
-            order by
-            	createdAgeSec asc
-            limit 5
-            ", [':appId' => $appId, ':userId' => $userId, ":suggestionStateId" => $suggestionStateId]
-			, "newest ideas stateId=$suggestionStateId"
-		);
-	}
-
-	function getSuggestionCount(Context $ctx, $appId, $suggestionStateId)
-	{
-		return $ctx->dal->fetchSingleValue("
-            select count(*)
-            from suggestions
-            where appId = :app and suggestionStateId = :state
-            ", ["app" => $appId, "state" => $suggestionStateId], "count stateId=$suggestionStateId"
-		);
-	}
-
 	/** @route /a/[:appUrl] */
 	function news(Context $ctx)
 	{
@@ -123,34 +69,34 @@ class DashboardController extends BaseController
 		$vm->urlViewDoingIdeas = $vm->urlViewApp . "/garage";
 		$vm->urlViewDoneIdeas = $vm->urlViewApp . "/features";
 
-        $vm->urlNewIdea = $vm->urlViewApp . "/submit";
+		$vm->urlNewIdea = $vm->urlViewApp . "/submit";
 
 		$p->next("Activity Feed DMs");
 
 		// activity feed
 		$activity = $ctx->dal->fetchMultipleObjs("
-			select
+			SELECT
 				a.*, i.*,
 				-- user data
-				u.fullName, po.role as projectRole,
+				u.fullName, po.role AS projectRole,
 				-- minimal data for release item
-				r.version as releaseVersion, r.body as releaseText,
+				r.version AS releaseVersion, r.body AS releaseText,
 				-- minimal data for suggestion items
 				s.title, s.numOfVotes, s.numOfComments, s.seoUrlTitle, s.seoUrlId,
 				-- minimal data for comment item
 				c.comment
-			from
+			FROM
 				activity a
-				left join suggestions s on (s.suggestionId = a.refId and type between 100 and 200)
-				left join suggestionComments c on (c.commentId = a.refId and type between 200 and 300)
-				left join releases r on (r.releaseId = a.refId and type between 400 and 500)
-				left join users u on (a.userId = u.userId)
-				left join assets i on (u.profileMediumAssetId = i.assetId)
-				left join projectOwners po on (u.userId = po.userId and po.projectId = a.appId)
-			where
+				LEFT JOIN suggestions s ON (s.suggestionId = a.refId AND type BETWEEN 100 AND 200)
+				LEFT JOIN suggestionComments c ON (c.commentId = a.refId AND type BETWEEN 200 AND 300)
+				LEFT JOIN releases r ON (r.releaseId = a.refId AND type BETWEEN 400 AND 500)
+				LEFT JOIN users u ON (a.userId = u.userId)
+				LEFT JOIN assets i ON (u.profileMediumAssetId = i.assetId)
+				LEFT JOIN projectOwners po ON (u.userId = po.userId AND po.projectId = a.appId)
+			WHERE
 				a.appId = :appId
-			order by
-				a.happenedAt desc
+			ORDER BY
+				a.happenedAt DESC
 			", ["appId" => $vm->appId], "activity feed"
 		);
 
@@ -158,12 +104,10 @@ class DashboardController extends BaseController
 
 		$vm->events = [];
 
-		foreach($activity as $item)
-		{
+		foreach ($activity as $item) {
 			$eventVM = null;
 
-			switch((int) ($item->type / 100))
-			{
+			switch ((int)($item->type / 100)) {
 				case 1:
 					$eventVM = new UserPostedSuggestion($ctx, $item);
 					break;
@@ -173,10 +117,9 @@ class DashboardController extends BaseController
 					break;
 			}
 
-			if($eventVM != null)
-			{	// we matched a ViewModel to the event's DTO
+			if ($eventVM != null) { // we matched a ViewModel to the event's DTO
 				// append it to the list
-				$vm->events []= $eventVM;
+				$vm->events [] = $eventVM;
 			}
 		}
 		$p->next("Render");
@@ -184,5 +127,59 @@ class DashboardController extends BaseController
 		$this->renderTemplate($vm, 'Site', 'App/News');
 
 		$p->stop();
+	}
+
+	/**
+	 * gets latest suggestions for app $appId from the perspective of user $userId
+	 * @param \Bugvote\Services\Context $ctx
+	 * @param $appId
+	 * @param $userId
+	 * @param $suggestionStateId
+	 * @internal param \Bugvote\Services\Context $qb
+	 * @internal param \AppTogether\Core\DAL $dal
+	 * @return mixed
+	 */
+	function getNewestSuggestions(Context $ctx, $appId, $userId, $suggestionStateId)
+	{
+		return $ctx->dal->fetchMultipleObjs("
+            SELECT
+            	s.suggestionId, s.title, s.suggestionTypeId,
+            	s.seoUrlId, s.seoUrlTitle,
+            	o.fullName AS creatorName, o.profileMediumAssetId AS creatorImgId,
+            	coalesce(v.votes,0) AS votes,
+            	coalesce(mv.myvote,0) AS myvote,
+            	coalesce(c.comments,0) AS comments,
+            	coalesce(mc.mycomments,0) AS mycomments,
+            	unix_timestamp(s.postedAt) AS postedAt,
+            	(unix_timestamp(utc_timestamp()) - unix_timestamp(s.postedAt)) AS createdAgeSec
+            FROM
+            	suggestions s
+            		LEFT JOIN (SELECT sum(vote) AS votes, suggestionId FROM suggestionVotes GROUP BY suggestionId) AS v ON (v.suggestionId = s.suggestionId)
+            		LEFT JOIN (SELECT vote AS myvote, userId, suggestionId FROM suggestionVotes GROUP BY suggestionId) AS mv ON (mv.suggestionId = s.suggestionId AND mv.userId = :userId)
+
+            		LEFT JOIN (SELECT count(commentId) AS comments, suggestionId FROM suggestionComments GROUP BY suggestionId) AS c ON (c.suggestionId = s.suggestionId)
+            		LEFT JOIN (SELECT count(commentId) AS mycomments, suggestionId FROM suggestionComments GROUP BY suggestionId) AS mc ON (c.suggestionId = s.suggestionId AND mv.userId = :userId)
+
+            		LEFT JOIN users o ON (o.userId = s.userId)
+            WHERE
+            	appId = :appId AND s.suggestionStateId = :suggestionStateId
+            GROUP BY
+            	s.suggestionId
+            ORDER BY
+            	createdAgeSec ASC
+            LIMIT 5
+            ", [':appId' => $appId, ':userId' => $userId, ":suggestionStateId" => $suggestionStateId]
+			, "newest ideas stateId=$suggestionStateId"
+		);
+	}
+
+	function getSuggestionCount(Context $ctx, $appId, $suggestionStateId)
+	{
+		return $ctx->dal->fetchSingleValue("
+            SELECT count(*)
+            FROM suggestions
+            WHERE appId = :app AND suggestionStateId = :state
+            ", ["app" => $appId, "state" => $suggestionStateId], "count stateId=$suggestionStateId"
+		);
 	}
 }

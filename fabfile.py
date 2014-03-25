@@ -42,38 +42,32 @@ def alpha():
     env.hosts = env.roledefs['staging']
 
 @task
-def upload_db_dump():
-    if not exists(env.app_tmp):
-        run('mkdir -p %s' % env.app_tmp)
-
-    # stage db schema and data
-    put('bugvote.sql', '%s/' % env.app_tmp)
-    put('bugvote-data.sql', '%s/' % env.app_tmp)
-
-@task
 def configure():
     require('local_nginx_conf', 'local_php_fpm_conf', provided_by=[alpha])
+    
     with lcd(env.local_root_path):
 
+        # TODO: add confirmation
         #if os.path.exists(env.app_root):
         #    puts("app root path already exists, do you want to proceed?")
         #    return
-    
-        #sudo('rm -rf %s' % env.app_root)
+        
+        # oh my
+        sudo('rm -rf %s' % env.app_root)
         
         # setup standalone deployment path
-        # make path
-        #sudo('mkdir -p %s' % env.app_root)
-        #sudo('chown deploy:www-data %s' % env.app_root)
+        # have to do it as root first, then drop down to regular 'deploy' user
+        sudo('mkdir -p %s' % env.app_root)
+        sudo('chown deploy:www-data %s' % env.app_root)
         
-        #run('mkdir -p %s' % env.app_logs)
+        run('mkdir -p %s' % env.app_logs)
         
         # install composer globally
-        #run('mkdir -p %s', env.composer_cache)
-        #run('mkdir -p %s' % env.app_tools)
-        #run('curl -sS https://getcomposer.org/installer | php -- --install-dir=%s --cache-dir=%s' % (env.app_tools, env.composer_cache))
+        run('mkdir -p %s', env.composer_cache)
+        run('mkdir -p %s' % env.app_tools)
+        run('curl -sS https://getcomposer.org/installer | php -- --install-dir=%s --cache-dir=%s' % (env.app_tools, env.composer_cache))
     
-        # init repo, we will push here before deployment
+        # init repo, we will push here before prior to deployment
         if not exists(env.app_repo):
             run('mkdir -p %s' % env.app_repo)
             with cd(env.app_repo):
@@ -92,13 +86,6 @@ def configure():
 def nginx_reload():
     sudo('nginx -s reload')
 
-# warning: this may leave a dangling symlink
-@task
-def destroy(commit_id):
-    new_build = '%s/%s' % (env.app_builds, commit_id)
-    if exists(new_build):
-        run('rm -rf %s' % new_build)
-
 @task
 def deploy_latest():
     with lcd(env.local_root_path):
@@ -106,7 +93,13 @@ def deploy_latest():
         puts('forcing deploy of latest commit: %s' % commit_id)
         destroy(commit_id)
         deploy(commit_id)
-        
+
+# warning: this may leave a dangling symlink
+@task
+def destroy(commit_id):
+    new_build = '%s/%s' % (env.app_builds, commit_id)
+    if exists(new_build):
+        run('rm -rf %s' % new_build)
 
 @task
 def deploy(commit_id, rebuild_dependencies=False):

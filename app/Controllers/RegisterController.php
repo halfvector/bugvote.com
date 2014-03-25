@@ -13,7 +13,7 @@ class RegisterController extends BaseController
 	{
 		$vm = new BasePageVM($ctx);
 		$vm->primaryMenu = new SimplePrimaryMenuVM(
-			[ new PrimaryMenuItem("home", "/", "home", "icon-home", 0, true) ]
+			[new PrimaryMenuItem("home", "/", "home", "icon-home", 0, true)]
 		);
 
 		$this->renderTemplate($vm, 'Site', 'Auth/Register');

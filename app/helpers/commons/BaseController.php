@@ -2,8 +2,6 @@
 
 use ArrayAccess;
 use ArrayObject;
-use Bugvote\Core\FormVariables;
-use Bugvote\Core\ImageUrlGenerator;
 use Bugvote\Services\Context;
 use stdClass;
 
@@ -11,7 +9,7 @@ trait UrlCallbackHelper
 {
 	function getAppId(Context $ctx)
 	{
-		$appId = $ctx->dal->fetchSingleValue('select projectId from projects where seoUrlTitle = :title', [':title' => $ctx->parameters->strings->appUrl]);
+		$appId = $ctx->dal->fetchSingleValue('SELECT projectId FROM projects WHERE seoUrlTitle = :title', [':title' => $ctx->parameters->strings->appUrl]);
 
 		return $appId;
 	}
@@ -30,7 +28,7 @@ trait UrlCallbackHelper
 
 	function getAppUrl(Context $ctx, $appId)
 	{
-		return $ctx->dal->fetchSingleValue('select projectUrl from projects where projectId = :id', [':id' => $appId]);
+		return $ctx->dal->fetchSingleValue('SELECT projectUrl FROM projects WHERE projectId = :id', [':id' => $appId]);
 	}
 }
 
@@ -60,12 +58,14 @@ class FormVariable
 //		return $this->parent;
 //	}
 
-	function isOptional() {
+	function isOptional()
+	{
 		$this->isOptional = true;
 		return $this;
 	}
 
-	function isRequired() {
+	function isRequired()
+	{
 		$this->isOptional = false;
 		return $this;
 	}
@@ -74,9 +74,10 @@ class FormVariable
 	 * @param int $default
 	 * @return FormGatherer
 	 */
-	function asInt($default = 0) {
+	function asInt($default = 0)
+	{
 		$value = filter_input(INPUT_POST, $this->name, FILTER_SANITIZE_NUMBER_INT);
-		if($this->value == null)
+		if ($this->value == null)
 			$value = $default;
 		return $this->parent->set($this->name, $value);
 	}
@@ -86,7 +87,8 @@ class FormVariable
 	 * @param int $maxRange unused
 	 * @return FormGatherer
 	 */
-	function asIntArray($minRange = 0, $maxRange = 0) {
+	function asIntArray($minRange = 0, $maxRange = 0)
+	{
 		$value = filter_input(INPUT_POST, $this->name, FILTER_VALIDATE_INT, FILTER_FORCE_ARRAY);
 		return $this->parent->set($this->name, $value);
 	}
@@ -96,9 +98,10 @@ class FormVariable
 	 * @param int $minLength
 	 * @return FormGatherer
 	 */
-	function asString($default = "", $minLength = 0) {
+	function asString($default = "", $minLength = 0)
+	{
 		$value = filter_input(INPUT_POST, $this->name, FILTER_SANITIZE_STRING, 0);
-		if(!$value)
+		if (!$value)
 			$value = $default;
 		return $this->parent->set($this->name, $value);
 	}
@@ -107,11 +110,12 @@ class FormVariable
 	 * @param null $default
 	 * @return FormGatherer
 	 */
-	function asOneFile($default = null) {
+	function asOneFile($default = null)
+	{
 
 		$value = $default;
 
-		if(isset($_FILES[$this->name]) && !is_array($_FILES[$this->name]) && $_FILES[$this->name]["size"] != 0)
+		if (isset($_FILES[$this->name]) && !is_array($_FILES[$this->name]) && $_FILES[$this->name]["size"] != 0)
 			$value = $_FILES[$this->name];
 
 		return $this->parent->set($this->name, $value);
@@ -121,11 +125,12 @@ class FormVariable
 	 * @param array $default
 	 * @return FormGatherer
 	 */
-	function asFileArray($default = []) {
+	function asFileArray($default = [])
+	{
 
 		$value = $default;
 
-		if(isset($_FILES[$this->name]) && is_array($_FILES[$this->name]))
+		if (isset($_FILES[$this->name]) && is_array($_FILES[$this->name]))
 			$value = $_FILES[$this->name];
 
 		return $this->parent->set($this->name, $value);
@@ -135,18 +140,20 @@ class FormVariable
 	 * @param array $default
 	 * @return FormGatherer
 	 */
-	function asArray($default = []) {
+	function asArray($default = [])
+	{
 		$value = filter_input(INPUT_POST, $this->name, FILTER_UNSAFE_RAW, FILTER_FORCE_ARRAY);
-		if(!$value)
+		if (!$value)
 			$value = $default;
 
 		return $this->parent->set($this->name, $value);
 	}
 
-	function asArrayFromString($delim = ',', $default = []) {
+	function asArrayFromString($delim = ',', $default = [])
+	{
 		$value = filter_input(INPUT_POST, $this->name, FILTER_SANITIZE_STRING);
 		$array = explode($delim, $value);
-		if(!$array)
+		if (!$array)
 			$array = $default;
 
 		return $this->parent->set($this->name, $array);
@@ -156,9 +163,10 @@ class FormVariable
 	 * @param string $default
 	 * @return FormGatherer
 	 */
-	function asMarkdown($default = "") {
+	function asMarkdown($default = "")
+	{
 		$value = filter_input(INPUT_POST, $this->name, FILTER_SANITIZE_STRING, 0);
-		if(!$value)
+		if (!$value)
 			$value = $default;
 
 		return $this->parent->set($this->name, $value);
@@ -167,12 +175,12 @@ class FormVariable
 
 class FormGatherer extends ArrayObject implements ArrayAccess
 {
-	protected $params;
-	public $data = [];
-
 	const AsMarkdown = 0, AsArray = 1, AsString = 2, AsFileArray = 3;
+	public $data = [];
+	protected $params;
 
-	function __construct($params = []) {
+	function __construct($params = [])
+	{
 		$this->params = $params;
 		$this->data = new stdClass();
 	}
@@ -181,12 +189,14 @@ class FormGatherer extends ArrayObject implements ArrayAccess
 	 * @param $param string
 	 * @return FormVariable
 	 */
-	function __get($param) {
+	function __get($param)
+	{
 		$value = isset($this->params[$param]) ? $this->params[$param] : null;
 		return new FormVariable($this, $value, $param);
 	}
 
-	function __isset($param) {
+	function __isset($param)
+	{
 		return isset($this->params[$param]);
 	}
 
@@ -244,58 +254,61 @@ class FormGatherer extends ArrayObject implements ArrayAccess
 
 abstract class BaseController
 {
-    protected $context;
-    protected $baseUrl;
+	protected $context;
+	protected $baseUrl;
 
-    function __construct(Context $context)
-    {
-        $this->context = $context;
-    }
+	function __construct(Context $context)
+	{
+		$this->context = $context;
+	}
 
-    /**
-     * filters/sanitizes user-input
-     * generates one-time session-stored flashing errors for user-feedback
-     * @param array $parameters
-     * @return bool|stdClass returns an object full of requested parameter values or false on error
-     */
-    function getRequirements($parameters, $flashErrors = true)
-    {
-        $ctx = $this->context;
-        $requirements = new Requirements($parameters);
+	/**
+	 * filters/sanitizes user-input
+	 * generates one-time session-stored flashing errors for user-feedback
+	 * @param array $parameters
+	 * @param bool $flashErrors
+	 * @return bool|stdClass returns an object full of requested parameter values or false on error
+	 */
+	function getRequirements($parameters, $flashErrors = true)
+	{
+		$ctx = $this->context;
+		$requirements = new Requirements($parameters);
 
 		$ctx->log->write("Gathering user input..");
 
-        $errors = [];
-        $data = $requirements->getData($ctx, $errors);
+		$errors = [];
+		$data = $requirements->getData($ctx, $errors);
 
-        // early-out if data requirements aren't met
-        if(!$data && $flashErrors)
-        {
-            foreach($errors as $error)
-                $ctx->flash($error, 'error');
+		// early-out if data requirements aren't met
+		if (!$data && $flashErrors) {
+			foreach ($errors as $error)
+				$ctx->flash($error, 'error');
 
-            return false;
-        }
+			return false;
+		}
 
-        return $data;
-    }
+		return $data;
+	}
 
+	/**
+	 * spawns a POST-data gather to make collection form-data prettier
+	 * @return FormGatherer
+	 */
 	function gather()
 	{
 		return new FormGatherer();
 	}
 
-    function showError($errorMsg)
-    {
-        $this->context->flash($errorMsg, 'error');
-        $this->context->redirect($this->baseUrl);
-    }
+	function showError($errorMsg)
+	{
+		$this->context->flash($errorMsg, 'error');
+		$this->context->redirect($this->baseUrl);
+	}
 
 	function renderTemplate(PageViewModel $viewModel, $layout, $template)
 	{
 		$viewModel->layout = $layout;
 		$viewModel->template = $template;
-		//$viewModel->setButtons($this->context->descriptor->resource, '');
 
 		$this->context->renderTemplate($viewModel);
 	}

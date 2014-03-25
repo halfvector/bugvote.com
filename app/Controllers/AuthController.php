@@ -1,9 +1,9 @@
 <?php namespace Bugvote\Controllers;
 
 use Bugvote\Commons\BaseController;
-use Bugvote\Services\Context;
 use Bugvote\Core\Auth\OpAuthParser;
 use Bugvote\Core\UserManager;
+use Bugvote\Services\Context;
 
 class OAuthSetup
 {
@@ -41,8 +41,7 @@ class AuthController extends BaseController
 
 		$response = unserialize(base64_decode($_POST['opauth']));
 
-		if(array_key_exists("error", $response))
-		{
+		if (array_key_exists("error", $response)) {
 			var_dump("opauth has error");
 			var_dump($response["error"]);
 
@@ -55,10 +54,10 @@ class AuthController extends BaseController
 
 		$socialUserData = null;
 
-		if( $response['auth']['provider'] == 'Facebook' )
+		if ($response['auth']['provider'] == 'Facebook')
 			$socialUserData = OpAuthParser::ParseFacebookResponse($response);
 
-		if( $response['auth']['provider'] == 'Twitter' )
+		if ($response['auth']['provider'] == 'Twitter')
 			$socialUserData = OpAuthParser::ParseTwitterResponse($response);
 
 		$ctx->log->writeObject("got social user data:", $socialUserData);

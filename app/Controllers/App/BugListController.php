@@ -1,14 +1,15 @@
 <?php namespace Bugvote\Controllers\App;
 
+use Bugvote\Commons\BaseController;
 use Bugvote\DataModels\HottestIdeasDataModel;
 use Bugvote\DataModels\NewestIdeasDataModel;
 use Bugvote\Services\Context;
-use Bugvote\Commons\BaseController;
 use Bugvote\ViewModels\AppRootVM;
 use Bugvote\ViewModels\SuggestionItemViewModel;
 
 class BugListController extends BaseController
 {
+	/** @route /a/[:appUrl]/ideas/vote */
 	function vote(Context $ctx)
 	{
 		$ctx->log->writeObject("post data", $_POST);
@@ -23,12 +24,11 @@ class BugListController extends BaseController
 		]);
 
 		// if form had some errors, redirect back to the form page (alerts will be shown)
-		if(!$data)
+		if (!$data)
 			return $ctx->redirect($urlViewApp);
 
 		// sanity check
-		if($data->idea <= 0)
-		{
+		if ($data->idea <= 0) {
 			$ctx->auditor->log("Sanity failure: \$data->idea ({$data->idea}) <= 0");
 			return $ctx->redirect($urlViewApp);
 		}
@@ -74,7 +74,6 @@ class BugListController extends BaseController
 
 		$this->renderTemplate($vm, 'Site', 'App/Ideas');
 	}
-
 
 	/** @route /a/[:appUrl]/ideas */
 	function showHottestBugs(Context $ctx)
