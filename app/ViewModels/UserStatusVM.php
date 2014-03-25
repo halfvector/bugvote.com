@@ -54,6 +54,15 @@ class UserStatusVM
 					'user profile image'
 				);
 
+				if(!$userProfileAsset->assetId)
+				{   // try one of the social-accounts
+					$userProfileAsset = $ctx->dal->fetchSingleObj(
+						"select assetId, originalFilename from socialAccounts u left join assets on (profilePicAssetId = assetId) where userId = :userId limit 1",
+						['userId' => $this->userId],
+						'social profile image'
+					);
+				}
+
 				if($userProfileAsset)
 					$this->urlUserProfileImage = new ImageUrlGenerator($ctx, new ImageAsset($userProfileAsset));
 			}

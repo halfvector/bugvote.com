@@ -5,6 +5,8 @@ use Bugvote\Lib\BugvoteAutoload;
 ini_set("xdebug.var_display_max_depth", 5);
 
 define('APP_DEPLOYED', 'HOME');
+define('APP_STATIC_HOSTNAME', 'static.alpha.bugvote.com');
+define('APP_STATIC_IMG_CACHE', '//' . APP_STATIC_HOSTNAME . '/cache');
 
 // "system" folder that contains app, tmp, tools, etc
 define('BUGVOTE_ROOT', realpath(dirname(__FILE__) . '/../'));

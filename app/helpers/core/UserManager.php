@@ -59,7 +59,6 @@ class UserManager
 			$assetId = $this->ctx->dal->insertSingleObj("insert into assets set isValid = false");
 		}
 
-		// sanitize the url
 		$profilePicUrl = $socialUserData["profileImage"];
 
 		// download and sanitize the raw data (make sure its a clean image, nothing fishy)
@@ -67,16 +66,31 @@ class UserManager
 
 		if( $rawImage )
 		{
-			// get the path for the asset and copy the contents
+			// TODO: verify and sanitize the filename
+			$picFilename = pathinfo($profilePicUrl)['basename'];
+			// facebook changed their profile image urls to not resolve to final CDN paths
+			// so need to do it ourselves or generate a random filename
+			// TODO: we don't even know its a jpeg, need to at least sniff the image, or
+			// resolve the path 'https://graph.facebook.com/16200583/picture?type=large' into the final CDN path with a valid filename and extension
+			if($socialUserData['providerId'] == 1)
+				$picFilename = 'fbprofileimg.jpg';
+
+			// ensure the folder path exists
 			$assetFilePath = $this->ctx->assetManager->GetAbsoluteFilePathForAsset($assetId);
+			$this->ctx->log->write("User profile image folder: [$assetFilePath] file: [$picFilename]");
+			if(!file_exists($assetFilePath))
+				mkdir($assetFilePath, 0775, true);
+
+			// build a filepath and write the image
+			$assetFilePath .= '/' . $picFilename;
 			if( $assetFilePath ) {
 				file_put_contents($assetFilePath, $rawImage);
 				chmod($assetFilePath, 0664);
 			}
 
 			$this->ctx->dal->updateSingleObj(
-				"update assets set isValid = true, assetPath = :assetPath where assetId = :assetId",
-				[":assetPath" => $assetFilePath, ":assetId" => $assetId]
+				"update assets set isValid = true, originalFilename = :filename where assetId = :assetId",
+				[":filename" => $picFilename, ":assetId" => $assetId]
 			);
 		}
 
@@ -125,6 +139,7 @@ class UserManager
 			{	// oauthed user already has an account with us but isn't logged in
 				// log them in
 				$ctx->user->login($userId);
+				$this->UpdateUserMetadata($socialUserData, $userId);
 			}
 		} else
 		{	// user is logged in

@@ -69,7 +69,7 @@ class ImageUrlGenerator
 
 		$url = $this->ctx->assetManager->getResizeUrl($this->assetData->assetId, $this->assetData->originalFilename, $width, $height, $resizeFormat);
 
-		//$this->ctx->log->write("Built '$url' from '$params'");
+		$this->ctx->log->write("Built '$url' from '$params'");
 
 		return $url;
 	}

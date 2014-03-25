@@ -60,9 +60,16 @@ class ProfileController extends BaseController
 		$user = $ctx->dal->fetchSingleObj("
 			select *
 			from users
-			left join assets on (assetId = profileMediumAssetId)
 			where userId = :userId
 			", ["userId" => $userId], "user details"
+		);
+
+		// grab the first social-user account's profile image
+		// TODO: allow user to choose which image to use as their primary profile pic
+		$userProfileAsset = $ctx->dal->fetchSingleObj(
+			"select assetId, originalFilename from socialAccounts u left join assets on (profilePicAssetId = assetId) where userId = :userId limit 1",
+			['userId' => $userId],
+			'social profile image'
 		);
 
 		$vm = new BasePageVM($ctx);
@@ -75,9 +82,7 @@ class ProfileController extends BaseController
 
 		$vm->primaryMenu = new ProfilePrimaryNavVM($vm->urlViewProfile, "home");
 
-		//$vm->urlImageProfile = $ctx->paths->WebStorageRoot . '/' . $user->assetPath . '/' . $user->originalFilename;
-		//$vm->urlImageProfile = $ctx->paths->AbsoluteWebCacheRoot . '/300x300-1/' . $user->assetPath;
-		$vm->urlImageProfile = new ImageUrlGenerator($ctx, new ImageAsset($user));
+		$vm->urlImageProfile = new ImageUrlGenerator($ctx, new ImageAsset($userProfileAsset));
 		$vm->urlUpdateProfile = UrlHelper::createUserUrl($userId) . '/update';
 		$vm->user = $user;
 		$vm->user->compressedUserId = self::compressUserId($user->userId);
